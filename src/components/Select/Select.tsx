@@ -1,19 +1,24 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import "./SelectFilter.css";
+import { Arrow } from "../Arrow/Arrow";
+import "./Select.css";
+
+export type ColorStatus = "red" | "green" | "orange";
 
 export interface SelectOption {
   id: string;
   content: string;
+  status?: ColorStatus;
 }
 
 interface SelectProps {
+  view: "big" | "small";
   options?: SelectOption[];
   value?: string;
   onChange?: (value: SelectOption) => void;
 }
 
-export const SelectFilter = memo((props: SelectProps) => {
-  const { options, onChange } = props;
+export const Select = memo((props: SelectProps) => {
+  const { options, onChange, view = "big" } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<SelectOption | null>(
     null
@@ -24,7 +29,7 @@ export const SelectFilter = memo((props: SelectProps) => {
     setIsOpen(!isOpen);
   };
 
-  //   Обработка выбора опции
+  // Обработка выбора опции
   const handleOptionClick = useCallback(
     (option: SelectOption) => {
       setSelectedOption(option);
@@ -34,21 +39,26 @@ export const SelectFilter = memo((props: SelectProps) => {
     [onChange]
   );
   const optionsList = useMemo(() => {
-    const optionsFilter = options?.filter(
-      (option) => option.id !== selectedOption?.id
-    );
+    let optionsFilter = options;
+    if (view === "big") {
+      optionsFilter = options?.filter(
+        (option) => option.id !== selectedOption?.id
+      );
+    }
+
     return optionsFilter?.map((option) => (
       <div
         key={option.id}
-        className="option"
+        className={`${view}Option`}
         onClick={() => handleOptionClick(option)}
       >
         {option.content}
+        <div className={option.status} />
       </div>
     ));
-  }, [options, handleOptionClick, selectedOption]);
+  }, [options, handleOptionClick, selectedOption, view]);
 
-  //   Закрывать список при клике вне компонента
+  // Закрывать список при клике вне компонента
   useEffect(() => {
     if (options) {
       setSelectedOption(options[0]);
@@ -71,22 +81,29 @@ export const SelectFilter = memo((props: SelectProps) => {
   }, []);
 
   return (
-    <div className="wrapper" ref={containerRef}>
-      <div className="header" onClick={toggleOpen}>
-        {selectedOption && (
-          <div key={selectedOption.id}>{selectedOption.content}</div>
-        )}
+    <div className={`${view}Wrapper`} ref={containerRef}>
+      <div className={`${view}Header`} onClick={toggleOpen}>
+        <div className={`${view}HeaderWrapper`}>
+          {selectedOption && (
+            <div key={selectedOption.id}>{selectedOption.content}</div>
+          )}
+          {selectedOption?.status && <Arrow status={selectedOption?.status} />}
+        </div>
         {isOpen ? (
           <img
             src="/src/assets/arrowDown.svg"
-            alt="arrow"
-            className="arrow down"
+            alt="arrow down"
+            className={`${view}Arrow`}
           />
         ) : (
-          <img src="/src/assets/arrowUp.svg" alt="arrow" className="arrow up" />
+          <img
+            src="/src/assets/arrowUp.svg"
+            alt="arrow up"
+            className={`${view}Arrow`}
+          />
         )}
       </div>
-      {isOpen && <div className="optionsContainer">{optionsList}</div>}
+      {isOpen && <div className={`${view}OptionsContainer`}>{optionsList}</div>}
     </div>
   );
 });
