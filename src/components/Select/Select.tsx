@@ -1,5 +1,9 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Arrow } from "../Arrow/Arrow";
+import { ReactComponent as ArrowDown } from "../../assets/arrowDown.svg";
+import { ReactComponent as ArrowUp } from "../../assets/arrowUp.svg";
+
+import { classNames } from "../../lib/classNames";
+import { Status } from "../Status/Status";
 import "./Select.css";
 
 export type ColorStatus = "red" | "green" | "orange";
@@ -29,34 +33,34 @@ export const Select = memo((props: SelectProps) => {
     setIsOpen(!isOpen);
   };
 
-  // Обработка выбора опции
-  const handleOptionClick = useCallback(
-    (option: SelectOption) => {
-      setSelectedOption(option);
-      if (onChange) onChange(option);
-      setIsOpen(false);
-    },
-    [onChange]
-  );
-  const optionsList = useMemo(() => {
-    let optionsFilter = options;
-    if (view === "big") {
-      optionsFilter = options?.filter(
-        (option) => option.id !== selectedOption?.id
-      );
-    }
+  // Обработчик клика по компоненту списка выбора селекта
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      const target = e.target as HTMLDivElement;
+      const selected = options?.find((el) => el.id === target.id);
 
-    return optionsFilter?.map((option) => (
-      <div
-        key={option.id}
-        className={`${view}Option`}
-        onClick={() => handleOptionClick(option)}
-      >
-        {option.content}
-        <div className={option.status} />
-      </div>
-    ));
-  }, [options, handleOptionClick, selectedOption, view]);
+      if (selected) {
+        setSelectedOption(selected);
+        if (onChange) {
+          onChange(selected);
+        }
+        setIsOpen(false);
+      }
+    },
+    [options, onChange]
+  );
+
+  const optionsList = useMemo(() => {
+    return options?.map((option) => {
+      if (view === "big" && option.id === selectedOption?.id) return;
+      return (
+        <div id={option.id} key={option.id} className="option">
+          {option.content}
+          <Status status={option.status} />
+        </div>
+      );
+    });
+  }, [options, selectedOption, view]);
 
   // Закрывать список при клике вне компонента
   useEffect(() => {
@@ -81,29 +85,32 @@ export const Select = memo((props: SelectProps) => {
   }, []);
 
   return (
-    <div className={`${view}Wrapper`} ref={containerRef}>
-      <div className={`${view}Header`} onClick={toggleOpen}>
-        <div className={`${view}HeaderWrapper`}>
+    <div
+      className={classNames("wrapper", {
+        wrapper_big: view === "big",
+        wrapper_small: view === "small",
+      })}
+      ref={containerRef}
+    >
+      <div className="header" onClick={toggleOpen}>
+        <div className="headerWrapper">
           {selectedOption && (
             <div key={selectedOption.id}>{selectedOption.content}</div>
           )}
-          {selectedOption?.status && <Arrow status={selectedOption?.status} />}
+          <Status status={selectedOption?.status} />
         </div>
+
         {isOpen ? (
-          <img
-            src="/src/assets/arrowDown.svg"
-            alt="arrow down"
-            className={`${view}Arrow`}
-          />
+          <ArrowDown className="arrow" />
         ) : (
-          <img
-            src="/src/assets/arrowUp.svg"
-            alt="arrow up"
-            className={`${view}Arrow`}
-          />
+          <ArrowUp className="arrow" />
         )}
       </div>
-      {isOpen && <div className={`${view}OptionsContainer`}>{optionsList}</div>}
+      {isOpen && (
+        <div onClick={handleClick} className="optionsContainer">
+          {optionsList}
+        </div>
+      )}
     </div>
   );
 });
