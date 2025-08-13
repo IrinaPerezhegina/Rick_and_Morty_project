@@ -1,6 +1,18 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-// https://vite.dev/config/
+import svgr from "vite-plugin-svgr";
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    svgr({
+      svgrOptions: {
+        exportType: "named",
+        ref: true,
+        svgo: false,
+        titleProp: true,
+      },
+      include: "**/*.svg",
+    }),
+  ],
 });
