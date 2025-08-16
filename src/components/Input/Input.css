@@ -1,0 +1,44 @@
+.input_form {
+  > input {
+    max-width: 176px;
+    padding: 5px 5px 1px 0px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    outline: none;
+  }
+}
+
+.input_filter {
+  position: relative;
+  padding: 15px 5px 15px 15px;
+  display: flex;
+  border: 1px solid #00000080;
+  border-radius: 8px;
+
+  input {
+    font-size: 16px;
+    font-weight: 400;
+    color: #00000080;
+    max-width: 185px;
+    padding-left: 9px;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  ::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+    color: #00000080;
+  }
+}
