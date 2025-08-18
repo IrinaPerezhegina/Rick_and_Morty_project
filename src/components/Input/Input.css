@@ -1,13 +1,27 @@
 .input_form {
   > input {
     max-width: 176px;
-    padding: 5px 5px 1px 0px;
     border: none;
     border-bottom: 1px solid #000000;
-    font-size: 20px;
     font-family: "Roboto", sans-serif;
-    font-weight: 500;
     outline: none;
+    padding-bottom: 1px;
+  }
+
+  .small {
+    height: 20px;
+    width: 115px;
+    padding-left: 2px;
+    color: #00000099;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .big {
+    height: 25px;
+    color: #000000de;
+    font-size: 20px;
+    font-weight: 500;
   }
 }
 
@@ -40,5 +54,12 @@
     font-size: 16px;
     font-weight: 400;
     color: #00000080;
+  }
+}
+
+.readonly {
+  input {
+    border-bottom: none;
+    pointer-events: none;
   }
 }

@@ -1,32 +1,29 @@
-import { memo } from "react";
-import { ReactComponent as Search } from "../assets/loupe.svg";
-import { Input } from "../components/Input/Input";
+import { memo, useState } from "react";
 import { PageLayout } from "../components/PageLayout/PageLayout";
+import { CharacterWidget } from "../widgets/CharacterWidget/CharacterWidget";
 
-// const optionsGender: SelectOption[] = [
-//   { id: "gender-1", content: "Female" },
-//   { id: "gender-2", content: "Male" },
-//   { id: "gender-3", content: "Genderless" },
-//   { id: "gender-4", content: "Unknown" },
-// ];
-
-// const optionsStatus: SelectOption[] = [
-//   { id: "status-1", content: "Alive", status: "green" },
-//   { id: "status-2", content: "Dead", status: "red" },
-//   { id: "status-3", content: "Unknown", status: "orange" },
-// ];
+const character = {
+  id: 2,
+  name: "Morty Smith",
+  status: "Alive",
+  species: "Human",
+  gender: "Male",
+  location: {
+    name: "Citadel of Ricks",
+    url: "https://rickandmortyapi.com/api/location/3",
+  },
+  image: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
+};
 
 export const MainPage = memo(() => {
+  const [readOnly, setReadOnly] = useState(false);
   return (
     <PageLayout>
-      <Input
-        Svg={<Search />}
-        view="filter"
-        value=""
-        placeholder="Filter by name..."
-        onChange={() => {}}
+      <CharacterWidget
+        onClick={() => setReadOnly((prev) => !prev)}
+        readOnly={readOnly}
+        character={character}
       />
-      <Input view="form" value="Rick Sanchez" onChange={() => {}} />
     </PageLayout>
   );
 });

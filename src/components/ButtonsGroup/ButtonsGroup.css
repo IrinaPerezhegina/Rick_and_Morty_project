@@ -1,0 +1,27 @@
+.ButtonGroup {
+  display: flex;
+  gap: 15px;
+  cursor: pointer;
+  button {
+    background: none;
+    border: none;
+  }
+}
+
+.close {
+  cursor: pointer;
+  width: 9px;
+  height: 9px;
+}
+
+.check {
+  cursor: pointer;
+  width: 12px;
+  height: 9px;
+}
+
+.pensil {
+  cursor: pointer;
+  width: 13px;
+  height: 13px;
+}
