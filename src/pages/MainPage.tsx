@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { PageLayout } from "../components/PageLayout/PageLayout";
 import { CharacterWidget } from "../widgets/CharacterWidget/CharacterWidget";
 
@@ -16,11 +16,13 @@ const character = {
 };
 
 export const MainPage = memo(() => {
-  const [readOnly, setReadOnly] = useState(false);
+  const [readOnly, setReadOnly] = useState(true);
+  const onClick = useCallback(() => setReadOnly((prev) => !prev), []);
+
   return (
     <PageLayout>
       <CharacterWidget
-        onClick={() => setReadOnly((prev) => !prev)}
+        onClick={onClick}
         readOnly={readOnly}
         character={character}
       />

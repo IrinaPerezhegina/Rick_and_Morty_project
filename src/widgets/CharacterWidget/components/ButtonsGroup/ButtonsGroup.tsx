@@ -1,8 +1,8 @@
 import { memo } from "react";
-import { ReactComponent as CheckIcon } from "../../assets/checkMark.svg";
-import { ReactComponent as CloseIcon } from "../../assets/close.svg";
-import { ReactComponent as PensilIcon } from "../../assets/pensil.svg";
 import "./ButtonsGroup.css";
+import { ReactComponent as CheckIcon } from "/src/assets/checkMark.svg";
+import { ReactComponent as CloseIcon } from "/src/assets/close.svg";
+import { ReactComponent as PensilIcon } from "/src/assets/pensil.svg";
 
 export interface ButtonsGroupProps {
   readonly: boolean;

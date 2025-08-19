@@ -1,11 +1,11 @@
 import { memo, useMemo } from "react";
 import { Link } from "react-router";
-import { ButtonsGroup } from "../../components/ButtonsGroup/ButtonsGroup";
 import { Input } from "../../components/Input/Input";
 import { Select, type SelectOption } from "../../components/Select/Select";
 import { Status } from "../../components/Status/Status";
 import { classNames } from "../../lib/classNames";
 import "./CharacterWidget.css";
+import { ButtonsGroup } from "./components/ButtonsGroup/ButtonsGroup";
 
 const optionsStatus: SelectOption[] = [
   { id: "status-1", content: "Alive", status: "green" },
@@ -41,7 +41,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
   }, [character.status]);
 
   return (
-    <div className={classNames("CharacterCard", {}, [classname])}>
+    <div className={classNames("CharacterCard", [classname])}>
       <div className="buttonGroup">
         <ButtonsGroup readonly={readOnly} onClick={onClick} />
       </div>

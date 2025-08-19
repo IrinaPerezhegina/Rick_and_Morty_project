@@ -2,6 +2,7 @@
   display: flex;
   gap: 15px;
   cursor: pointer;
+
   button {
     background: none;
     border: none;
