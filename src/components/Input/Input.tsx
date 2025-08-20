@@ -5,6 +5,8 @@ import "./Input.css";
 export type InputView = "filter" | "form";
 
 export interface InputProps {
+  readonly?: boolean;
+  size: "small" | "big";
   Svg?: ReactNode;
   view: InputView;
   value: string;
@@ -13,7 +15,16 @@ export interface InputProps {
   className?: string;
 }
 export const Input = memo((props: InputProps) => {
-  const { view, value, onChange, Svg, className, placeholder = "" } = props;
+  const {
+    size = "big",
+    view,
+    value,
+    onChange,
+    Svg,
+    className,
+    placeholder = "",
+    readonly,
+  } = props;
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
@@ -26,12 +37,14 @@ export const Input = memo((props: InputProps) => {
         {
           input_filter: view === "filter",
           input_form: view === "form",
+          readonly: readonly,
         },
         [className]
       )}
     >
       {view === "filter" && Svg}
       <input
+        className={size}
         value={value}
         placeholder={placeholder}
         onChange={onChangeHandler}

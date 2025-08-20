@@ -9,7 +9,5 @@ export interface StatusProps {
 }
 export const Status = memo((props: StatusProps) => {
   const { status, classname } = props;
-  return status ? (
-    <div className={classNames(status, {}, [classname])} />
-  ) : null;
+  return status ? <div className={classNames(status, [classname])} /> : null;
 });
