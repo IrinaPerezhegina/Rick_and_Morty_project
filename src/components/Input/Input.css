@@ -9,7 +9,7 @@
   }
 
   .small {
-    height: 20px;
+    height: 21px;
     width: 115px;
     padding-left: 2px;
     color: #00000099;
@@ -18,7 +18,7 @@
   }
 
   .big {
-    height: 25px;
+    height: 23px;
     color: #000000de;
     font-size: 20px;
     font-weight: 500;
@@ -58,8 +58,11 @@
 }
 
 .readonly {
-  input {
+  > input {
     border-bottom: none;
     pointer-events: none;
+  }
+  .small {
+    border-bottom: 1px solid white;
   }
 }
