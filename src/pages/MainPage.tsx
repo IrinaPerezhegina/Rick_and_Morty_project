@@ -1,6 +1,8 @@
 import { memo, useCallback, useState } from "react";
+import { Logo } from "../components/Logo/Logo";
 import { PageLayout } from "../components/PageLayout/PageLayout";
 import { CharacterWidget } from "../widgets/CharacterWidget/CharacterWidget";
+import { FilterPanelWidget } from "../widgets/FilterPanelWidget/FilterPanelWidget";
 
 const character = {
   id: 2,
@@ -21,6 +23,8 @@ export const MainPage = memo(() => {
 
   return (
     <PageLayout>
+      <Logo />
+      <FilterPanelWidget />
       <CharacterWidget
         onClick={onClick}
         readOnly={readOnly}

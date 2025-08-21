@@ -19,10 +19,11 @@ interface SelectProps {
   options?: SelectOption[];
   value?: string;
   onChange?: (value: SelectOption) => void;
+  nameFilter: string;
 }
 
 export const Select = memo((props: SelectProps) => {
-  const { options, onChange, view = "big" } = props;
+  const { options, onChange, view = "big", nameFilter } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<SelectOption | null>(
     null
@@ -64,12 +65,6 @@ export const Select = memo((props: SelectProps) => {
 
   // Закрывать список при клике вне компонента
   useEffect(() => {
-    if (options) {
-      setSelectedOption(options[0]);
-    }
-  }, [options]);
-
-  useEffect(() => {
     const handleClickOutside = (event: Event) => {
       if (
         containerRef.current &&
@@ -94,8 +89,10 @@ export const Select = memo((props: SelectProps) => {
     >
       <div className="header" onClick={toggleOpen}>
         <div className="headerWrapper">
-          {selectedOption && (
+          {selectedOption ? (
             <div key={selectedOption.id}>{selectedOption.content}</div>
+          ) : (
+            <div>{nameFilter}</div>
           )}
           <Status status={selectedOption?.status} />
         </div>
