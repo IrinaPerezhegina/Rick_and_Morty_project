@@ -17,18 +17,25 @@ export interface SelectOption {
 interface SelectProps {
   view: "big" | "small";
   options?: SelectOption[];
-  value?: string;
-  onChange?: (value: SelectOption) => void;
-  nameFilter: string;
+  value: string;
+  onChange: (value: string) => void;
 }
 
 export const Select = memo((props: SelectProps) => {
-  const { options, onChange, view = "big", nameFilter } = props;
+  const { options, onChange, view = "big", value } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<SelectOption | null>(
-    null
-  );
+  const [status, setStatus] = useState<ColorStatus>();
   const containerRef = useRef<HTMLDivElement>(null);
+  console.log(onChange);
+
+  useEffect(() => {
+    if (view === "small") {
+      const status = options?.find((el) => el.content === value)?.status;
+      if (status) {
+        setStatus(status);
+      }
+    }
+  }, [status, view, options, value]);
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);
@@ -41,9 +48,8 @@ export const Select = memo((props: SelectProps) => {
       const selected = options?.find((el) => el.id === target.id);
 
       if (selected) {
-        setSelectedOption(selected);
         if (onChange) {
-          onChange(selected);
+          onChange(selected.content);
         }
         setIsOpen(false);
       }
@@ -53,7 +59,7 @@ export const Select = memo((props: SelectProps) => {
 
   const optionsList = useMemo(() => {
     return options?.map((option) => {
-      if (view === "big" && option.id === selectedOption?.id) return;
+      if (view === "big" && option.content === value) return;
       return (
         <div id={option.id} key={option.id} className="option">
           {option.content}
@@ -61,7 +67,7 @@ export const Select = memo((props: SelectProps) => {
         </div>
       );
     });
-  }, [options, selectedOption, view]);
+  }, [options, view, value]);
 
   // Закрывать список при клике вне компонента
   useEffect(() => {
@@ -89,12 +95,8 @@ export const Select = memo((props: SelectProps) => {
     >
       <div className="header" onClick={toggleOpen}>
         <div className="headerWrapper">
-          {selectedOption ? (
-            <div key={selectedOption.id}>{selectedOption.content}</div>
-          ) : (
-            <div>{nameFilter}</div>
-          )}
-          <Status status={selectedOption?.status} />
+          {value && <div key={value}>{value}</div>}
+          <Status status={status} />
         </div>
 
         {isOpen ? (

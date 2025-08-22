@@ -1,6 +1,7 @@
 import { memo, useCallback, useState } from "react";
 import { Logo } from "../components/Logo/Logo";
 import { PageLayout } from "../components/PageLayout/PageLayout";
+import { useFilters } from "../lib/hooks/useFilters";
 import { CharacterWidget } from "../widgets/CharacterWidget/CharacterWidget";
 import { FilterPanelWidget } from "../widgets/FilterPanelWidget/FilterPanelWidget";
 
@@ -19,12 +20,29 @@ const character = {
 
 export const MainPage = memo(() => {
   const [readOnly, setReadOnly] = useState(true);
+  const {
+    filter,
+    onChangeGender,
+    onChangeSearch,
+    onChangeSpecies,
+    onChangeStatus,
+  } = useFilters();
+
   const onClick = useCallback(() => setReadOnly((prev) => !prev), []);
 
   return (
     <PageLayout>
       <Logo />
-      <FilterPanelWidget />
+      <FilterPanelWidget
+        onChangeGender={onChangeGender}
+        onChangeSpecies={onChangeSpecies}
+        onChangeStatus={onChangeStatus}
+        onChangeSearch={onChangeSearch}
+        genderValue={filter.genderValue}
+        searchValue={filter.searchValue}
+        statusValue={filter.filterStatus}
+        speciesValue={filter.speciesValue}
+      />
       <CharacterWidget
         onClick={onClick}
         readOnly={readOnly}

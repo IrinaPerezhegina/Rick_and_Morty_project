@@ -29,37 +29,55 @@ const optionsGender: SelectOption[] = [
 
 interface FilterPanelWidgetProps {
   className?: string;
+  searchValue: string;
+  speciesValue: string;
+  genderValue: string;
+  statusValue: string;
+  onChangeSearch: (value: string) => void;
+  onChangeStatus: (value: string) => void;
+  onChangeSpecies: (value: string) => void;
+  onChangeGender: (value: string) => void;
 }
 
 export const FilterPanelWidget = memo((props: FilterPanelWidgetProps) => {
-  const { className } = props;
+  const {
+    className,
+    searchValue,
+    speciesValue,
+    genderValue,
+    statusValue,
+    onChangeGender,
+    onChangeSpecies,
+    onChangeSearch,
+    onChangeStatus,
+  } = props;
 
   return (
     <div className={classNames("FilterPanelWidget", [className])}>
       <Input
+        onChange={onChangeSearch}
         Svg={<Loupe />}
         size="big"
         view="filter"
-        value=""
+        value={searchValue}
         placeholder="Filter by name..."
       />
-
       <Select
         view="big"
-        nameFilter="Species"
-        onChange={() => {}}
+        value={speciesValue}
+        onChange={onChangeSpecies}
         options={optionsView}
       />
       <Select
-        nameFilter="Gender"
         view="big"
-        onChange={() => {}}
+        value={genderValue}
+        onChange={onChangeGender}
         options={optionsGender}
       />
       <Select
-        nameFilter="Status"
+        value={statusValue}
         view="big"
-        onChange={() => {}}
+        onChange={onChangeStatus}
         options={optionsStatus}
       />
     </div>
