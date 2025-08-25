@@ -1,13 +1,20 @@
 import { memo } from "react";
+
 import { classNames } from "../../lib/classNames";
-import type { ColorStatus } from "../Select/Select";
+
 import "./Status.css";
 
 export interface StatusProps {
-  status?: ColorStatus;
+  status?: string;
   classname?: string;
 }
-export const Status = memo((props: StatusProps) => {
+export const CircleStatus = memo((props: StatusProps) => {
   const { status, classname } = props;
-  return status ? <div className={classNames(status, [classname])} /> : null;
+
+  const statusValue =
+    status === "Alive" ? "green" : status === "Dead" ? "red" : "orange";
+
+  return statusValue ? (
+    <div className={classNames(statusValue, [classname])} />
+  ) : null;
 });

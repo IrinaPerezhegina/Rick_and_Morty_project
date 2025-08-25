@@ -1,8 +1,11 @@
 import { memo } from "react";
+
 import { ReactComponent as Loupe } from "../../assets/loupe.svg";
+
 import { Input } from "../../components/Input/Input";
 import { Select, type SelectOption } from "../../components/Select/Select";
 import { classNames } from "../../lib/classNames";
+
 import "./FilterPanelWidget.css";
 
 const optionsStatus: SelectOption[] = [

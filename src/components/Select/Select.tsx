@@ -1,20 +1,19 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+
 import { ReactComponent as ArrowDown } from "../../assets/arrowDown.svg";
 import { ReactComponent as ArrowUp } from "../../assets/arrowUp.svg";
 
 import { classNames } from "../../lib/classNames";
-import { Status } from "../Status/Status";
-import "./Select.css";
 
-export type ColorStatus = "red" | "green" | "orange";
+import "./Select.css";
 
 export interface SelectOption {
   id: string;
   content: string;
-  status?: ColorStatus;
 }
 
 interface SelectProps {
+  Svg?: React.ComponentType<{ [key: string]: unknown }>;
   view: "big" | "small";
   options?: SelectOption[];
   value: string;
@@ -22,20 +21,9 @@ interface SelectProps {
 }
 
 export const Select = memo((props: SelectProps) => {
-  const { options, onChange, view = "big", value } = props;
+  const { options, onChange, view = "big", value, Svg } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const [status, setStatus] = useState<ColorStatus>();
   const containerRef = useRef<HTMLDivElement>(null);
-  console.log(onChange);
-
-  useEffect(() => {
-    if (view === "small") {
-      const status = options?.find((el) => el.content === value)?.status;
-      if (status) {
-        setStatus(status);
-      }
-    }
-  }, [status, view, options, value]);
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);
@@ -63,11 +51,11 @@ export const Select = memo((props: SelectProps) => {
       return (
         <div id={option.id} key={option.id} className="option">
           {option.content}
-          <Status status={option.status} />
+          {view === "small" && Svg && <Svg status={option.content} />}
         </div>
       );
     });
-  }, [options, view, value]);
+  }, [options, view, value, Svg]);
 
   // Закрывать список при клике вне компонента
   useEffect(() => {
@@ -96,7 +84,7 @@ export const Select = memo((props: SelectProps) => {
       <div className="header" onClick={toggleOpen}>
         <div className="headerWrapper">
           {value && <div key={value}>{value}</div>}
-          <Status status={status} />
+          {view === "small" && Svg && <Svg status={value} />}
         </div>
 
         {isOpen ? (

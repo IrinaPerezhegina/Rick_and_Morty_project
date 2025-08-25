@@ -1,10 +1,12 @@
 import { useCallback, useState } from "react";
+
 interface FilterProps {
   searchValue: string;
   filterStatus: string;
   speciesValue: string;
   genderValue: string;
 }
+
 interface UseFiltersResult {
   onChangeStatus: (value: string) => void;
   onChangeSpecies: (value: string) => void;
