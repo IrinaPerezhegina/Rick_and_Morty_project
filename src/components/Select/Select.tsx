@@ -12,18 +12,49 @@ export interface SelectOption {
   content: string;
 }
 
+export interface SelectOptionContentProps {
+  value: string
+}
+
+export const DefaultSelectOptionContent = (props: SelectOptionContentProps) => {
+  return (
+    <>
+      {props.value}
+    </>
+  );
+}
+
 interface SelectProps {
-  Svg?: React.ComponentType<{ [key: string]: unknown }>;
-  view: "big" | "small";
-  options?: SelectOption[];
   value: string;
   onChange: (value: string) => void;
+  view: "big" | "small";
+  options?: SelectOption[];
+  SelectOptionContentComponent?: React.FC<SelectOptionContentProps>
 }
 
 export const Select = memo((props: SelectProps) => {
-  const { options, onChange, view = "big", value, Svg } = props;
+  const { options, onChange, value, view = "big", SelectOptionContentComponent = DefaultSelectOptionContent } = props;
+
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Закрывать список при клике вне компонента
+  useEffect(() => {
+    const handleClickOutside = (event: Event) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as HTMLDivElement)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);
@@ -47,44 +78,29 @@ export const Select = memo((props: SelectProps) => {
 
   const optionsList = useMemo(() => {
     return options?.map((option) => {
-      if (view === "big" && option.content === value) return;
+      if (option.content === value) {
+        return;
+      }
+
       return (
         <div id={option.id} key={option.id} className="option">
-          {option.content}
-          {view === "small" && Svg && <Svg status={option.content} />}
+          <SelectOptionContentComponent value={option.content} />
         </div>
       );
     });
-  }, [options, view, value, Svg]);
-
-  // Закрывать список при клике вне компонента
-  useEffect(() => {
-    const handleClickOutside = (event: Event) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as HTMLDivElement)
-      ) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  }, [options, value, SelectOptionContentComponent]);
 
   return (
     <div
+      ref={containerRef}
       className={classNames("wrapper", {
         wrapper_big: view === "big",
         wrapper_small: view === "small",
       })}
-      ref={containerRef}
     >
       <div className="header" onClick={toggleOpen}>
         <div className="headerWrapper">
-          {value && <div key={value}>{value}</div>}
-          {view === "small" && Svg && <Svg status={value} />}
+          <SelectOptionContentComponent value={value} />
         </div>
 
         {isOpen ? (
@@ -93,6 +109,7 @@ export const Select = memo((props: SelectProps) => {
           <ArrowUp className="arrow" />
         )}
       </div>
+
       {isOpen && (
         <div onClick={handleClick} className="optionsContainer">
           {optionsList}

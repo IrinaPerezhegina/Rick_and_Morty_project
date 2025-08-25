@@ -1,10 +1,11 @@
 import { memo, useMemo } from "react";
 import { Link } from "react-router";
 
+import { classNames } from "../../lib/classNames";
+
 import { Input } from "../../components/Input/Input";
 import { Select, type SelectOption } from "../../components/Select/Select";
-import { CircleStatus } from "../../components/Status/Status";
-import { classNames } from "../../lib/classNames";
+import { CircleStatus, type StatusesType } from "../../components/Status/Status";
 import { ButtonsGroup } from "./components/ButtonsGroup/ButtonsGroup";
 
 import "./CharacterWidget.css";
@@ -47,7 +48,9 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
       <div className="buttonGroup">
         <ButtonsGroup readonly={readOnly} onClick={onClick} />
       </div>
+
       <img src={character.image} className="image" />
+
       <div className="description">
         <div className="name">
           {readOnly ? (
@@ -61,14 +64,17 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
             />
           )}
         </div>
+
         <div className="gender">
           <p>Gender</p>
           <span>{character.gender}</span>
         </div>
+
         <div className="species">
           <p>Species</p>
           <span>{character.species}</span>
         </div>
+
         <div className="location">
           <p>Location</p>
           <Input
@@ -78,21 +84,28 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
             size="small"
           />
         </div>
+
         <div className="status">
           <p>Status</p>
           <div className="status_wrapper">
             {readOnly ? (
               <>
                 <span>{character.status}</span>
-                <CircleStatus status={statusCharacter?.content} />
+                <CircleStatus status={statusCharacter?.content as StatusesType} />
               </>
             ) : (
               <Select
-                Svg={CircleStatus}
                 onChange={() => {}}
                 view="small"
                 value={character.status}
                 options={optionsStatus}
+                SelectOptionContentComponent={(props) => (
+                  <>
+                    {props.value}
+
+                    <CircleStatus status={props.value as StatusesType} />
+                  </>
+                )}
               />
             )}
           </div>

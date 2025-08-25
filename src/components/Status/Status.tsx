@@ -1,20 +1,26 @@
-import { memo } from "react";
-
 import { classNames } from "../../lib/classNames";
 
 import "./Status.css";
 
+const STATUSES_DICT = {
+  Alive: "green",
+  Dead: "red",
+  Unknown: "orange"
+};
+
+export type StatusesType = keyof typeof STATUSES_DICT
+
 export interface StatusProps {
-  status?: string;
+  status?: StatusesType;
   classname?: string;
 }
-export const CircleStatus = memo((props: StatusProps) => {
-  const { status, classname } = props;
 
-  const statusValue =
-    status === "Alive" ? "green" : status === "Dead" ? "red" : "orange";
+export const CircleStatus = (props: StatusProps) => {
+  const { status = 'Unknown', classname } = props;
 
+  const statusValue = STATUSES_DICT[status];
+  
   return statusValue ? (
     <div className={classNames(statusValue, [classname])} />
   ) : null;
-});
+};
