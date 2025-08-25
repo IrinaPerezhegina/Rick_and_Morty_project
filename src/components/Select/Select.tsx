@@ -1,32 +1,28 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+
 import { ReactComponent as ArrowDown } from "../../assets/arrowDown.svg";
 import { ReactComponent as ArrowUp } from "../../assets/arrowUp.svg";
 
 import { classNames } from "../../lib/classNames";
-import { Status } from "../Status/Status";
-import "./Select.css";
 
-export type ColorStatus = "red" | "green" | "orange";
+import "./Select.css";
 
 export interface SelectOption {
   id: string;
   content: string;
-  status?: ColorStatus;
 }
 
 interface SelectProps {
+  Svg?: React.ComponentType<{ [key: string]: unknown }>;
   view: "big" | "small";
   options?: SelectOption[];
-  value?: string;
-  onChange?: (value: SelectOption) => void;
+  value: string;
+  onChange: (value: string) => void;
 }
 
 export const Select = memo((props: SelectProps) => {
-  const { options, onChange, view = "big" } = props;
+  const { options, onChange, view = "big", value, Svg } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<SelectOption | null>(
-    null
-  );
   const containerRef = useRef<HTMLDivElement>(null);
 
   const toggleOpen = () => {
@@ -40,9 +36,8 @@ export const Select = memo((props: SelectProps) => {
       const selected = options?.find((el) => el.id === target.id);
 
       if (selected) {
-        setSelectedOption(selected);
         if (onChange) {
-          onChange(selected);
+          onChange(selected.content);
         }
         setIsOpen(false);
       }
@@ -52,23 +47,17 @@ export const Select = memo((props: SelectProps) => {
 
   const optionsList = useMemo(() => {
     return options?.map((option) => {
-      if (view === "big" && option.id === selectedOption?.id) return;
+      if (view === "big" && option.content === value) return;
       return (
         <div id={option.id} key={option.id} className="option">
           {option.content}
-          <Status status={option.status} />
+          {view === "small" && Svg && <Svg status={option.content} />}
         </div>
       );
     });
-  }, [options, selectedOption, view]);
+  }, [options, view, value, Svg]);
 
   // Закрывать список при клике вне компонента
-  useEffect(() => {
-    if (options) {
-      setSelectedOption(options[0]);
-    }
-  }, [options]);
-
   useEffect(() => {
     const handleClickOutside = (event: Event) => {
       if (
@@ -94,10 +83,8 @@ export const Select = memo((props: SelectProps) => {
     >
       <div className="header" onClick={toggleOpen}>
         <div className="headerWrapper">
-          {selectedOption && (
-            <div key={selectedOption.id}>{selectedOption.content}</div>
-          )}
-          <Status status={selectedOption?.status} />
+          {value && <div key={value}>{value}</div>}
+          {view === "small" && Svg && <Svg status={value} />}
         </div>
 
         {isOpen ? (

@@ -1,16 +1,18 @@
 import { memo, useMemo } from "react";
 import { Link } from "react-router";
+
 import { Input } from "../../components/Input/Input";
 import { Select, type SelectOption } from "../../components/Select/Select";
-import { Status } from "../../components/Status/Status";
+import { CircleStatus } from "../../components/Status/Status";
 import { classNames } from "../../lib/classNames";
-import "./CharacterWidget.css";
 import { ButtonsGroup } from "./components/ButtonsGroup/ButtonsGroup";
 
+import "./CharacterWidget.css";
+
 const optionsStatus: SelectOption[] = [
-  { id: "status-1", content: "Alive", status: "green" },
-  { id: "status-2", content: "Dead", status: "red" },
-  { id: "status-3", content: "Unknown", status: "orange" },
+  { id: "status-1", content: "Alive" },
+  { id: "status-2", content: "Dead" },
+  { id: "status-3", content: "Unknown" },
 ];
 
 interface Character {
@@ -82,10 +84,12 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
             {readOnly ? (
               <>
                 <span>{character.status}</span>
-                <Status status={statusCharacter!.status} />
+                <CircleStatus status={statusCharacter?.content} />
               </>
             ) : (
               <Select
+                Svg={CircleStatus}
+                onChange={() => {}}
                 view="small"
                 value={character.status}
                 options={optionsStatus}
