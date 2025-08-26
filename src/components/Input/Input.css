@@ -29,8 +29,10 @@
   position: relative;
   padding: 15px 5px 15px 15px;
   display: flex;
+  align-items: center;
   border: 1px solid #00000080;
   border-radius: 8px;
+  height: 28px;
 
   input {
     font-size: 16px;

@@ -4,11 +4,19 @@
 
 .wrapper_big {
   width: 240px;
+  height: 56px;
 
   .header {
     font-size: 17px;
     padding: 19px 20px 19px 13px;
     border: 1px solid rgba(57, 57, 57, 1);
+  }
+
+  .headerWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
   }
 
   .arrow {
@@ -25,7 +33,7 @@
   }
 
   .optionsContainer {
-    top: 95%;
+    top: 120%;
   }
 }
 

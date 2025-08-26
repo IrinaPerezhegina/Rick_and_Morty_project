@@ -1,16 +1,19 @@
 import { memo, useMemo } from "react";
 import { Link } from "react-router";
+
+import { classNames } from "../../lib/classNames";
+
 import { Input } from "../../components/Input/Input";
 import { Select, type SelectOption } from "../../components/Select/Select";
-import { Status } from "../../components/Status/Status";
-import { classNames } from "../../lib/classNames";
-import "./CharacterWidget.css";
+import { CircleStatus, type StatusesType } from "../../components/Status/Status";
 import { ButtonsGroup } from "./components/ButtonsGroup/ButtonsGroup";
 
+import "./CharacterWidget.css";
+
 const optionsStatus: SelectOption[] = [
-  { id: "status-1", content: "Alive", status: "green" },
-  { id: "status-2", content: "Dead", status: "red" },
-  { id: "status-3", content: "Unknown", status: "orange" },
+  { id: "status-1", content: "Alive" },
+  { id: "status-2", content: "Dead" },
+  { id: "status-3", content: "Unknown" },
 ];
 
 interface Character {
@@ -45,7 +48,9 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
       <div className="buttonGroup">
         <ButtonsGroup readonly={readOnly} onClick={onClick} />
       </div>
+
       <img src={character.image} className="image" />
+
       <div className="description">
         <div className="name">
           {readOnly ? (
@@ -59,14 +64,17 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
             />
           )}
         </div>
+
         <div className="gender">
           <p>Gender</p>
           <span>{character.gender}</span>
         </div>
+
         <div className="species">
           <p>Species</p>
           <span>{character.species}</span>
         </div>
+
         <div className="location">
           <p>Location</p>
           <Input
@@ -76,19 +84,28 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
             size="small"
           />
         </div>
+
         <div className="status">
           <p>Status</p>
           <div className="status_wrapper">
             {readOnly ? (
               <>
                 <span>{character.status}</span>
-                <Status status={statusCharacter!.status} />
+                <CircleStatus status={statusCharacter?.content as StatusesType} />
               </>
             ) : (
               <Select
+                onChange={() => {}}
                 view="small"
                 value={character.status}
                 options={optionsStatus}
+                SelectOptionContentComponent={(props) => (
+                  <>
+                    {props.value}
+
+                    <CircleStatus status={props.value as StatusesType} />
+                  </>
+                )}
               />
             )}
           </div>
