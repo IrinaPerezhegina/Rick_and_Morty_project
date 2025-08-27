@@ -5,7 +5,10 @@ import { classNames } from "../../lib/classNames";
 
 import { Input } from "../../components/Input/Input";
 import { Select, type SelectOption } from "../../components/Select/Select";
-import { CircleStatus, type StatusesType } from "../../components/Status/Status";
+import {
+  CircleStatus,
+  type StatusesType,
+} from "../../components/Status/Status";
 import { ButtonsGroup } from "./components/ButtonsGroup/ButtonsGroup";
 
 import "./CharacterWidget.css";
@@ -16,7 +19,7 @@ const optionsStatus: SelectOption[] = [
   { id: "status-3", content: "Unknown" },
 ];
 
-interface Character {
+export interface Character {
   id: number;
   name: string;
   status: string;
@@ -91,7 +94,9 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
             {readOnly ? (
               <>
                 <span>{character.status}</span>
-                <CircleStatus status={statusCharacter?.content as StatusesType} />
+                <CircleStatus
+                  status={statusCharacter?.content as StatusesType}
+                />
               </>
             ) : (
               <Select

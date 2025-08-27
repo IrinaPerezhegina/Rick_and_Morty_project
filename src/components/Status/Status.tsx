@@ -5,10 +5,11 @@ import "./Status.css";
 const STATUSES_DICT = {
   Alive: "green",
   Dead: "red",
-  Unknown: "orange"
+  Unknown: "orange",
+  unknown: "orange",
 };
 
-export type StatusesType = keyof typeof STATUSES_DICT
+export type StatusesType = keyof typeof STATUSES_DICT;
 
 export interface StatusProps {
   status?: StatusesType;
@@ -16,10 +17,10 @@ export interface StatusProps {
 }
 
 export const CircleStatus = (props: StatusProps) => {
-  const { status = 'Unknown', classname } = props;
+  const { status = "Unknown", classname } = props;
 
   const statusValue = STATUSES_DICT[status];
-  
+
   return statusValue ? (
     <div className={classNames(statusValue, [classname])} />
   ) : null;
