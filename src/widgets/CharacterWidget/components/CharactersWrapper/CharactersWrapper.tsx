@@ -13,8 +13,6 @@ export const CharactersWrapper = (props: CharactersWrapperProps) => {
   const { className, children } = props;
 
   return (
-    <div className={classNames("CharactersWrapper", [className])}>
-      {children}
-    </div>
+    <div className={classNames("CharactersWrapper", className)}>{children}</div>
   );
 };

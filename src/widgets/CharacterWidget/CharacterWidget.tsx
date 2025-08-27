@@ -9,14 +9,14 @@ import {
   CircleStatus,
   type StatusesType,
 } from "../../components/Status/Status";
-import { ButtonsGroup } from "./components/ButtonsGroup/ButtonsGroup";
+import { ButtonsGroup } from "./components";
 
 import "./CharacterWidget.css";
 
 const optionsStatus: SelectOption[] = [
   { id: "status-1", content: "Alive" },
   { id: "status-2", content: "Dead" },
-  { id: "status-3", content: "Unknown" },
+  { id: "status-3", content: "unknown" },
 ];
 
 export interface Character {
@@ -47,7 +47,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
   }, [character.status]);
 
   return (
-    <div className={classNames("CharacterCard", [classname])}>
+    <div className={classNames("CharacterCard", classname)}>
       <div className="buttonGroup">
         <ButtonsGroup readonly={readOnly} onClick={onClick} />
       </div>

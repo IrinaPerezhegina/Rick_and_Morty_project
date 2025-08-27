@@ -5,9 +5,8 @@ import { Loader } from "../components/Loader/Loader";
 import { Logo } from "../components/Logo/Logo";
 import { PageLayout } from "../components/PageLayout/PageLayout";
 import { useFilters } from "../lib/hooks/useFilters";
-import { CharacterWidget } from "../widgets/CharacterWidget/CharacterWidget";
-import { CharactersWrapper } from "../widgets/CharacterWidget/components/CharactersWrapper/CharactersWrapper";
-import { FilterPanelWidget } from "../widgets/FilterPanelWidget/FilterPanelWidget";
+import { CharactersWrapper, CharacterWidget } from "../widgets/CharacterWidget";
+import { FilterPanelWidget } from "../widgets/FilterPanelWidget";
 
 export const MainPage = memo(() => {
   const [loading, setLoading] = useState(false);
