@@ -11,7 +11,7 @@ import "./FilterPanelWidget.css";
 const optionsStatus: SelectOption[] = [
   { id: "status-1", content: "Alive" },
   { id: "status-2", content: "Dead" },
-  { id: "status-3", content: "Unknown" },
+  { id: "status-3", content: "unknown" },
 ];
 
 const optionsView: SelectOption[] = [

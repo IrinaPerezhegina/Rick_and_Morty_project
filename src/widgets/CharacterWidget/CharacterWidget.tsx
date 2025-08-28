@@ -5,18 +5,21 @@ import { classNames } from "../../lib/classNames";
 
 import { Input } from "../../components/Input/Input";
 import { Select, type SelectOption } from "../../components/Select/Select";
-import { CircleStatus, type StatusesType } from "../../components/Status/Status";
-import { ButtonsGroup } from "./components/ButtonsGroup/ButtonsGroup";
+import {
+  CircleStatus,
+  type StatusesType,
+} from "../../components/Status/Status";
+import { ButtonsGroup } from "./components";
 
 import "./CharacterWidget.css";
 
 const optionsStatus: SelectOption[] = [
   { id: "status-1", content: "Alive" },
   { id: "status-2", content: "Dead" },
-  { id: "status-3", content: "Unknown" },
+  { id: "status-3", content: "unknown" },
 ];
 
-interface Character {
+export interface Character {
   id: number;
   name: string;
   status: string;
@@ -44,7 +47,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
   }, [character.status]);
 
   return (
-    <div className={classNames("CharacterCard", [classname])}>
+    <div className={classNames("CharacterCard", classname)}>
       <div className="buttonGroup">
         <ButtonsGroup readonly={readOnly} onClick={onClick} />
       </div>
@@ -91,7 +94,9 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
             {readOnly ? (
               <>
                 <span>{character.status}</span>
-                <CircleStatus status={statusCharacter?.content as StatusesType} />
+                <CircleStatus
+                  status={statusCharacter?.content as StatusesType}
+                />
               </>
             ) : (
               <Select

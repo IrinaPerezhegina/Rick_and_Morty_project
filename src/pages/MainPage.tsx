@@ -1,24 +1,16 @@
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
+
+import { getCharacters } from "../api/getCharacters";
+import { Loader } from "../components/Loader/Loader";
 import { Logo } from "../components/Logo/Logo";
 import { PageLayout } from "../components/PageLayout/PageLayout";
 import { useFilters } from "../lib/hooks/useFilters";
-import { CharacterWidget } from "../widgets/CharacterWidget/CharacterWidget";
-import { FilterPanelWidget } from "../widgets/FilterPanelWidget/FilterPanelWidget";
-
-const character = {
-  id: 2,
-  name: "Morty Smith",
-  status: "Alive",
-  species: "Human",
-  gender: "Male",
-  location: {
-    name: "Citadel of Ricks",
-    url: "https://rickandmortyapi.com/api/location/3",
-  },
-  image: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
-};
+import { CharactersWrapper, CharacterWidget } from "../widgets/CharacterWidget";
+import { FilterPanelWidget } from "../widgets/FilterPanelWidget";
 
 export const MainPage = memo(() => {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
   const [readOnly, setReadOnly] = useState(true);
   const {
     filter,
@@ -30,24 +22,44 @@ export const MainPage = memo(() => {
 
   const onClick = useCallback(() => setReadOnly((prev) => !prev), []);
 
+  useEffect(() => {
+    setLoading(true);
+    getCharacters()
+      .then((data) => {
+        setData(data);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <PageLayout>
       <Logo />
-      <FilterPanelWidget
-        onChangeGender={onChangeGender}
-        onChangeSpecies={onChangeSpecies}
-        onChangeStatus={onChangeStatus}
-        onChangeSearch={onChangeSearch}
-        genderValue={filter.genderValue}
-        searchValue={filter.searchValue}
-        statusValue={filter.filterStatus}
-        speciesValue={filter.speciesValue}
-      />
-      <CharacterWidget
-        onClick={onClick}
-        readOnly={readOnly}
-        character={character}
-      />
+      {loading ? (
+        <Loader variant="bigLoader" />
+      ) : (
+        <>
+          <FilterPanelWidget
+            onChangeGender={onChangeGender}
+            onChangeSpecies={onChangeSpecies}
+            onChangeStatus={onChangeStatus}
+            onChangeSearch={onChangeSearch}
+            genderValue={filter.genderValue}
+            searchValue={filter.searchValue}
+            statusValue={filter.filterStatus}
+            speciesValue={filter.speciesValue}
+          />
+          <CharactersWrapper>
+            {data.map((character, i) => (
+              <CharacterWidget
+                key={i}
+                onClick={onClick}
+                readOnly={readOnly}
+                character={character}
+              />
+            ))}
+          </CharactersWrapper>
+        </>
+      )}
     </PageLayout>
   );
 });
