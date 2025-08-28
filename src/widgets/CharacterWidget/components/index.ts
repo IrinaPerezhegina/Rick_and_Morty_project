@@ -1,2 +1,2 @@
-export { ButtonsGroup } from "./ButtonsGroup/ButtonsGroup";
-export { CharactersWrapper } from "./CharactersWrapper/CharactersWrapper";
+export * from "./ButtonsGroup/ButtonsGroup";
+export * from "./CharactersWrapper/CharactersWrapper";

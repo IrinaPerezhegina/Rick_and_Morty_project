@@ -1,1 +1,1 @@
-export { FilterPanelWidget } from "./FilterPanelWidget";
+export * from "./FilterPanelWidget";

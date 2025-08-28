@@ -1,2 +1,2 @@
-export { CharacterWidget } from "./CharacterWidget";
+export * from "./CharacterWidget";
 export * from "./components";
