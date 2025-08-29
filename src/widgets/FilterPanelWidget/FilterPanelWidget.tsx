@@ -4,6 +4,7 @@ import { ReactComponent as Loupe } from "../../assets/loupe.svg";
 
 import { Input } from "../../components/Input/Input";
 import { Select, type SelectOption } from "../../components/Select/Select";
+
 import { classNames } from "../../lib/classNames";
 
 import "./FilterPanelWidget.css";
@@ -23,11 +24,10 @@ const optionsView: SelectOption[] = [
 ];
 
 const optionsGender: SelectOption[] = [
-  { id: "gender-1", content: "Gender" },
-  { id: "gender-2", content: "Female" },
-  { id: "gender-3", content: "Male" },
-  { id: "gender-4", content: "Genderless" },
-  { id: "gender-5", content: "Unknown" },
+  { id: "gender-1", content: "Female" },
+  { id: "gender-2", content: "Male" },
+  { id: "gender-3", content: "Genderless" },
+  { id: "gender-4", content: "Unknown" },
 ];
 
 interface FilterPanelWidgetProps {
@@ -58,6 +58,7 @@ export const FilterPanelWidget = memo((props: FilterPanelWidgetProps) => {
   return (
     <div className={classNames("FilterPanelWidget", [className])}>
       <Input
+        name="search"
         onChange={onChangeSearch}
         Svg={<Loupe />}
         size="big"
@@ -66,18 +67,21 @@ export const FilterPanelWidget = memo((props: FilterPanelWidgetProps) => {
         placeholder="Filter by name..."
       />
       <Select
+        defaultValue={"Species"}
         view="big"
         value={speciesValue}
         onChange={onChangeSpecies}
         options={optionsView}
       />
       <Select
+        defaultValue={"Gender"}
         view="big"
         value={genderValue}
         onChange={onChangeGender}
         options={optionsGender}
       />
       <Select
+        defaultValue={"Status"}
         value={statusValue}
         view="big"
         onChange={onChangeStatus}
