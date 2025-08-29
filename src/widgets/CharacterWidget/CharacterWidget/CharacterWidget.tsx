@@ -1,15 +1,15 @@
 import { memo, useMemo } from "react";
 import { Link } from "react-router";
 
-import { classNames } from "../../lib/classNames";
+import { classNames } from "../../../lib/classNames";
 
-import { Input } from "../../components/Input/Input";
-import { Select, type SelectOption } from "../../components/Select/Select";
+import { Input } from "../../../components/Input/Input";
+import { Select, type SelectOption } from "../../../components/Select/Select";
 import {
   CircleStatus,
   type StatusesType,
-} from "../../components/Status/Status";
-import { ButtonsGroup } from "./components";
+} from "../../../components/Status/Status";
+import { ButtonsGroup } from "../components";
 
 import "./CharacterWidget.css";
 
@@ -60,6 +60,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
             <Link to={`character/${character.id}`}>{character.name}</Link>
           ) : (
             <Input
+              name="name"
               readonly={readOnly}
               view="form"
               value={character.name}
@@ -81,6 +82,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
         <div className="location">
           <p>Location</p>
           <Input
+            name="location"
             readonly={readOnly}
             view="form"
             value={character.location.name}

@@ -1,6 +1,8 @@
 import { useCallback, useState } from "react";
 
-interface FilterProps {
+import { useDebounce } from "./useDebounce";
+
+export interface FilterProps {
   searchValue: string;
   filterStatus: string;
   speciesValue: string;
@@ -11,16 +13,16 @@ interface UseFiltersResult {
   onChangeStatus: (value: string) => void;
   onChangeSpecies: (value: string) => void;
   onChangeGender: (value: string) => void;
-  onChangeSearch: (value: string) => void;
+  debounceFetchData: (value: string) => void;
   filter: FilterProps;
 }
 
 export function useFilters(): UseFiltersResult {
   const [filter, setFilter] = useState({
     searchValue: "",
-    filterStatus: "Status",
-    speciesValue: "Species",
-    genderValue: "Gender",
+    filterStatus: "",
+    speciesValue: "",
+    genderValue: "",
   });
 
   const onChangeSearch = useCallback((value: string) => {
@@ -29,6 +31,8 @@ export function useFilters(): UseFiltersResult {
       searchValue: value,
     }));
   }, []);
+
+  const debounceFetchData = useDebounce(onChangeSearch, 1000);
 
   const onChangeStatus = useCallback((value: string) => {
     setFilter((prev) => ({
@@ -53,7 +57,7 @@ export function useFilters(): UseFiltersResult {
 
   return {
     filter,
-    onChangeSearch,
+    debounceFetchData,
     onChangeStatus,
     onChangeSpecies,
     onChangeGender,
