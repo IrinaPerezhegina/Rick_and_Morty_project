@@ -1,15 +1,16 @@
-import { type ReactNode } from "react";
+import type { PropsWithChildren } from "react";
 
-import { classNames } from "../../../lib/classNames";
+import { classNames } from "@/lib/helper";
 
 import "./CharactersWrapper.css";
 
 interface CharactersWrapperProps {
   className?: string;
-  children: ReactNode;
 }
 
-export const CharactersWrapper = (props: CharactersWrapperProps) => {
+export const CharactersWrapper = (
+  props: PropsWithChildren<CharactersWrapperProps>
+) => {
   const { className, children } = props;
 
   return (

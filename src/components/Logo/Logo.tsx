@@ -1,4 +1,5 @@
 import { memo } from "react";
+
 import "./Logo.css";
 
 export const Logo = memo(() => {

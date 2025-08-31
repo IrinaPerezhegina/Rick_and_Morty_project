@@ -1,12 +1,12 @@
 import { memo } from "react";
 
-import { classNames } from "../../lib/classNames";
+import { classNames } from "@/lib/helper";
 
 import "./Error.css";
 
 interface ErrorProps {
-  className?: string;
   error: string;
+  className?: string;
 }
 
 export const Error = memo((props: ErrorProps) => {

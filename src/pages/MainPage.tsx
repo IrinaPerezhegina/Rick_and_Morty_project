@@ -1,13 +1,13 @@
 import { memo, useCallback, useEffect, useState } from "react";
 
-import { getCharacters } from "../api/getCharacters";
-import { Error } from "../components/Error/Error";
-import { Loader } from "../components/Loader/Loader";
-import { Logo } from "../components/Logo/Logo";
-import { PageLayout } from "../components/PageLayout/PageLayout";
-import { useFilters } from "../lib/hooks";
-import { CharactersWrapper, CharacterWidget } from "../widgets/CharacterWidget";
-import { FilterPanelWidget } from "../widgets/FilterPanelWidget";
+import { getCharacters } from "@/api/getCharacters";
+import { Error } from "@/components/Error/Error";
+import { Loader } from "@/components/Loader/Loader";
+import { Logo } from "@/components/Logo/Logo";
+import { PageLayout } from "@/components/PageLayout/PageLayout";
+import { useFilters } from "@/lib/hooks";
+import { CharactersWrapper, CharacterWidget } from "@/widgets/CharacterWidget";
+import { FilterPanelWidget } from "@/widgets/FilterPanelWidget";
 
 export const MainPage = memo(() => {
   const [loading, setLoading] = useState(false);

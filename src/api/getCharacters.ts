@@ -1,4 +1,5 @@
-import type { FilterProps } from "../lib/hooks/useFilters";
+import { getValidParams } from "@/lib/helper";
+import { FilterProps } from "@/lib/hooks";
 import { $api } from "./api";
 
 export const getCharacters = async (filter: FilterProps) => {
@@ -6,10 +7,7 @@ export const getCharacters = async (filter: FilterProps) => {
     const response = await $api.get("character/", {
       params: {
         page: 1,
-        ...(filter.searchValue ? { name: filter.searchValue } : [null]),
-        ...(filter.genderValue ? { gender: filter.genderValue } : [null]),
-        ...(filter.speciesValue ? { spesies: filter.speciesValue } : [null]),
-        ...(filter.filterStatus ? { spesies: filter.filterStatus } : [null]),
+        ...getValidParams(filter),
       },
     });
 

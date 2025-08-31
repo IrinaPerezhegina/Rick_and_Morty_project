@@ -1,11 +1,10 @@
 import { memo } from "react";
 
-import { ReactComponent as Loupe } from "../../assets/loupe.svg";
+import { ReactComponent as Loupe } from "@/assets/loupe.svg";
 
-import { Input } from "../../components/Input/Input";
-import { Select, type SelectOption } from "../../components/Select/Select";
-
-import { classNames } from "../../lib/classNames";
+import { Input } from "@/components/Input/Input";
+import { Select, SelectOption } from "@/components/Select/Select";
+import { classNames } from "@/lib/helper";
 
 import "./FilterPanelWidget.css";
 
@@ -31,7 +30,6 @@ const optionsGender: SelectOption[] = [
 ];
 
 interface FilterPanelWidgetProps {
-  className?: string;
   searchValue: string;
   speciesValue: string;
   genderValue: string;
@@ -40,6 +38,7 @@ interface FilterPanelWidgetProps {
   onChangeStatus: (value: string) => void;
   onChangeSpecies: (value: string) => void;
   onChangeGender: (value: string) => void;
+  className?: string;
 }
 
 export const FilterPanelWidget = memo((props: FilterPanelWidgetProps) => {
@@ -67,21 +66,21 @@ export const FilterPanelWidget = memo((props: FilterPanelWidgetProps) => {
         placeholder="Filter by name..."
       />
       <Select
-        defaultValue={"Species"}
+        placeholder={"Species"}
         view="big"
         value={speciesValue}
         onChange={onChangeSpecies}
         options={optionsView}
       />
       <Select
-        defaultValue={"Gender"}
+        placeholder={"Gender"}
         view="big"
         value={genderValue}
         onChange={onChangeGender}
         options={optionsGender}
       />
       <Select
-        defaultValue={"Status"}
+        placeholder={"Status"}
         value={statusValue}
         view="big"
         onChange={onChangeStatus}

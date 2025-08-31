@@ -1,14 +1,10 @@
 import { memo, useMemo } from "react";
 import { Link } from "react-router";
 
-import { classNames } from "../../../lib/classNames";
-
-import { Input } from "../../../components/Input/Input";
-import { Select, type SelectOption } from "../../../components/Select/Select";
-import {
-  CircleStatus,
-  type StatusesType,
-} from "../../../components/Status/Status";
+import { Input } from "@/components/Input/Input";
+import { Select, SelectOption } from "@/components/Select/Select";
+import { CircleStatus, StatusesType } from "@/components/Status/Status";
+import { classNames } from "@/lib/helper";
 import { ButtonsGroup } from "../components";
 
 import "./CharacterWidget.css";
@@ -33,10 +29,10 @@ export interface Character {
 }
 
 export interface CharacterWidgetProps {
-  classname?: string;
   readOnly: boolean;
   character: Character;
   onClick: () => void;
+  classname?: string;
 }
 
 export const CharacterWidget = memo((props: CharacterWidgetProps) => {

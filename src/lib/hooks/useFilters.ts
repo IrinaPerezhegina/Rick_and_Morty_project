@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-import { useDebounce } from "./useDebounce";
+import { useDebounce } from "@/lib/hooks/useDebounce";
 
 export interface FilterProps {
   searchValue: string;

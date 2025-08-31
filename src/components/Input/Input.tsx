@@ -1,20 +1,20 @@
 import { memo, useState, type ReactNode } from "react";
 
-import { classNames } from "../../lib/classNames";
+import { classNames } from "@/lib/helper";
 
 import "./Input.css";
 
 export type InputView = "filter" | "form";
 
 export interface InputProps {
-  readonly?: boolean;
   name: string;
   size: "small" | "big";
-  Svg?: ReactNode;
   view: InputView;
   value: string;
+  Svg?: ReactNode;
   onChange?: (value: string) => void;
   placeholder?: string;
+  readonly?: boolean;
   className?: string;
 }
 export const Input = memo((props: InputProps) => {

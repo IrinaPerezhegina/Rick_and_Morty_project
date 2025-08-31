@@ -1,7 +1,8 @@
 import { useCallback, useRef, type RefObject } from "react";
 
 export function useDebounce(callback: (value: string) => void, delay: number) {
-  const timer = useRef(null) as RefObject<number | null>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const timer = useRef(null) as RefObject<any>;
 
   return useCallback(
     (value: string) => {

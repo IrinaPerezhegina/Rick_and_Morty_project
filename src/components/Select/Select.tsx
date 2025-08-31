@@ -1,9 +1,9 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { ReactComponent as ArrowDown } from "../../assets/arrowDown.svg";
-import { ReactComponent as ArrowUp } from "../../assets/arrowUp.svg";
+import { ReactComponent as ArrowDown } from "@/assets/arrowDown.svg";
+import { ReactComponent as ArrowUp } from "@/assets/arrowUp.svg";
 
-import { classNames } from "../../lib/classNames";
+import { classNames } from "@/lib/helper";
 
 import "./Select.css";
 
@@ -25,13 +25,13 @@ interface SelectProps {
   onChange: (value: string) => void;
   view: "big" | "small";
   options?: SelectOption[];
-  defaultValue?: string;
+  placeholder?: string;
   SelectOptionContentComponent?: React.FC<SelectOptionContentProps>;
 }
 
 export const Select = memo((props: SelectProps) => {
   const {
-    defaultValue = "",
+    placeholder = "",
     options,
     onChange,
     value,
@@ -104,11 +104,7 @@ export const Select = memo((props: SelectProps) => {
     >
       <div className="header" onClick={toggleOpen}>
         <div className="headerWrapper">
-          {value ? (
-            <SelectOptionContentComponent value={value} />
-          ) : (
-            defaultValue
-          )}
+          {value ? <SelectOptionContentComponent value={value} /> : placeholder}
         </div>
 
         {isOpen ? (
