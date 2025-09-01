@@ -1,21 +1,25 @@
-import { memo, type ReactNode } from "react";
-import { classNames } from "../../lib/classNames";
+import { memo, useState, type ReactNode } from "react";
+
+import { classNames } from "@/lib/helper";
+
 import "./Input.css";
 
 export type InputView = "filter" | "form";
 
 export interface InputProps {
-  readonly?: boolean;
+  name: string;
   size: "small" | "big";
-  Svg?: ReactNode;
   view: InputView;
   value: string;
+  Svg?: ReactNode;
   onChange?: (value: string) => void;
   placeholder?: string;
+  readonly?: boolean;
   className?: string;
 }
 export const Input = memo((props: InputProps) => {
   const {
+    name,
     size = "big",
     view,
     value,
@@ -25,8 +29,10 @@ export const Input = memo((props: InputProps) => {
     placeholder = "",
     readonly,
   } = props;
+  const [currentValue, setCurrentValue] = useState(value);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentValue(e.target.value);
     onChange?.(e.target.value);
   };
 
@@ -44,8 +50,9 @@ export const Input = memo((props: InputProps) => {
     >
       {view === "filter" && Svg}
       <input
+        name={name}
         className={size}
-        value={value}
+        value={currentValue}
         placeholder={placeholder}
         onChange={onChangeHandler}
       />

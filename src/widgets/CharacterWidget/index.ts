@@ -1,2 +1,2 @@
-export * from "./CharacterWidget";
-export * from "./components";
+export * from "./CharactersWrapper/CharactersWrapper";
+export * from "./CharacterWidget/CharacterWidget";

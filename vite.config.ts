@@ -1,7 +1,6 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
-
 export default defineConfig({
   plugins: [
     react(),
@@ -15,4 +14,9 @@ export default defineConfig({
       include: "**/*.svg",
     }),
   ],
+  resolve: {
+    alias: {
+      "@": "/src",
+    },
+  },
 });
