@@ -1,41 +1,31 @@
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo } from "react";
 
-import { getCharacters } from "@/api/getCharacters";
-import { Error } from "@/components/Error/Error";
-import { Loader } from "@/components/Loader/Loader";
-import { Logo } from "@/components/Logo/Logo";
-import { PageLayout } from "@/components/PageLayout/PageLayout";
-import { useFilters } from "@/lib/hooks";
+import { useFilters, useLoadingCharacterData } from "@/shared/lib/hooks";
+import { Error } from "@/shared/ui/Error";
+import { Loader } from "@/shared/ui/Loader";
+import { Logo } from "@/shared/ui/Logo";
+import { PageLayout } from "@/shared/ui/PageLayout";
 import { CharactersWrapper, CharacterWidget } from "@/widgets/CharacterWidget";
 import { FilterPanelWidget } from "@/widgets/FilterPanelWidget";
+import { InfiniteScrollWidget } from "@/widgets/InfiniteScrollWidget";
 
 export const MainPage = memo(() => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const [error, setError] = useState<string | null>(null);
-  const [readOnly, setReadOnly] = useState(true);
   const {
     filter,
     onChangeGender,
     debounceFetchData,
     onChangeSpecies,
     onChangeStatus,
+    onTurnNextPage,
   } = useFilters();
 
-  const onClick = useCallback(() => setReadOnly((prev) => !prev), []);
-
-  useEffect(() => {
-    setLoading(true);
-    getCharacters(filter)
-      .then((data) => {
-        setError(null);
-        setData(data);
-      })
-      .catch((error) => {
-        setError(error.response.data.error);
-      })
-      .finally(() => setLoading(false));
-  }, [filter, error]);
+  const {
+    data,
+    error,
+    isShowBigLoader,
+    isShowInfiniteScrollComponent,
+    isShowSmallLoader,
+  } = useLoadingCharacterData(filter);
 
   return (
     <PageLayout>
@@ -50,19 +40,21 @@ export const MainPage = memo(() => {
         statusValue={filter.filterStatus}
         speciesValue={filter.speciesValue}
       />
-      {loading && <Loader variant="bigLoader" />}
-      {!error && !loading && (
+
+      {isShowBigLoader ? (
+        <Loader variant="bigLoader" text="Loading characters..." />
+      ) : (
         <CharactersWrapper>
-          {data.map((character, i) => (
-            <CharacterWidget
-              key={i}
-              onClick={onClick}
-              readOnly={readOnly}
-              character={character}
-            />
+          {data.map((character) => (
+            <CharacterWidget key={character.id} character={character} />
           ))}
         </CharactersWrapper>
       )}
+
+      {isShowInfiniteScrollComponent && (
+        <InfiniteScrollWidget onScrollEnd={onTurnNextPage} />
+      )}
+      {isShowSmallLoader && <Loader variant="smallLoader" />}
       {error && <Error error={error} />}
     </PageLayout>
   );

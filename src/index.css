@@ -18,7 +18,7 @@ body {
   margin: 0;
   font-style: normal;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-anchor: none;
 }
 
 html,
