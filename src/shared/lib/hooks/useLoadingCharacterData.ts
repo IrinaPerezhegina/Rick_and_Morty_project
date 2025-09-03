@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { getCharacters } from "@/shared/api/getCharacters";
-import { FilterProps } from "@/shared/lib/hooks/useFilters";
-import { Character } from "@/shared/types/character";
+import { getCharacters } from "@/shared/api";
+import { Character, FilterProps } from "@/shared/types";
 
 export function useLoadingCharacterData(filter: FilterProps) {
   const [isLoading, setIsLoading] = useState(true);
@@ -46,7 +45,7 @@ export function useLoadingCharacterData(filter: FilterProps) {
   return {
     data,
     error,
-    isBigLoaderVisible,
+    isLoading: isBigLoaderVisible,
     isTargetElementVisible,
     isSmallLoaderVisible,
   };

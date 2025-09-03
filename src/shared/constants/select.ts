@@ -1,4 +1,4 @@
-import { SelectOption } from "@/shared/types/select";
+import { SelectOption } from "@/shared/types";
 
 export const optionsStatus: SelectOption[] = [
   { id: "status-1", content: "Alive" },

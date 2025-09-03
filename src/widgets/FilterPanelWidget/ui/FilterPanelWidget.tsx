@@ -3,12 +3,13 @@ import { memo } from "react";
 import { ReactComponent as Loupe } from "@/assets/loupe.svg";
 
 import {
+  classNames,
+  Input,
   optionsGender,
   optionsStatus,
   optionsView,
-} from "@/shared/constants/select";
-import { classNames } from "@/shared/lib/helper";
-import { Input, Select } from "@/shared/ui";
+  Select,
+} from "@/shared";
 
 import "./FilterPanelWidget.css";
 

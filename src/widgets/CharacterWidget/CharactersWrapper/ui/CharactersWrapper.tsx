@@ -1,27 +1,38 @@
 import type { PropsWithChildren } from "react";
 
-import { classNames } from "@/shared/lib/helper";
+import { classNames, Loader } from "@/shared";
+import { InfiniteScrollWidget } from "@/widgets/InfiniteScrollWidget";
 
-import { Loader } from "@/shared/ui";
 import "./CharactersWrapper.css";
 
 interface CharactersWrapperProps {
   className?: string;
-  isShow?: boolean;
+  isShowedLoader?: boolean;
+  isShowedTargetElement?: boolean;
+  onTurnNextPage: () => void;
 }
 
 export const CharactersWrapper = (
   props: PropsWithChildren<CharactersWrapperProps>
 ) => {
-  const { className, children, isShow = false } = props;
+  const {
+    className,
+    children,
+    isShowedLoader = false,
+    onTurnNextPage,
+    isShowedTargetElement,
+  } = props;
 
   return (
     <div className={classNames("CharactersWrapper", className)}>
       {children}
-      {isShow && (
+      {isShowedLoader && (
         <div className="loader">
           <Loader variant="smallLoader" />
         </div>
+      )}
+      {isShowedTargetElement && (
+        <InfiniteScrollWidget onScrollEnd={onTurnNextPage} />
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import { memo, RefObject, useRef } from "react";
 
-import { useInfiniteScroll } from "@/shared/lib/hooks";
+import { useInfiniteScroll } from "@/shared";
 
 import "./InfiniteScrollWidget.css";
 

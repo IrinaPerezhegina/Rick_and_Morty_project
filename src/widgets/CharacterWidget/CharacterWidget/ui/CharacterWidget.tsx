@@ -1,11 +1,17 @@
 import { memo, useMemo } from "react";
 import { Link } from "react-router";
 
-import { optionsStatus } from "@/shared/constants/select";
-import { classNames } from "@/shared/lib/helper";
-import { Character } from "@/shared/types/character";
-import { CircleStatus, Input, Select, StatusesType } from "@/shared/ui";
 import { ButtonsGroup } from "../../components";
+
+import {
+  Character,
+  CircleStatus,
+  classNames,
+  Input,
+  optionsStatus,
+  Select,
+  StatusesType,
+} from "@/shared";
 
 import "./CharacterWidget.css";
 

@@ -1,10 +1,15 @@
 import { memo } from "react";
 
-import { useFilters, useLoadingCharacterData } from "@/shared/lib/hooks";
-import { Error, Loader, Logo, PageLayout } from "@/shared/ui";
+import {
+  Error,
+  Loader,
+  Logo,
+  PageLayout,
+  useFilters,
+  useLoadingCharacterData,
+} from "@/shared";
 import { CharactersWrapper, CharacterWidget } from "@/widgets/CharacterWidget";
 import { FilterPanelWidget } from "@/widgets/FilterPanelWidget";
-import { InfiniteScrollWidget } from "@/widgets/InfiniteScrollWidget";
 
 export const MainPage = memo(() => {
   const {
@@ -19,7 +24,7 @@ export const MainPage = memo(() => {
   const {
     data,
     error,
-    isBigLoaderVisible,
+    isLoading,
     isTargetElementVisible,
     isSmallLoaderVisible,
   } = useLoadingCharacterData(filter);
@@ -38,18 +43,20 @@ export const MainPage = memo(() => {
         speciesValue={filter.speciesValue}
       />
 
-      {isBigLoaderVisible ? (
+      {isLoading ? (
         <Loader variant="bigLoader" text="Loading characters..." />
       ) : (
-        <CharactersWrapper isShow={isSmallLoaderVisible}>
+        <CharactersWrapper
+          onTurnNextPage={onTurnNextPage}
+          isShowedLoader={isSmallLoaderVisible}
+          isShowedTargetElement={isTargetElementVisible}
+        >
           {data.map((character) => (
             <CharacterWidget key={character.id} character={character} />
           ))}
         </CharactersWrapper>
       )}
-      {isTargetElementVisible && (
-        <InfiniteScrollWidget onScrollEnd={onTurnNextPage} />
-      )}
+
       {error && <Error error={error} />}
     </PageLayout>
   );

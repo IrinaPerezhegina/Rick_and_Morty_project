@@ -1,6 +1,5 @@
+import { options } from "@/shared/constants";
 import { RefObject, useEffect, useRef } from "react";
-
-import { options } from "@/shared/constants/options";
 
 export interface UseInfiniteScrollOptions {
   triggerRef: RefObject<HTMLElement>;
