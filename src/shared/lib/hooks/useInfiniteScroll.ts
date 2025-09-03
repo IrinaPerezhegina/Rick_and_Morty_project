@@ -1,5 +1,7 @@
 import { RefObject, useEffect, useRef } from "react";
 
+import { options } from "@/shared/constants/options";
+
 export interface UseInfiniteScrollOptions {
   triggerRef: RefObject<HTMLElement>;
   callback?: () => void;
@@ -15,11 +17,6 @@ export function useInfiniteScroll({
     const triggerElement = triggerRef.current;
 
     if (callback) {
-      const options = {
-        rootMargin: "20px 20px 20px 20px",
-        threshold: 1.0,
-      };
-
       observer.current = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
           callback();

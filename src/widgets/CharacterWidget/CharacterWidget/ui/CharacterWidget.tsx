@@ -4,9 +4,7 @@ import { Link } from "react-router";
 import { optionsStatus } from "@/shared/constants/select";
 import { classNames } from "@/shared/lib/helper";
 import { Character } from "@/shared/types/character";
-import { Input } from "@/shared/ui/Input";
-import { Select } from "@/shared/ui/Select";
-import { CircleStatus, StatusesType } from "@/shared/ui/Status";
+import { CircleStatus, Input, Select, StatusesType } from "@/shared/ui";
 import { ButtonsGroup } from "../../components";
 
 import "./CharacterWidget.css";

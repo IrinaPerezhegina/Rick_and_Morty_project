@@ -9,9 +9,10 @@ export function useLoadingCharacterData(filter: FilterProps) {
   const [isNext, setIsNext] = useState(true);
   const [data, setData] = useState<Character[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const isShowBigLoader = isLoading && !error && filter.page === 1;
-  const isShowInfiniteScrollComponent = !isLoading && !error && isNext;
-  const isShowSmallLoader = isLoading && !error && filter.page > 1;
+
+  const isBigLoaderVisible = isLoading && !error && filter.page === 1;
+  const isTargetElementVisible = !isLoading && !error && isNext;
+  const isSmallLoaderVisible = isLoading && !error && filter.page > 1;
 
   let isFetching = false;
 
@@ -23,13 +24,16 @@ export function useLoadingCharacterData(filter: FilterProps) {
       .then(({ next, results }) => {
         setIsNext(next);
         setError(null);
+
         if (filter.page === 1) {
           setData(results);
         }
+
         if (filter.page > 1) {
           setData((prev) => [...prev, ...results]);
         }
       })
+
       .catch((error) => {
         setData([]);
         setError(error.response.data.error);
@@ -42,8 +46,8 @@ export function useLoadingCharacterData(filter: FilterProps) {
   return {
     data,
     error,
-    isShowBigLoader,
-    isShowInfiniteScrollComponent,
-    isShowSmallLoader,
+    isBigLoaderVisible,
+    isTargetElementVisible,
+    isSmallLoaderVisible,
   };
 }

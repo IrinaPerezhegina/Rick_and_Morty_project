@@ -8,9 +8,7 @@ import {
   optionsView,
 } from "@/shared/constants/select";
 import { classNames } from "@/shared/lib/helper";
-
-import { Input } from "@/shared/ui/Input";
-import { Select } from "@/shared/ui/Select";
+import { Input, Select } from "@/shared/ui";
 
 import "./FilterPanelWidget.css";
 
