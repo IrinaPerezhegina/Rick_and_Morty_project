@@ -23,7 +23,7 @@ export interface CharacterWidgetProps {
 }
 
 export const CharacterWidget = memo((props: CharacterWidgetProps) => {
-  const { classname, readOnly = true, character, onClick = () => {} } = props;
+  const { classname, character, onClick = () => {}, readOnly = true } = props;
 
   const statusCharacter = useMemo(() => {
     return optionsStatus.find((el) => el.content === character.status);

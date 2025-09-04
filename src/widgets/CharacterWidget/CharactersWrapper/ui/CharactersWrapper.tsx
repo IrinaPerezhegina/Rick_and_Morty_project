@@ -1,31 +1,31 @@
-import type { PropsWithChildren } from "react";
-
-import { classNames, Loader } from "@/shared";
+import { Character, classNames, Loader } from "@/shared";
+import { CharacterWidget } from "@/widgets/CharacterWidget/CharacterWidget";
 import { InfiniteScrollWidget } from "@/widgets/InfiniteScrollWidget";
 
 import "./CharactersWrapper.css";
 
 interface CharactersWrapperProps {
+  characters: Character[];
+  onTurnNextPage: () => void;
   className?: string;
   isShowedLoader?: boolean;
   isShowedTargetElement?: boolean;
-  onTurnNextPage: () => void;
 }
 
-export const CharactersWrapper = (
-  props: PropsWithChildren<CharactersWrapperProps>
-) => {
+export const CharactersWrapper = (props: CharactersWrapperProps) => {
   const {
     className,
-    children,
-    isShowedLoader = false,
-    onTurnNextPage,
+    characters,
     isShowedTargetElement,
+    onTurnNextPage,
+    isShowedLoader = false,
   } = props;
 
   return (
     <div className={classNames("CharactersWrapper", className)}>
-      {children}
+      {characters.map((character) => (
+        <CharacterWidget key={character.id} character={character} />
+      ))}
       {isShowedLoader && (
         <div className="loader">
           <Loader variant="smallLoader" />

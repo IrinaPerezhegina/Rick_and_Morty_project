@@ -8,8 +8,7 @@ import {
   useFilters,
   useLoadingCharacterData,
 } from "@/shared";
-import { CharactersWrapper, CharacterWidget } from "@/widgets/CharacterWidget";
-import { FilterPanelWidget } from "@/widgets/FilterPanelWidget";
+import { CharactersWrapper, FilterPanelWidget } from "@/widgets";
 
 export const MainPage = memo(() => {
   const {
@@ -47,14 +46,11 @@ export const MainPage = memo(() => {
         <Loader variant="bigLoader" text="Loading characters..." />
       ) : (
         <CharactersWrapper
+          characters={data}
           onTurnNextPage={onTurnNextPage}
           isShowedLoader={isSmallLoaderVisible}
           isShowedTargetElement={isTargetElementVisible}
-        >
-          {data.map((character) => (
-            <CharacterWidget key={character.id} character={character} />
-          ))}
-        </CharactersWrapper>
+        />
       )}
 
       {error && <Error error={error} />}
