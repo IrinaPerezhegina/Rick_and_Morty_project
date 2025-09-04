@@ -1,7 +1,9 @@
 import { Route, Routes } from "react-router";
-import "./App.css";
+
 import { CharacterPage } from "./pages/CharacterPage";
 import { MainPage } from "./pages/MainPage";
+
+import "./App.css";
 
 function App() {
   return (
