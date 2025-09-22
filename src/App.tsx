@@ -8,11 +8,11 @@ function App() {
     <>
       <Routes>
         <Route
-          path={''}
+          path=''
           element={<MainPage />}
         />
         <Route
-          path={'characters/:id'}
+          path='characters/:id'
           element={<CharacterPage />}
         />
       </Routes>

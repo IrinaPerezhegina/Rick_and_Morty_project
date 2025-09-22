@@ -7,12 +7,10 @@ export function useLoadingCharacterData(filter: FilterProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isNext, setIsNext] = useState(true);
   const [data, setData] = useState<Character[]>([]);
-  const [error, setError] = useState<string | null>(null);
 
-  const isBigLoaderVisible = isLoading && !error && filter.page === 1;
-  const isTargetElementVisible =
-    !isLoading && !error && isNext && data.length > 0;
-  const isSmallLoaderVisible = isLoading && !error && filter.page > 1;
+  const isBigLoaderVisible = isLoading && filter.page === 1;
+  const isTargetElementVisible = !isLoading && isNext && data.length > 0;
+  const isSmallLoaderVisible = isLoading && filter.page > 1;
 
   let isFetching = false;
 
@@ -23,7 +21,6 @@ export function useLoadingCharacterData(filter: FilterProps) {
     getCharacters(filter)
       .then(({ next, results }) => {
         setIsNext(next);
-        setError(null);
 
         if (filter.page === 1) {
           setData(results);
@@ -37,9 +34,9 @@ export function useLoadingCharacterData(filter: FilterProps) {
       .catch((error) => {
         if (error.status === 404) {
           setData([]);
-          setError(null);
         } else {
-          setError('Ошибка загрузки данных');
+          console.log('error');
+          setData([]);
           toast.error('Ошибка загрузки данных');
         }
       })
@@ -50,7 +47,6 @@ export function useLoadingCharacterData(filter: FilterProps) {
 
   return {
     data,
-    error,
     isLoading: isBigLoaderVisible,
     isTargetElementVisible,
     isSmallLoaderVisible

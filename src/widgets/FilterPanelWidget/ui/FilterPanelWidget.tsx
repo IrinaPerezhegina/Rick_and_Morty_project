@@ -50,21 +50,21 @@ export const FilterPanelWidget = memo((props: FilterPanelWidgetProps) => {
         placeholder='Filter by name...'
       />
       <Select
-        placeholder={'Species'}
+        placeholder='Species'
         view='big'
         value={speciesValue}
         onChange={onChangeSpecies}
         options={optionsView}
       />
       <Select
-        placeholder={'Gender'}
+        placeholder='Gender'
         view='big'
         value={genderValue}
         onChange={onChangeGender}
         options={optionsGender}
       />
       <Select
-        placeholder={'Status'}
+        placeholder='Status'
         value={statusValue}
         view='big'
         onChange={onChangeStatus}

@@ -21,7 +21,7 @@ export const InfiniteScrollWidget = memo((props: InfiniteScrollWidgetProps) => {
     <>
       {onScrollEnd ? (
         <div
-          className={'trigger'}
+          className='trigger'
           ref={triggerRef}
         />
       ) : null}

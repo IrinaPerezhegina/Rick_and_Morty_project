@@ -6,7 +6,6 @@ import './CharactersWrapper.css';
 interface CharactersWrapperProps {
   characters: Character[];
   onTurnNextPage: () => void;
-  error: string | null;
   className?: string;
   isShowedLoader?: boolean;
   isShowedTargetElement?: boolean;
@@ -16,15 +15,11 @@ export const CharactersWrapper = (props: CharactersWrapperProps) => {
   const {
     className,
     characters,
-    error,
+
     isShowedTargetElement,
     onTurnNextPage,
     isShowedLoader = false
   } = props;
-
-  if (error) {
-    return;
-  }
 
   return (
     <div className={classNames('CharactersWrapper', className)}>

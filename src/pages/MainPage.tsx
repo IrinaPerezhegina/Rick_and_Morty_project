@@ -1,7 +1,6 @@
 import { memo } from 'react';
 
 import {
-  Error,
   Loader,
   Logo,
   PageLayout,
@@ -20,13 +19,8 @@ export const MainPage = memo(() => {
     onTurnNextPage
   } = useFilters();
 
-  const {
-    data,
-    error,
-    isLoading,
-    isTargetElementVisible,
-    isSmallLoaderVisible
-  } = useLoadingCharacterData(filter);
+  const { data, isLoading, isTargetElementVisible, isSmallLoaderVisible } =
+    useLoadingCharacterData(filter);
 
   return (
     <PageLayout>
@@ -49,14 +43,12 @@ export const MainPage = memo(() => {
         />
       ) : (
         <CharactersWrapper
-          error={error}
           characters={data}
           onTurnNextPage={onTurnNextPage}
           isShowedLoader={isSmallLoaderVisible}
           isShowedTargetElement={isTargetElementVisible}
         />
       )}
-      <Error error={error} />
     </PageLayout>
   );
 });

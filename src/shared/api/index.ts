@@ -1,2 +1,2 @@
-export * from './getCharacters';
 export * from './api';
+export * from './getCharacters';

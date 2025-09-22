@@ -1,5 +1,6 @@
 import { $api, FilterProps, getValidParams } from '@/shared';
 
+// Задержка для получения данных с сервера
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const getCharacters = async (filter: FilterProps) => {
@@ -15,8 +16,6 @@ export const getCharacters = async (filter: FilterProps) => {
 
     return { next: Boolean(next), results };
   } catch (error) {
-    console.log(error);
-
     console.error('Ошибка при запросе:', error);
     throw error;
   }
