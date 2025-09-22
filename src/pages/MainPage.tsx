@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo } from 'react';
 
 import {
   Error,
@@ -6,9 +6,9 @@ import {
   Logo,
   PageLayout,
   useFilters,
-  useLoadingCharacterData,
-} from "@/shared";
-import { CharactersWrapper, FilterPanelWidget } from "@/widgets";
+  useLoadingCharacterData
+} from '@/shared';
+import { CharactersWrapper, FilterPanelWidget } from '@/widgets';
 
 export const MainPage = memo(() => {
   const {
@@ -17,7 +17,7 @@ export const MainPage = memo(() => {
     debounceFetchData,
     onChangeSpecies,
     onChangeStatus,
-    onTurnNextPage,
+    onTurnNextPage
   } = useFilters();
 
   const {
@@ -25,7 +25,7 @@ export const MainPage = memo(() => {
     error,
     isLoading,
     isTargetElementVisible,
-    isSmallLoaderVisible,
+    isSmallLoaderVisible
   } = useLoadingCharacterData(filter);
 
   return (
@@ -43,17 +43,20 @@ export const MainPage = memo(() => {
       />
 
       {isLoading ? (
-        <Loader variant="bigLoader" text="Loading characters..." />
+        <Loader
+          variant='bigLoader'
+          text='Loading characters...'
+        />
       ) : (
         <CharactersWrapper
+          error={error}
           characters={data}
           onTurnNextPage={onTurnNextPage}
           isShowedLoader={isSmallLoaderVisible}
           isShowedTargetElement={isTargetElementVisible}
         />
       )}
-
-      {error && <Error error={error} />}
+      <Error error={error} />
     </PageLayout>
   );
 });

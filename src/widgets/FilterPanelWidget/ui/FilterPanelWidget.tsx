@@ -1,17 +1,17 @@
-import { memo } from "react";
-
-import { ReactComponent as Loupe } from "@/assets/loupe.svg";
+import { memo } from 'react';
 
 import {
-  classNames,
   Input,
+  Select,
+  classNames,
   optionsGender,
   optionsStatus,
-  optionsView,
-  Select,
-} from "@/shared";
+  optionsView
+} from '@/shared';
 
-import "./FilterPanelWidget.css";
+import { ReactComponent as Loupe } from '@/assets/loupe.svg';
+
+import './FilterPanelWidget.css';
 
 interface FilterPanelWidgetProps {
   searchValue: string;
@@ -35,38 +35,38 @@ export const FilterPanelWidget = memo((props: FilterPanelWidgetProps) => {
     onChangeGender,
     onChangeSpecies,
     onChangeSearch,
-    onChangeStatus,
+    onChangeStatus
   } = props;
 
   return (
-    <div className={classNames("FilterPanelWidget", [className])}>
+    <div className={classNames('FilterPanelWidget', [className])}>
       <Input
-        name="search"
+        name='search'
         onChange={onChangeSearch}
         Svg={<Loupe />}
-        size="big"
-        view="filter"
+        size='big'
+        view='filter'
         value={searchValue}
-        placeholder="Filter by name..."
+        placeholder='Filter by name...'
       />
       <Select
-        placeholder={"Species"}
-        view="big"
+        placeholder={'Species'}
+        view='big'
         value={speciesValue}
         onChange={onChangeSpecies}
         options={optionsView}
       />
       <Select
-        placeholder={"Gender"}
-        view="big"
+        placeholder={'Gender'}
+        view='big'
         value={genderValue}
         onChange={onChangeGender}
         options={optionsGender}
       />
       <Select
-        placeholder={"Status"}
+        placeholder={'Status'}
         value={statusValue}
-        view="big"
+        view='big'
         onChange={onChangeStatus}
         options={optionsStatus}
       />

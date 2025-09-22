@@ -1,1 +1,1 @@
-export * from "./ButtonsGroup/ButtonsGroup";
+export * from './ButtonsGroup/ButtonsGroup';

@@ -1,5 +1,6 @@
-import { options } from "@/shared/constants";
-import { RefObject, useEffect, useRef } from "react";
+import { RefObject, useEffect, useRef } from 'react';
+
+import { options } from '@/shared';
 
 export interface UseInfiniteScrollOptions {
   triggerRef: RefObject<HTMLElement>;
@@ -8,7 +9,7 @@ export interface UseInfiniteScrollOptions {
 
 export function useInfiniteScroll({
   callback,
-  triggerRef,
+  triggerRef
 }: UseInfiniteScrollOptions) {
   const observer = useRef<IntersectionObserver | null>(null);
 

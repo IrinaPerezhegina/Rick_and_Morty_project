@@ -1,8 +1,8 @@
-import { memo, RefObject, useRef } from "react";
+import { RefObject, memo, useRef } from 'react';
 
-import { useInfiniteScroll } from "@/shared";
+import { useInfiniteScroll } from '@/shared';
 
-import "./InfiniteScrollWidget.css";
+import './InfiniteScrollWidget.css';
 
 interface InfiniteScrollWidgetProps {
   onScrollEnd?: () => void;
@@ -14,10 +14,17 @@ export const InfiniteScrollWidget = memo((props: InfiniteScrollWidgetProps) => {
 
   useInfiniteScroll({
     triggerRef,
-    callback: onScrollEnd,
+    callback: onScrollEnd
   });
 
   return (
-    <>{onScrollEnd ? <div className={"trigger"} ref={triggerRef} /> : null}</>
+    <>
+      {onScrollEnd ? (
+        <div
+          className={'trigger'}
+          ref={triggerRef}
+        />
+      ) : null}
+    </>
   );
 });

@@ -1,14 +1,14 @@
-import { memo, useState, type ReactNode } from "react";
+import { type ReactNode, memo, useState } from 'react';
 
-import { classNames } from "@/shared/lib/helper";
+import { classNames } from '@/shared';
 
-import "./Input.css";
+import './Input.css';
 
-export type InputView = "filter" | "form";
+export type InputView = 'filter' | 'form';
 
 export interface InputProps {
   name: string;
-  size: "small" | "big";
+  size: 'small' | 'big';
   view: InputView;
   value: string;
   Svg?: ReactNode;
@@ -20,14 +20,14 @@ export interface InputProps {
 export const Input = memo((props: InputProps) => {
   const {
     name,
-    size = "big",
+    size = 'big',
     view,
     value,
     onChange,
     Svg,
     className,
-    placeholder = "",
-    readonly,
+    placeholder = '',
+    readonly
   } = props;
   const [currentValue, setCurrentValue] = useState(value);
 
@@ -39,16 +39,16 @@ export const Input = memo((props: InputProps) => {
   return (
     <div
       className={classNames(
-        "input",
+        'input',
         {
-          input_filter: view === "filter",
-          input_form: view === "form",
-          readonly: readonly,
+          input_filter: view === 'filter',
+          input_form: view === 'form',
+          readonly: readonly
         },
         [className]
       )}
     >
-      {view === "filter" && Svg}
+      {view === 'filter' && Svg}
       <input
         name={name}
         className={size}

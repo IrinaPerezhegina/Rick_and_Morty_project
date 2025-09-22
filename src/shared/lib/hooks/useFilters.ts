@@ -1,6 +1,6 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react';
 
-import { useDebounce } from "@/shared/lib/hooks/useDebounce";
+import { useDebounce } from '@/shared';
 
 export interface FilterProps {
   searchValue: string;
@@ -21,18 +21,18 @@ interface UseFiltersResult {
 
 export function useFilters(): UseFiltersResult {
   const [filter, setFilter] = useState({
-    searchValue: "",
-    filterStatus: "",
-    speciesValue: "",
-    genderValue: "",
-    page: 1,
+    searchValue: '',
+    filterStatus: '',
+    speciesValue: '',
+    genderValue: '',
+    page: 1
   });
 
   const onChangeSearch = useCallback((value: string) => {
     setFilter((prev) => ({
       ...prev,
       searchValue: value,
-      page: 1,
+      page: 1
     }));
   }, []);
 
@@ -42,7 +42,7 @@ export function useFilters(): UseFiltersResult {
     setFilter((prev) => ({
       ...prev,
       filterStatus: value,
-      page: 1,
+      page: 1
     }));
   }, []);
 
@@ -50,7 +50,7 @@ export function useFilters(): UseFiltersResult {
     setFilter((prev) => ({
       ...prev,
       speciesValue: value,
-      page: 1,
+      page: 1
     }));
   }, []);
 
@@ -58,14 +58,14 @@ export function useFilters(): UseFiltersResult {
     setFilter((prev) => ({
       ...prev,
       genderValue: value,
-      page: 1,
+      page: 1
     }));
   }, []);
 
   const onTurnNextPage = useCallback(() => {
     setFilter((prev) => ({
       ...prev,
-      page: prev.page + 1,
+      page: prev.page + 1
     }));
   }, []);
 
@@ -75,6 +75,6 @@ export function useFilters(): UseFiltersResult {
     debounceFetchData,
     onChangeStatus,
     onChangeSpecies,
-    onChangeGender,
+    onChangeGender
   };
 }
