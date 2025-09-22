@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
-import { getCharacters } from "@/shared/api";
-import { Character, FilterProps } from "@/shared/types";
+import { Character, FilterProps, getCharacters } from '@/shared';
 
 export function useLoadingCharacterData(filter: FilterProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isNext, setIsNext] = useState(true);
   const [data, setData] = useState<Character[]>([]);
-  const [error, setError] = useState<string | null>(null);
 
-  const isBigLoaderVisible = isLoading && !error && filter.page === 1;
-  const isTargetElementVisible = !isLoading && !error && isNext;
-  const isSmallLoaderVisible = isLoading && !error && filter.page > 1;
+  const isBigLoaderVisible = isLoading && filter.page === 1;
+  const isTargetElementVisible = !isLoading && isNext && data.length > 0;
+  const isSmallLoaderVisible = isLoading && filter.page > 1;
 
   let isFetching = false;
 
@@ -22,7 +21,6 @@ export function useLoadingCharacterData(filter: FilterProps) {
     getCharacters(filter)
       .then(({ next, results }) => {
         setIsNext(next);
-        setError(null);
 
         if (filter.page === 1) {
           setData(results);
@@ -34,8 +32,13 @@ export function useLoadingCharacterData(filter: FilterProps) {
       })
 
       .catch((error) => {
-        setData([]);
-        setError(error.response.data.error);
+        if (error.status === 404) {
+          setData([]);
+        } else {
+          console.log('error');
+          setData([]);
+          toast.error('Ошибка загрузки данных');
+        }
       })
       .finally(() => setIsLoading(false));
 
@@ -44,9 +47,8 @@ export function useLoadingCharacterData(filter: FilterProps) {
 
   return {
     data,
-    error,
     isLoading: isBigLoaderVisible,
     isTargetElementVisible,
-    isSmallLoaderVisible,
+    isSmallLoaderVisible
   };
 }

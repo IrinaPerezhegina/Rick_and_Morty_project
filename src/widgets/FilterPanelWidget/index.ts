@@ -1,1 +1,1 @@
-export * from "./ui/FilterPanelWidget";
+export * from './ui/FilterPanelWidget';

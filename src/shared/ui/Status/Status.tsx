@@ -1,11 +1,11 @@
-import { classNames } from "@/shared/lib/helper";
+import { classNames } from '@/shared';
 
-import "./Status.css";
+import './Status.css';
 
 const STATUSES_DICT = {
-  Alive: "green",
-  Dead: "red",
-  unknown: "orange",
+  Alive: 'green',
+  Dead: 'red',
+  unknown: 'orange'
 };
 
 export type StatusesType = keyof typeof STATUSES_DICT;
@@ -16,7 +16,7 @@ export interface StatusProps {
 }
 
 export const CircleStatus = (props: StatusProps) => {
-  const { status = "unknown", classname } = props;
+  const { status = 'unknown', classname } = props;
 
   const statusValue = STATUSES_DICT[status];
 

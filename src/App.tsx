@@ -1,17 +1,22 @@
-import { Route, Routes } from "react-router";
+import { Toaster } from 'react-hot-toast';
+import { Route, Routes } from 'react-router';
 
-import { CharacterPage } from "./pages/CharacterPage";
-import { MainPage } from "./pages/MainPage";
-
-import "./App.css";
+import { CharacterPage, MainPage } from '@/pages';
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path={""} element={<MainPage />} />
-        <Route path={"characters/:id"} element={<CharacterPage />} />
+        <Route
+          path=''
+          element={<MainPage />}
+        />
+        <Route
+          path='characters/:id'
+          element={<CharacterPage />}
+        />
       </Routes>
+      <Toaster />
     </>
   );
 }

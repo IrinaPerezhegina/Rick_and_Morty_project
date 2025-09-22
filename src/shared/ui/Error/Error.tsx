@@ -1,16 +1,19 @@
-import { memo } from "react";
+import { memo } from 'react';
 
-import { classNames } from "@/shared/lib/helper";
+import { classNames } from '@/shared';
 
-import "./Error.css";
+import './Error.css';
 
 interface ErrorProps {
-  error: string;
+  error: string | null;
   className?: string;
 }
 
 export const Error = memo((props: ErrorProps) => {
   const { className, error } = props;
+  if (!error) {
+    return;
+  }
 
-  return <div className={classNames("Error", className)}>{error}</div>;
+  return <div className={classNames('Error', className)}>{error}</div>;
 });

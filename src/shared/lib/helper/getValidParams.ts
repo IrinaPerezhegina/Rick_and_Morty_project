@@ -1,4 +1,4 @@
-import { FilterProps } from "@/shared/lib/hooks";
+import { FilterProps } from '@/shared';
 
 interface ValidParamsProps {
   name?: string;

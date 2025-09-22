@@ -1,8 +1,7 @@
-import { Character, classNames, Loader } from "@/shared";
-import { CharacterWidget } from "@/widgets/CharacterWidget/CharacterWidget";
-import { InfiniteScrollWidget } from "@/widgets/InfiniteScrollWidget";
+import { Character, Loader, classNames } from '@/shared';
+import { CharacterWidget, InfiniteScrollWidget } from '@/widgets';
 
-import "./CharactersWrapper.css";
+import './CharactersWrapper.css';
 
 interface CharactersWrapperProps {
   characters: Character[];
@@ -16,19 +15,28 @@ export const CharactersWrapper = (props: CharactersWrapperProps) => {
   const {
     className,
     characters,
+
     isShowedTargetElement,
     onTurnNextPage,
-    isShowedLoader = false,
+    isShowedLoader = false
   } = props;
 
   return (
-    <div className={classNames("CharactersWrapper", className)}>
-      {characters.map((character) => (
-        <CharacterWidget key={character.id} character={character} />
-      ))}
+    <div className={classNames('CharactersWrapper', className)}>
+      {characters.length > 0 ? (
+        characters.map((character) => (
+          <CharacterWidget
+            key={character.id}
+            character={character}
+          />
+        ))
+      ) : (
+        <span>Нет данных...</span>
+      )}
+
       {isShowedLoader && (
-        <div className="loader">
-          <Loader variant="smallLoader" />
+        <div className='loader'>
+          <Loader variant='smallLoader' />
         </div>
       )}
       {isShowedTargetElement && (

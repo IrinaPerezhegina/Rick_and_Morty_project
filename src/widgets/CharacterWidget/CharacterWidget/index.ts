@@ -1,1 +1,1 @@
-export { CharacterWidget } from "./ui/CharacterWidget";
+export { CharacterWidget } from './ui/CharacterWidget';

@@ -9,9 +9,9 @@ export function classNames(
 ): string {
   const args = [arg1, arg2, arg3];
 
-  const stringArg = args.find((arg) => typeof arg === "string");
+  const stringArg = args.find((arg) => typeof arg === 'string');
   const objArg = args.find(
-    (arg) => Object.prototype.toString.call(arg) === "[object Object]"
+    (arg) => Object.prototype.toString.call(arg) === '[object Object]'
   );
   const keys = objArg ? Object.entries(objArg) : [];
   const arrArg = args.find((arg) => Array.isArray(arg))?.filter(Boolean) || [];
@@ -22,6 +22,6 @@ export function classNames(
     ...keys
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .filter(([_, value]) => Boolean(value))
-      .map(([className]) => className),
-  ].join(" ");
+      .map(([className]) => className)
+  ].join(' ');
 }

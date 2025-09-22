@@ -1,4 +1,4 @@
-import { useCallback, useRef, type RefObject } from "react";
+import { type RefObject, useCallback, useRef } from 'react';
 
 export function useDebounce(callback: (value: string) => void, delay: number) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,1 +1,1 @@
-export { CharactersWrapper } from "./ui/CharactersWrapper";
+export { CharactersWrapper } from './ui/CharactersWrapper';

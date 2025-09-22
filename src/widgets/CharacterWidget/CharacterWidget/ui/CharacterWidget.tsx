@@ -1,19 +1,19 @@
-import { memo, useMemo } from "react";
-import { Link } from "react-router";
-
-import { ButtonsGroup } from "../../components";
+import { memo, useMemo } from 'react';
+import { Link } from 'react-router';
 
 import {
   Character,
   CircleStatus,
-  classNames,
   Input,
-  optionsStatus,
   Select,
   StatusesType,
-} from "@/shared";
+  classNames,
+  optionsStatus
+} from '@/shared';
 
-import "./CharacterWidget.css";
+import { ButtonsGroup } from '../../components';
+
+import './CharacterWidget.css';
 
 export interface CharacterWidgetProps {
   character: Character;
@@ -30,52 +30,58 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
   }, [character.status]);
 
   return (
-    <div className={classNames("CharacterCard", classname)}>
-      <div className="buttonGroup">
-        <ButtonsGroup readonly={readOnly} onClick={onClick} />
+    <div className={classNames('CharacterCard', classname)}>
+      <div className='buttonGroup'>
+        <ButtonsGroup
+          readonly={readOnly}
+          onClick={onClick}
+        />
       </div>
 
-      <img src={character.image} className="image" />
+      <img
+        src={character.image}
+        className='image'
+      />
 
-      <div className="description">
-        <div className="name">
+      <div className='description'>
+        <div className='name'>
           {readOnly ? (
             <Link to={`character/${character.id}`}>{character.name}</Link>
           ) : (
             <Input
-              name="name"
+              name='name'
               readonly={readOnly}
-              view="form"
+              view='form'
               value={character.name}
-              size="big"
+              size='big'
             />
           )}
         </div>
 
-        <div className="gender">
+        <div className='gender'>
           <p>Gender</p>
           <span>{character.gender}</span>
         </div>
 
-        <div className="species">
+        <div className='species'>
           <p>Species</p>
           <span>{character.species}</span>
         </div>
 
-        <div className="location">
+        <div className='location'>
           <p>Location</p>
           <Input
-            name="location"
+            name='location'
             readonly={readOnly}
-            view="form"
+            view='form'
             value={character.location.name}
-            size="small"
+            size='small'
           />
         </div>
 
-        <div className="status">
+        <div className='status'>
           <p>Status</p>
-          <div className="status_wrapper">
+          <div className='status_wrapper'>
             {readOnly ? (
               <>
                 <span>{character.status}</span>
@@ -86,7 +92,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
             ) : (
               <Select
                 onChange={() => {}}
-                view="small"
+                view='small'
                 value={character.status}
                 options={optionsStatus}
                 SelectOptionContentComponent={(props) => (

@@ -1,1 +1,1 @@
-export { InfiniteScrollWidget } from "./ui/InfiniteScrollWidget";
+export { InfiniteScrollWidget } from './ui/InfiniteScrollWidget';

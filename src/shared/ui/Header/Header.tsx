@@ -1,9 +1,9 @@
-import { memo } from "react";
+import { memo } from 'react';
 
 export const Header = memo(() => {
   return (
     <div>
-      <img src="/src/assets/logo-black.svg" />
+      <img src='/src/assets/logo-black.svg' />
     </div>
   );
 });

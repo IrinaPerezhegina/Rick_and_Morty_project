@@ -1,11 +1,11 @@
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { ReactComponent as ArrowDown } from "@/assets/arrowDown.svg";
-import { ReactComponent as ArrowUp } from "@/assets/arrowUp.svg";
+import { classNames } from '@/shared';
 
-import { classNames } from "@/shared/lib/helper";
+import { ReactComponent as ArrowDown } from '@/assets/arrowDown.svg';
+import { ReactComponent as ArrowUp } from '@/assets/arrowUp.svg';
 
-import "./Select.css";
+import './Select.css';
 
 export interface SelectOption {
   id: string;
@@ -23,7 +23,7 @@ export const DefaultSelectOptionContent = (props: SelectOptionContentProps) => {
 interface SelectProps {
   value: string;
   onChange: (value: string) => void;
-  view: "big" | "small";
+  view: 'big' | 'small';
   options?: SelectOption[];
   placeholder?: string;
   SelectOptionContentComponent?: React.FC<SelectOptionContentProps>;
@@ -31,12 +31,12 @@ interface SelectProps {
 
 export const Select = memo((props: SelectProps) => {
   const {
-    placeholder = "",
+    placeholder = '',
     options,
     onChange,
     value,
-    view = "big",
-    SelectOptionContentComponent = DefaultSelectOptionContent,
+    view = 'big',
+    SelectOptionContentComponent = DefaultSelectOptionContent
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -53,10 +53,10 @@ export const Select = memo((props: SelectProps) => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -87,7 +87,11 @@ export const Select = memo((props: SelectProps) => {
       }
 
       return (
-        <div id={option.id} key={option.id} className="option">
+        <div
+          id={option.id}
+          key={option.id}
+          className='option'
+        >
           <SelectOptionContentComponent value={option.content} />
         </div>
       );
@@ -97,25 +101,31 @@ export const Select = memo((props: SelectProps) => {
   return (
     <div
       ref={containerRef}
-      className={classNames("wrapper", {
-        wrapper_big: view === "big",
-        wrapper_small: view === "small",
+      className={classNames('wrapper', {
+        wrapper_big: view === 'big',
+        wrapper_small: view === 'small'
       })}
     >
-      <div className="header" onClick={toggleOpen}>
-        <div className="headerWrapper">
+      <div
+        className='header'
+        onClick={toggleOpen}
+      >
+        <div className='headerWrapper'>
           {value ? <SelectOptionContentComponent value={value} /> : placeholder}
         </div>
 
         {isOpen ? (
-          <ArrowDown className="arrow" />
+          <ArrowDown className='arrow' />
         ) : (
-          <ArrowUp className="arrow" />
+          <ArrowUp className='arrow' />
         )}
       </div>
 
       {isOpen && (
-        <div onClick={handleClick} className="optionsContainer">
+        <div
+          onClick={handleClick}
+          className='optionsContainer'
+        >
           {optionsList}
         </div>
       )}
