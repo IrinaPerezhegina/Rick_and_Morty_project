@@ -13,21 +13,21 @@ export const CharacterInfoWidget = memo((props: CharacterInfoWidgetProps) => {
   const { className, character } = props;
 
   return (
-    <div className={classNames('CharacterInfoWidget', {}, [className])}>
-      <div className='CharacterInfoWidget_btn'>
+    <div className={classNames('characterInfoWidget', {}, [className])}>
+      <div className='characterInfoWidget_btn'>
         <GoBackButton />
       </div>
-      <div className='CharacterInfoWidget_content'>
-        <div className='CharacterInfoWidget_image'>
+      <div className='characterInfoWidget_content'>
+        <div className='characterInfoWidget_image'>
           <img
             src={character?.image}
             alt='аватар'
           />
         </div>
-        <div className='CharacterInfoWidget_info'>
+        <div className='characterInfoWidget_info'>
           <h1>{character?.name}</h1>
           <span>Information</span>
-          <div className='CharacterInfoWidget_table'>
+          <div className='characterInfoWidget_table'>
             <div>
               <strong>Gender</strong>
               <span>{character?.gender}</span>

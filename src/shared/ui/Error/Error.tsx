@@ -15,5 +15,5 @@ export const Error = memo((props: ErrorProps) => {
     return;
   }
 
-  return <div className={classNames('Error', className)}>{error}</div>;
+  return <div className={classNames('error', className)}>{error}</div>;
 });

@@ -39,7 +39,7 @@ export const FilterPanelWidget = memo((props: FilterPanelWidgetProps) => {
   } = props;
 
   return (
-    <div className={classNames('FilterPanelWidget', [className])}>
+    <div className={classNames('filterPanelWidget', [className])}>
       <Input
         name='search'
         isNormalInput={false}

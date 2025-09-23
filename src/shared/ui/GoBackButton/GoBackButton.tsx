@@ -19,7 +19,7 @@ export const GoBackButton = memo((props: GoBackButtonProps) => {
     navigate(-1); // возвращаем назад
   };
   return (
-    <div className={classNames('GoBackButton', {}, [className])}>
+    <div className={classNames('goBackButton', {}, [className])}>
       <button onClick={goBack}>
         <GoBackArrow />
         GO BACK

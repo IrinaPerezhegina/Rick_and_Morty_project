@@ -1,4 +1,4 @@
-.CharacterCard {
+.characterCard {
   font-family: 'Roboto', sans-serif;
   color: black;
   height: 248px;
@@ -15,7 +15,7 @@
   }
 }
 
-.CharacterCard:hover .buttonGroup {
+.characterCard:hover .buttonGroup {
   display: flex;
 }
 

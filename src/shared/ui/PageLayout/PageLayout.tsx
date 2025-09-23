@@ -16,7 +16,7 @@ export const PageLayout = ({
   children
 }: PageLayoutProps) => {
   return (
-    <div className='PageLayout'>
+    <div className='pageLayout'>
       <div className='head'>{head}</div>
       <div className='center'>{children}</div>
       <div className='footer'>{footer}</div>

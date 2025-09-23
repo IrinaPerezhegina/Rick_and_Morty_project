@@ -83,7 +83,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
   }, [character.status]);
 
   return (
-    <div className={classNames('CharacterCard', classname)}>
+    <div className={classNames('characterCard', classname)}>
       <div className='buttonGroup'>
         <ButtonsGroup
           onChange={onEditCharacterCard}

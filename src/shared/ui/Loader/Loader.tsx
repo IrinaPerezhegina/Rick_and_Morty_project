@@ -18,7 +18,7 @@ export const Loader = memo((props: LoaderProps) => {
   }
 
   return (
-    <div className='Loader'>
+    <div className='loader'>
       <img
         className={variant}
         src='/src/assets/loader.svg'

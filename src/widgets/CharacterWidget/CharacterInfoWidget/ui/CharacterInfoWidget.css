@@ -1,4 +1,4 @@
-.CharacterInfoWidget {
+.characterInfoWidget {
   font-family: 'Roboto', sans-serif;
   height: 100%;
   width: 100%;
@@ -7,41 +7,41 @@
   padding-bottom: 40px;
 }
 
-.CharacterInfoWidget_content {
+.characterInfoWidget_content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.CharacterInfoWidget_btn {
+.characterInfoWidget_btn {
   padding-top: 20px;
   display: flex;
   justify-content: left;
 }
 
-.CharacterInfoWidget_image {
+.characterInfoWidget_image {
   > img {
     border-radius: 150px;
     border: 5px solid #f2f2f7;
   }
 }
 
-.CharacterInfoWidget_info {
+.characterInfoWidget_info {
   width: 100%;
   margin-top: 3px;
   display: flex;
   flex-direction: column;
 }
 
-.CharacterInfoWidget_info > h1 {
+.characterInfoWidget_info > h1 {
   padding-left: 25px;
   text-align: center;
   font-size: 48px;
   font-weight: 400;
 }
 
-.CharacterInfoWidget_info > span {
+.characterInfoWidget_info > span {
   padding-right: 23px;
   text-align: center;
   margin-top: 40px;
@@ -50,7 +50,7 @@
   color: #8e8e93;
 }
 
-.CharacterInfoWidget_table {
+.characterInfoWidget_table {
   display: flex;
   flex-direction: column;
   gap: 13px;
@@ -58,7 +58,7 @@
   margin-top: 45px;
 }
 
-.CharacterInfoWidget_table > div {
+.characterInfoWidget_table > div {
   border-bottom: 2px solid rgb(216, 214, 214);
   display: flex;
   padding-bottom: 10px;

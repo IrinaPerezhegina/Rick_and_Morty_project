@@ -25,7 +25,7 @@ export const CharactersWrapper = (props: CharactersWrapperProps) => {
   } = props;
 
   return (
-    <div className={classNames('CharactersWrapper', className)}>
+    <div className={classNames('charactersWrapper', className)}>
       {characters.length > 0 ? (
         characters.map((character) => (
           <CharacterWidget

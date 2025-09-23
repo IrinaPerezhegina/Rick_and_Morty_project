@@ -17,7 +17,7 @@ export const ButtonsGroup = memo((props: ButtonsGroupProps) => {
   const { readonly, onEdit, onCancel, onChange } = props;
 
   return (
-    <div className='ButtonGroup'>
+    <div className='buttonGroup'>
       <button onClick={onCancel}>
         <CloseIcon className='close' />
       </button>
