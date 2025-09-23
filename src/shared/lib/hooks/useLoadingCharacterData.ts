@@ -1,7 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { Character, FilterProps, getCharacters } from '@/shared';
+import {
+  Character,
+  EditCharacterProps,
+  FilterProps,
+  getCharacters
+} from '@/shared';
 
 export function useLoadingCharacterData(filter: FilterProps) {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,8 +50,24 @@ export function useLoadingCharacterData(filter: FilterProps) {
     isFetching = true;
   }, [filter]);
 
+  const onEditCharacterCard = useCallback((value: EditCharacterProps) => {
+    setData((prev: Character[]) =>
+      prev.map((item) =>
+        item.id === value.id
+          ? {
+              ...item,
+              name: value.name,
+              status: value.status,
+              location: { name: value.location, url: item.location.url }
+            }
+          : item
+      )
+    );
+  }, []);
+
   return {
     data,
+    onEditCharacterCard,
     isLoading: isBigLoaderVisible,
     isTargetElementVisible,
     isSmallLoaderVisible

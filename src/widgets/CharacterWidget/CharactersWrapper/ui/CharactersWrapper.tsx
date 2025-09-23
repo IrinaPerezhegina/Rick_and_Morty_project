@@ -1,11 +1,14 @@
-import { Character, Loader, classNames } from '@/shared';
-import { CharacterWidget, InfiniteScrollWidget } from '@/widgets';
+import { Character, EditCharacterProps, Loader, classNames } from '@/shared';
+import { InfiniteScrollWidget } from '@/widgets';
 
 import './CharactersWrapper.css';
+
+import { CharacterWidget } from '../../CharacterWidget';
 
 interface CharactersWrapperProps {
   characters: Character[];
   onTurnNextPage: () => void;
+  onEditCharacter: (value: EditCharacterProps) => void;
   className?: string;
   isShowedLoader?: boolean;
   isShowedTargetElement?: boolean;
@@ -15,9 +18,9 @@ export const CharactersWrapper = (props: CharactersWrapperProps) => {
   const {
     className,
     characters,
-
     isShowedTargetElement,
     onTurnNextPage,
+    onEditCharacter,
     isShowedLoader = false
   } = props;
 
@@ -26,6 +29,7 @@ export const CharactersWrapper = (props: CharactersWrapperProps) => {
       {characters.length > 0 ? (
         characters.map((character) => (
           <CharacterWidget
+            onEditCharacter={onEditCharacter}
             key={character.id}
             character={character}
           />

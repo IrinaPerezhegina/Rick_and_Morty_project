@@ -1,5 +1,6 @@
 export * from './Error/Error';
 export * from './Footer/Footer';
+export * from './GoBackButton/GoBackButton';
 export * from './Header/Header';
 export * from './Input/Input';
 export * from './Loader/Loader';

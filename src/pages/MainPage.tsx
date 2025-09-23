@@ -19,8 +19,13 @@ export const MainPage = memo(() => {
     onTurnNextPage
   } = useFilters();
 
-  const { data, isLoading, isTargetElementVisible, isSmallLoaderVisible } =
-    useLoadingCharacterData(filter);
+  const {
+    data,
+    isLoading,
+    isTargetElementVisible,
+    isSmallLoaderVisible,
+    onEditCharacterCard
+  } = useLoadingCharacterData(filter);
 
   return (
     <PageLayout>
@@ -38,11 +43,13 @@ export const MainPage = memo(() => {
 
       {isLoading ? (
         <Loader
+          isLoading={isLoading}
           variant='bigLoader'
           text='Loading characters...'
         />
       ) : (
         <CharactersWrapper
+          onEditCharacter={onEditCharacterCard}
           characters={data}
           onTurnNextPage={onTurnNextPage}
           isShowedLoader={isSmallLoaderVisible}

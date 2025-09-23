@@ -11,6 +11,7 @@ export interface InputProps {
   size: 'small' | 'big';
   view: InputView;
   value: string;
+  isNormalInput?: boolean;
   Svg?: ReactNode;
   onChange?: (value: string) => void;
   placeholder?: string;
@@ -27,6 +28,7 @@ export const Input = memo((props: InputProps) => {
     Svg,
     className,
     placeholder = '',
+    isNormalInput = true,
     readonly
   } = props;
   const [currentValue, setCurrentValue] = useState(value);
@@ -52,7 +54,7 @@ export const Input = memo((props: InputProps) => {
       <input
         name={name}
         className={size}
-        value={currentValue}
+        value={isNormalInput ? value : currentValue}
         placeholder={placeholder}
         onChange={onChangeHandler}
       />

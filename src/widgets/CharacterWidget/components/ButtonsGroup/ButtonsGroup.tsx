@@ -8,24 +8,26 @@ import './ButtonsGroup.css';
 
 export interface ButtonsGroupProps {
   readonly: boolean;
-  onClick: () => void;
+  onEdit: () => void;
+  onCancel: () => void;
+  onChange: () => void;
 }
 
 export const ButtonsGroup = memo((props: ButtonsGroupProps) => {
-  const { readonly, onClick } = props;
+  const { readonly, onEdit, onCancel, onChange } = props;
 
   return (
     <div className='ButtonGroup'>
-      <button>
+      <button onClick={onCancel}>
         <CloseIcon className='close' />
       </button>
 
       {readonly ? (
-        <button onClick={onClick}>
+        <button onClick={onEdit}>
           <PensilIcon className='pensil' />
         </button>
       ) : (
-        <button onClick={onClick}>
+        <button onClick={onChange}>
           <CheckIcon className='check' />
         </button>
       )}

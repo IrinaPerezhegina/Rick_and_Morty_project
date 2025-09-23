@@ -5,12 +5,17 @@ import './Loader.css';
 export type LoaderSize = 'smallLoader' | 'bigLoader';
 
 interface LoaderProps {
+  isLoading?: boolean;
   variant?: LoaderSize;
   text?: string;
 }
 
 export const Loader = memo((props: LoaderProps) => {
-  const { variant = 'big', text = '' } = props;
+  const { isLoading, variant = 'big', text = '' } = props;
+
+  if (!isLoading) {
+    return;
+  }
 
   return (
     <div className='Loader'>
