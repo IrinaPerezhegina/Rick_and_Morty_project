@@ -1,4 +1,4 @@
-.CharacterInfoWidget {
+.character-profile {
   font-family: 'Roboto', sans-serif;
   height: 100%;
   width: 100%;
@@ -7,41 +7,39 @@
   padding-bottom: 40px;
 }
 
-.CharacterInfoWidget_content {
+.character-profile__content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.CharacterInfoWidget_btn {
+.character-profile__btn {
   padding-top: 20px;
   display: flex;
   justify-content: left;
 }
 
-.CharacterInfoWidget_image {
-  > img {
-    border-radius: 150px;
-    border: 5px solid #f2f2f7;
-  }
+.character-profile__content-image > img {
+  border-radius: 150px;
+  border: 5px solid #f2f2f7;
 }
 
-.CharacterInfoWidget_info {
+.character-profile__content-info {
   width: 100%;
   margin-top: 3px;
   display: flex;
   flex-direction: column;
 }
 
-.CharacterInfoWidget_info > h1 {
+.character-profile__content-info > h1 {
   padding-left: 25px;
   text-align: center;
   font-size: 48px;
   font-weight: 400;
 }
 
-.CharacterInfoWidget_info > span {
+.character-profile__content-info > span {
   padding-right: 23px;
   text-align: center;
   margin-top: 40px;
@@ -50,7 +48,7 @@
   color: #8e8e93;
 }
 
-.CharacterInfoWidget_table {
+.character-profile__content-table {
   display: flex;
   flex-direction: column;
   gap: 13px;
@@ -58,7 +56,7 @@
   margin-top: 45px;
 }
 
-.CharacterInfoWidget_table > div {
+.character-profile__content-table > div {
   border-bottom: 2px solid rgb(216, 214, 214);
   display: flex;
   padding-bottom: 10px;

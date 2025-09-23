@@ -1,9 +1,9 @@
 import { Character, EditCharacterProps, Loader, classNames } from '@/shared';
 import { InfiniteScrollWidget } from '@/widgets';
 
-import './CharactersWrapper.css';
-
 import { CharacterWidget } from '../../CharacterWidget';
+
+import './CharactersWrapper.css';
 
 interface CharactersWrapperProps {
   characters: Character[];
@@ -25,7 +25,7 @@ export const CharactersWrapper = (props: CharactersWrapperProps) => {
   } = props;
 
   return (
-    <div className={classNames('CharactersWrapper', className)}>
+    <div className={classNames('characters-wrapper', className)}>
       {characters.length > 0 ? (
         characters.map((character) => (
           <CharacterWidget

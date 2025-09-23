@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { useParams } from 'react-router';
 
 import { Character, Loader, PageLayout, getCharacterById } from '@/shared';
-import { CharacterInfoWidget } from '@/widgets';
+import { CharacterProfileWidget } from '@/widgets';
 
 export const CharacterPage = memo(() => {
   const { id } = useParams();
@@ -36,7 +36,7 @@ export const CharacterPage = memo(() => {
         variant='bigLoader'
         text='Loading character card...'
       />
-      {!isLoading && <CharacterInfoWidget character={character} />}
+      {!isLoading && <CharacterProfileWidget character={character} />}
     </PageLayout>
   );
 });
