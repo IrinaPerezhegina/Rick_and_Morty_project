@@ -14,7 +14,8 @@
     "^react$',^react-router$, '^(memo|useMemo)$",
     "^@/(shared|widgets|pages|App)(/.*)?$",
     "^@/(assets(?:/.*)?|components)$",
-    "^../../components$",
+    "^../../[^/]+$",
+    "^../[^/]+$",
     "^\\.\\/.*\\.css$",
     "^[./]"
   ],

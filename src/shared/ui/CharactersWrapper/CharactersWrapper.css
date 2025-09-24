@@ -1,4 +1,4 @@
-.CharactersWrapper {
+.characters-wrapper {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -8,8 +8,4 @@
   gap: 30px;
   padding: 20px 0 20px 0;
   height: 100%;
-}
-
-.loader {
-  width: 100%;
 }
