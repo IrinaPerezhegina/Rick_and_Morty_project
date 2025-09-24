@@ -7,24 +7,24 @@ import {
   EditCharacterProps,
   Input,
   Select,
-  StatusesType,
+  checkingStatus,
   classNames,
   optionsStatus,
   useEditingCharacter
 } from '@/shared';
 
-import { ButtonsGroup } from '../../components';
+import { ButtonsGroup } from '../components';
 
 import './CharacterWidget.css';
 
 export interface CharacterWidgetProps {
   character: Character;
   onEditCharacter: (value: EditCharacterProps) => void;
-  classname?: string;
+  className?: string;
 }
 
 export const CharacterWidget = memo((props: CharacterWidgetProps) => {
-  const { classname, character, onEditCharacter } = props;
+  const { className, character, onEditCharacter } = props;
   const {
     statusCharacter,
     readOnly,
@@ -41,7 +41,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
   } = useEditingCharacter({ character, onEditCharacter });
 
   return (
-    <div className={classNames('character-card', classname)}>
+    <div className={classNames('character-card', className)}>
       <div className='character-card__btns'>
         <ButtonsGroup
           onChange={onEditCharacterCard}
@@ -103,7 +103,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
               <>
                 <span>{character.status}</span>
                 <CircleStatus
-                  status={statusCharacter?.content as StatusesType}
+                  status={checkingStatus(statusCharacter?.content)}
                 />
               </>
             ) : (
@@ -116,7 +116,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
                   <>
                     {props.value}
 
-                    <CircleStatus status={props.value as StatusesType} />
+                    <CircleStatus status={checkingStatus(props.value)} />
                   </>
                 )}
               />

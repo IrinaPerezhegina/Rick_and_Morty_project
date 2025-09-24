@@ -41,13 +41,13 @@ export function useEditingCharacter({
 
   const validateName = (value: string): string | null => {
     if (!value.trim()) {
-      return 'Имя не может быть пустым';
+      return 'Name cannot be empty';
     }
     if (value.length < 2) {
-      return 'Имя должно содержать минимум 2 символа';
+      return 'Name must contain at least 2 characters.';
     }
     if (value.length > 20) {
-      return 'Имя должно содержать максимум 30 символа';
+      return 'Name must contain a max of 30 characters';
     }
     return null;
   };

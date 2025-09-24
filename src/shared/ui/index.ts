@@ -1,3 +1,4 @@
+export * from './CharactersWrapper/CharactersWrapper';
 export * from './Error/Error';
 export * from './Footer/Footer';
 export * from './GoBackButton/GoBackButton';

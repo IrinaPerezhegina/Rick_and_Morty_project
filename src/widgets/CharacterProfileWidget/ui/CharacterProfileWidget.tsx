@@ -14,7 +14,7 @@ export const CharacterProfileWidget = memo(
     const { className, character } = props;
 
     return (
-      <div className={classNames('character-profile', [className])}>
+      <div className={classNames('character-profile', className)}>
         <div className='character-profile__btn'>
           <GoBackButton />
         </div>

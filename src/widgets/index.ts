@@ -1,4 +1,4 @@
 export * from './CharacterProfileWidget';
-export * from './CharactersWidget';
+export * from './CharacterWidget';
 export * from './FilterPanelWidget';
 export * from './InfiniteScrollWidget';

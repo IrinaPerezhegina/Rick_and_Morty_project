@@ -9,24 +9,19 @@ export const CharacterPage = memo(() => {
   const { id } = useParams();
   const [character, setCharacter] = useState<Character>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  let isFetching = false;
 
   useEffect(() => {
-    if (isFetching) return;
     setIsLoading(true);
     if (id) {
       getCharacterById(id)
         .then((data) => {
           setCharacter(data);
         })
-
         .catch(() => {
           toast.error('Не удалось подгрузить персонажа');
         })
         .finally(() => setIsLoading(false));
     }
-
-    isFetching = true;
   }, [id]);
 
   return (
