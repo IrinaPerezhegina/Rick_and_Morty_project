@@ -43,8 +43,8 @@ export const Input = memo((props: InputProps) => {
       className={classNames(
         'input',
         {
-          input_filter: view === 'filter',
-          input_form: view === 'form',
+          input__filter: view === 'filter',
+          input__form: view === 'form',
           readonly: readonly
         },
         [className]

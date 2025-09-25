@@ -40,9 +40,8 @@ export function useLoadingCharacterData(filter: FilterProps) {
         if (error.status === 404) {
           setData([]);
         } else {
-          console.log('error');
           setData([]);
-          toast.error('Ошибка загрузки данных');
+          toast.error('Data upload error');
         }
       })
       .finally(() => setIsLoading(false));

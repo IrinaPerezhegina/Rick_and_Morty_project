@@ -27,7 +27,6 @@ interface FilterPanelWidgetProps {
 
 export const FilterPanelWidget = memo((props: FilterPanelWidgetProps) => {
   const {
-    className,
     searchValue,
     speciesValue,
     genderValue,
@@ -35,11 +34,12 @@ export const FilterPanelWidget = memo((props: FilterPanelWidgetProps) => {
     onChangeGender,
     onChangeSpecies,
     onChangeSearch,
-    onChangeStatus
+    onChangeStatus,
+    className
   } = props;
 
   return (
-    <div className={classNames('FilterPanelWidget', [className])}>
+    <div className={classNames('filter-panel-widget', className)}>
       <Input
         name='search'
         isControlled={false}

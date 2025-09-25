@@ -15,17 +15,12 @@ export interface StatusProps {
   classname?: string;
 }
 
-function isStatusesType(value: unknown): value is StatusesType {
-  return value === 'Alive' || value === 'Dead' || value === 'unknown';
-}
-
 export const CircleStatus = (props: StatusProps) => {
   const { status = 'unknown', classname } = props;
-  const statusVal = isStatusesType(status) ? status : 'unknown';
 
-  const statusValue = STATUSES_DICT[statusVal];
+  const statusValue = STATUSES_DICT[status];
 
   return statusValue ? (
-    <div className={classNames(statusValue, [classname])} />
+    <div className={classNames(statusValue, classname)} />
   ) : null;
 };

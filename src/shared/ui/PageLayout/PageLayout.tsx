@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { PropsWithChildren, type ReactNode } from 'react';
 
 import { Footer, Header } from '@/shared';
 
@@ -7,19 +7,18 @@ import './PageLayout.css';
 interface PageLayoutProps {
   head?: ReactNode;
   footer?: ReactNode;
-  children: ReactNode;
 }
 
 export const PageLayout = ({
   head = <Header />,
   footer = <Footer />,
   children
-}: PageLayoutProps) => {
+}: PropsWithChildren<PageLayoutProps>) => {
   return (
-    <div className='PageLayout'>
-      <div className='head'>{head}</div>
-      <div className='center'>{children}</div>
-      <div className='footer'>{footer}</div>
+    <div className='pageLayout'>
+      <div className='pageLayout__head'>{head}</div>
+      <div className='pageLayout__center'>{children}</div>
+      <div className='pageLayout__footer'>{footer}</div>
     </div>
   );
 };

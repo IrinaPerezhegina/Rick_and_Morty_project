@@ -13,7 +13,6 @@ export interface UseEditingCharacterProps {
 }
 
 interface UseEditingCharacterResult {
-  statusCharacter?: SelectOption;
   readOnly: boolean;
   name: string;
   location: string;
@@ -25,6 +24,7 @@ interface UseEditingCharacterResult {
   updateNameCharacterCard: (value: string) => void;
   enableEditingMode: () => void;
   onCancelEditMode: () => void;
+  statusCharacter?: SelectOption;
 }
 
 export function useEditingCharacter({

@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.wrapper_big {
+.wrapper__big {
   width: 240px;
   height: 56px;
 
@@ -12,18 +12,18 @@
     border: 1px solid rgba(57, 57, 57, 1);
   }
 
-  .headerWrapper {
+  .header__wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 6px;
   }
 
-  .arrow {
+  .header__arrow {
     margin-left: 10px;
   }
 
-  .option {
+  .options-container__option {
     font-size: 17px;
     height: 40px;
     padding-left: 13px;
@@ -32,12 +32,12 @@
     align-items: start;
   }
 
-  .optionsContainer {
+  .options-container {
     top: 120%;
   }
 }
 
-.wrapper_small {
+.wrapper__small {
   min-width: 94px;
 
   .header {
@@ -46,12 +46,12 @@
     gap: 4px;
   }
 
-  .arrow {
+  .header__arrow {
     width: 4px;
     height: 3px;
   }
 
-  .headerWrapper {
+  .header__wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,16 +59,16 @@
     height: 20px;
   }
 
-  .arrow {
+  .header__arrow {
     width: 4px;
     height: 3px;
   }
 
-  .optionsContainer {
+  .options-container {
     top: 130%;
   }
 
-  .option {
+  .options-container__option {
     font-size: 13px;
     height: 23px;
     padding-left: 6px;
@@ -89,7 +89,7 @@
   border: 1px solid #393939;
 }
 
-.optionsContainer {
+.options-container {
   border-radius: 6px;
   position: absolute;
   left: 0;
@@ -99,7 +99,7 @@
   z-index: 1000;
 }
 
-.option {
+.options-container__option {
   color: #00000099;
   display: flex;
   cursor: pointer;

@@ -18,7 +18,7 @@ export const CharacterPage = memo(() => {
           setCharacter(data);
         })
         .catch(() => {
-          toast.error('Не удалось подгрузить персонажа');
+          toast.error("Couldn't load the character");
         })
         .finally(() => setIsLoading(false));
     }

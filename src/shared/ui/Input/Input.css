@@ -1,4 +1,4 @@
-.input_form {
+.input__form {
   > input {
     max-width: 176px;
     border: none;
@@ -25,7 +25,7 @@
   }
 }
 
-.input_filter {
+.input__filter {
   position: relative;
   padding: 15px 5px 15px 15px;
   display: flex;
@@ -34,7 +34,7 @@
   border-radius: 8px;
   height: 28px;
 
-  input {
+  > input {
     font-size: 16px;
     font-weight: 400;
     color: #00000080;
