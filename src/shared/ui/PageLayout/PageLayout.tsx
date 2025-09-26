@@ -15,10 +15,10 @@ export const PageLayout = ({
   children
 }: PropsWithChildren<PageLayoutProps>) => {
   return (
-    <div className='pageLayout'>
-      <div className='pageLayout__head'>{head}</div>
-      <div className='pageLayout__center'>{children}</div>
-      <div className='pageLayout__footer'>{footer}</div>
+    <div className='page-layout'>
+      <div className='page-layout__head'>{head}</div>
+      <div className='page-layout__center'>{children}</div>
+      <div className='page-layout__footer'>{footer}</div>
     </div>
   );
 };

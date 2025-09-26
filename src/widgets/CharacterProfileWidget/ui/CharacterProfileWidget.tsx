@@ -22,37 +22,37 @@ export const CharacterProfileWidget = memo(
           <div className='character-profile__content'>
             <div className='character-profile__content-image'>
               <img
-                src={character?.image}
+                src={character.image}
                 alt='avatar'
               />
             </div>
             <div className='character-profile__content-info'>
-              <h1>{character?.name}</h1>
+              <h1>{character.name}</h1>
               <span>Information</span>
               <div className='character-profile__content-table'>
-                <div>
+                <div className='character-profile__content-table-gender'>
                   <strong>Gender</strong>
-                  <span>{character?.gender}</span>
+                  <span>{character.gender}</span>
                 </div>
-                <div>
+                <div className='character-profile__content-table-status'>
                   <strong>Status</strong>
-                  <span>{character?.status}</span>
+                  <span>{character.status}</span>
                 </div>
-                <div>
+                <div className='character-profile__content-table-species'>
                   <strong>Specie</strong>
-                  <span>{character?.species}</span>
+                  <span>{character.species}</span>
                 </div>
-                <div>
+                <div className='character-profile__content-table-origin'>
                   <strong>Origin</strong>
-                  <span>{character?.location.name}</span>
+                  <span>{character.origin.name}</span>
                 </div>
-                <div>
+                <div className='character-profile__content-table-type'>
                   <strong>Type</strong>
-                  <span>{character?.location.name}</span>
+                  <span>{character.type}</span>
                 </div>
-                <div>
+                <div className='character-profile__content-table-location'>
                   <strong>Location</strong>
-                  <span>{character?.location.name}</span>
+                  <span>{character.location.name}</span>
                 </div>
               </div>
             </div>

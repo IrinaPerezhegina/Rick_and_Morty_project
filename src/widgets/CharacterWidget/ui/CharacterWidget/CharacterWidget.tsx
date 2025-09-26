@@ -98,7 +98,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
 
         <div className='character-card__description-status'>
           <p>Status</p>
-          <div className='character-card__description-status--wrapper'>
+          <div className='character-card__description-status-wrapper'>
             {readOnly ? (
               <>
                 <span>{character.status}</span>

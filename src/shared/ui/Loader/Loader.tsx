@@ -1,5 +1,7 @@
 import { memo } from 'react';
 
+import { classNames } from '@/shared';
+
 import { ReactComponent as LoaderIcon } from '@/assets/loader.svg';
 
 import './Loader.css';
@@ -13,18 +15,21 @@ interface LoaderProps {
 }
 
 export const Loader = memo((props: LoaderProps) => {
-  const { isLoading = true, variant = 'big', text = '' } = props;
-  const style =
-    variant === 'bigLoader' ? 'loader__big-text' : 'loader__small-text';
+  const { isLoading = true, variant = 'smallLoader', text = '' } = props;
 
   if (!isLoading) {
     return;
   }
 
   return (
-    <div className='loader'>
-      <LoaderIcon className={variant} />
-      <p className={style}>{text}</p>
+    <div
+      className={classNames('loader', {
+        loader_big: variant === 'bigLoader',
+        loader_small: variant === 'smallLoader'
+      })}
+    >
+      <LoaderIcon />
+      <p>{text}</p>
     </div>
   );
 });

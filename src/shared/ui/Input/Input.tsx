@@ -21,15 +21,15 @@ export interface InputProps {
 export const Input = memo((props: InputProps) => {
   const {
     name,
-    size = 'big',
+    readonly,
     view,
     value,
-    onChange,
     Svg,
+    onChange,
     className,
     placeholder = '',
-    isControlled = true,
-    readonly
+    size = 'big',
+    isControlled = true
   } = props;
   const [currentValue, setCurrentValue] = useState(value);
 
@@ -43,17 +43,18 @@ export const Input = memo((props: InputProps) => {
       className={classNames(
         'input',
         {
-          input__filter: view === 'filter',
-          input__form: view === 'form',
+          input_filter: view === 'filter',
+          input_form: view === 'form',
+          input_big: size === 'big',
+          input_small: size === 'small',
           readonly: readonly
         },
-        [className]
+        className
       )}
     >
       {view === 'filter' && Svg}
       <input
         name={name}
-        className={size}
         value={isControlled ? value : currentValue}
         placeholder={placeholder}
         onChange={onChangeHandler}

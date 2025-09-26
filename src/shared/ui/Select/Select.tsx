@@ -90,7 +90,7 @@ export const Select = memo((props: SelectProps) => {
         <div
           id={option.id}
           key={option.id}
-          className='options-container__option'
+          className='select__options-container-option'
         >
           <SelectOptionContentComponent value={option.content} />
         </div>
@@ -101,30 +101,30 @@ export const Select = memo((props: SelectProps) => {
   return (
     <div
       ref={containerRef}
-      className={classNames('wrapper', {
-        wrapper__big: view === 'big',
-        wrapper__small: view === 'small'
+      className={classNames('select', {
+        select_big: view === 'big',
+        select_small: view === 'small'
       })}
     >
       <div
-        className='header'
+        className='select__header'
         onClick={toggleOpen}
       >
-        <div className='header__wrapper'>
+        <div className='select__header-wrapper'>
           {value ? <SelectOptionContentComponent value={value} /> : placeholder}
         </div>
 
         {isOpen ? (
-          <ArrowDown className='header__arrow' />
+          <ArrowDown className='select__header-arrow' />
         ) : (
-          <ArrowUp className='header__arrow' />
+          <ArrowUp className='select__header-arrow' />
         )}
       </div>
 
       {isOpen && (
         <div
           onClick={handleClick}
-          className='options-container'
+          className='select__options-container'
         >
           {optionsList}
         </div>

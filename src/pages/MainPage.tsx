@@ -45,7 +45,6 @@ export const MainPage = memo(() => {
         statusValue={filter.filterStatus}
         speciesValue={filter.speciesValue}
       />
-
       {isLoading ? (
         <Loader
           variant='bigLoader'

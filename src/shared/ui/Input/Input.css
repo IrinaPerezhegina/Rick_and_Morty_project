@@ -1,4 +1,4 @@
-.input__form {
+.input_form {
   > input {
     max-width: 176px;
     border: none;
@@ -7,25 +7,25 @@
     outline: none;
     padding-bottom: 1px;
   }
-
-  .small {
-    height: 21px;
-    width: 115px;
-    padding-left: 2px;
-    color: #00000099;
-    font-size: 14px;
-    font-weight: 400;
-  }
-
-  .big {
-    height: 23px;
-    color: #000000de;
-    font-size: 20px;
-    font-weight: 500;
-  }
 }
 
-.input__filter {
+.input_small > input {
+  height: 21px;
+  width: 115px;
+  padding-left: 2px;
+  color: #00000099;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.input_big > input {
+  height: 23px;
+  color: #000000de;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.input_filter {
   position: relative;
   padding: 15px 5px 15px 15px;
   display: flex;
@@ -64,7 +64,8 @@
     border-bottom: none;
     pointer-events: none;
   }
-  .small {
+
+  .input_big {
     border-bottom: 1px solid white;
   }
 }

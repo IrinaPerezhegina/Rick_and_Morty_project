@@ -9,4 +9,11 @@ export interface Character {
     url: string;
   };
   image: string;
+  createds: string;
+  episode: string[];
+  origin: {
+    name: string;
+    url: string;
+  };
+  type: string;
 }
