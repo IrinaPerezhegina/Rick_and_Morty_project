@@ -73,7 +73,7 @@
   }
 }
 
-.character-card__description-status--wrapper {
+.character-card__description-status-wrapper {
   display: flex;
   justify-content: start;
   align-items: center;

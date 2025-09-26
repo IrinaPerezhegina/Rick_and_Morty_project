@@ -31,10 +31,10 @@ interface SelectProps {
 
 export const Select = memo((props: SelectProps) => {
   const {
-    placeholder = '',
     options,
     onChange,
     value,
+    placeholder = '',
     view = 'big',
     SelectOptionContentComponent = DefaultSelectOptionContent
   } = props;
@@ -90,7 +90,7 @@ export const Select = memo((props: SelectProps) => {
         <div
           id={option.id}
           key={option.id}
-          className='option'
+          className='select__options-container-option'
         >
           <SelectOptionContentComponent value={option.content} />
         </div>
@@ -101,30 +101,30 @@ export const Select = memo((props: SelectProps) => {
   return (
     <div
       ref={containerRef}
-      className={classNames('wrapper', {
-        wrapper_big: view === 'big',
-        wrapper_small: view === 'small'
+      className={classNames('select', {
+        select_big: view === 'big',
+        select_small: view === 'small'
       })}
     >
       <div
-        className='header'
+        className='select__header'
         onClick={toggleOpen}
       >
-        <div className='headerWrapper'>
+        <div className='select__header-wrapper'>
           {value ? <SelectOptionContentComponent value={value} /> : placeholder}
         </div>
 
         {isOpen ? (
-          <ArrowDown className='arrow' />
+          <ArrowDown className='select__header-arrow' />
         ) : (
-          <ArrowUp className='arrow' />
+          <ArrowUp className='select__header-arrow' />
         )}
       </div>
 
       {isOpen && (
         <div
           onClick={handleClick}
-          className='optionsContainer'
+          className='select__options-container'
         >
           {optionsList}
         </div>

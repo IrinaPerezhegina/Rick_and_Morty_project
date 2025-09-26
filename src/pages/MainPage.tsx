@@ -45,10 +45,8 @@ export const MainPage = memo(() => {
         statusValue={filter.filterStatus}
         speciesValue={filter.speciesValue}
       />
-
       {isLoading ? (
         <Loader
-          isLoading={isLoading}
           variant='bigLoader'
           text='Loading characters...'
         />
@@ -63,7 +61,7 @@ export const MainPage = memo(() => {
               />
             ))
           ) : (
-            <span>Нет данных...</span>
+            <span>No data...</span>
           )}
           <Loader
             isLoading={isSmallLoaderVisible}

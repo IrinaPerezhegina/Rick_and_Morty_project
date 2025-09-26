@@ -6,6 +6,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 export const getCharacters = async (filter: FilterProps) => {
   try {
     await delay(1000);
+
     const response = await $api.get('character/', {
       params: {
         ...getValidParams(filter)

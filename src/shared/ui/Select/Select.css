@@ -1,29 +1,29 @@
-.wrapper {
+.select {
   position: relative;
 }
 
-.wrapper_big {
+.select_big {
   width: 240px;
   height: 56px;
 
-  .header {
+  .select__header {
     font-size: 17px;
     padding: 19px 20px 19px 13px;
     border: 1px solid rgba(57, 57, 57, 1);
   }
 
-  .headerWrapper {
+  .select__header-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 6px;
   }
 
-  .arrow {
+  .select__header-arrow {
     margin-left: 10px;
   }
 
-  .option {
+  .select__options-container-option {
     font-size: 17px;
     height: 40px;
     padding-left: 13px;
@@ -32,26 +32,26 @@
     align-items: start;
   }
 
-  .optionsContainer {
+  .select__options-container {
     top: 120%;
   }
 }
 
-.wrapper_small {
+.select_small {
   min-width: 94px;
 
-  .header {
+  .select__header {
     font-size: 14px;
     padding: 0px 10px 0px 6px;
     gap: 4px;
   }
 
-  .arrow {
+  .select__header-arrow {
     width: 4px;
     height: 3px;
   }
 
-  .headerWrapper {
+  .select__header-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,16 +59,16 @@
     height: 20px;
   }
 
-  .arrow {
+  .select__header-arrow {
     width: 4px;
     height: 3px;
   }
 
-  .optionsContainer {
+  .select__options-container {
     top: 130%;
   }
 
-  .option {
+  .select__options-container-option {
     font-size: 13px;
     height: 23px;
     padding-left: 6px;
@@ -78,7 +78,7 @@
   }
 }
 
-.header {
+.select__header {
   color: #00000099;
   border-radius: 6px;
   display: flex;
@@ -89,7 +89,7 @@
   border: 1px solid #393939;
 }
 
-.optionsContainer {
+.select__options-container {
   border-radius: 6px;
   position: absolute;
   left: 0;
@@ -99,7 +99,7 @@
   z-index: 1000;
 }
 
-.option {
+.select__options-container-option {
   color: #00000099;
   display: flex;
   cursor: pointer;

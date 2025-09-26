@@ -1,4 +1,4 @@
-.GoBackButton > button {
+.go-back-button > button {
   font-family: 'Karla', sans-serif;
   display: flex;
   line-height: 100%;
@@ -9,4 +9,5 @@
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
+  white-space: nowrap;
 }
