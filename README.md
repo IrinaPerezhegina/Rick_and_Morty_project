@@ -3,7 +3,7 @@
 
 ## 🔗 Ссылки
 
-- Развернутое приложение: [Персонажи из Рика и Морти([https://irinaperezhegina.github.io/Rick_and_Morty_project/])  
+- Развернутое приложение: [Персонажи из Рика и Морти](https://irinaperezhegina.github.io/Rick_and_Morty_project/)  
 - Исходный код: [GitHub репозиторий]([https://github.com/IrinaPerezhegina/Rick_and_Morty_project)
 
 ---
