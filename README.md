@@ -25,7 +25,7 @@
 ## 📥 Установка и запуск
 
 ```bash
-git clone [https://github.com/your-username/TaskBook_floors.git](https://github.com/IrinaPerezhegina/Rick_and_Morty_project.git)
+git clone https://github.com/IrinaPerezhegina/Rick_and_Morty_project.git
 cd Rick_and_Morty_project
 npm install
 npm run dev
