@@ -61,7 +61,7 @@ export function useEditingCharacter({
     setLocation(character.location.name);
     setStatus(character.status);
     setNameError(null); // сброс ошибки
-    setReadOnly((prev) => !prev);
+    setReadOnly(true);
   }, [character.name, character.location, character.status]);
 
   const updateNameCharacterCard = useCallback((value: string) => {
