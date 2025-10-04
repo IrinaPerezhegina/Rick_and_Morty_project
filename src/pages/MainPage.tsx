@@ -29,48 +29,52 @@ export const MainPage = memo(() => {
     isLoading,
     isTargetElementVisible,
     isSmallLoaderVisible,
-    onEditCharacterCard
+    onEditCharacterCard,
+    isLoadingInitial
   } = useLoadingCharacterData(filter);
 
   return (
     <PageLayout>
       <Logo />
-      <FilterPanelWidget
-        onChangeGender={onChangeGender}
-        onChangeSpecies={onChangeSpecies}
-        onChangeStatus={onChangeStatus}
-        onChangeSearch={debounceFetchData}
-        genderValue={filter.genderValue}
-        searchValue={filter.searchValue}
-        statusValue={filter.filterStatus}
-        speciesValue={filter.speciesValue}
-      />
-      {isLoading ? (
+
+      {isLoadingInitial ? (
         <Loader
           variant='bigLoader'
           text='Loading characters...'
         />
       ) : (
-        <CharactersWrapper>
-          {data.length > 0 ? (
-            data.map((data) => (
-              <CharacterWidget
-                onEditCharacter={onEditCharacterCard}
-                key={data.id}
-                character={data}
-              />
-            ))
-          ) : (
-            <span>No data...</span>
-          )}
-          <Loader
-            isLoading={isSmallLoaderVisible}
-            variant='smallLoader'
+        <>
+          <FilterPanelWidget
+            onChangeGender={onChangeGender}
+            onChangeSpecies={onChangeSpecies}
+            onChangeStatus={onChangeStatus}
+            onChangeSearch={debounceFetchData}
+            genderValue={filter.genderValue}
+            searchValue={filter.searchValue}
+            statusValue={filter.filterStatus}
+            speciesValue={filter.speciesValue}
           />
-          {isTargetElementVisible && (
-            <InfiniteScrollWidget onScrollEnd={onTurnNextPage} />
-          )}
-        </CharactersWrapper>
+          <CharactersWrapper isLoading={isLoading}>
+            {data.length > 0 ? (
+              data.map((data) => (
+                <CharacterWidget
+                  onEditCharacter={onEditCharacterCard}
+                  key={data.id}
+                  character={data}
+                />
+              ))
+            ) : (
+              <span>No data...</span>
+            )}
+            <Loader
+              isLoading={isSmallLoaderVisible}
+              variant='smallLoader'
+            />
+            {isTargetElementVisible && (
+              <InfiniteScrollWidget onScrollEnd={onTurnNextPage} />
+            )}
+          </CharactersWrapper>
+        </>
       )}
     </PageLayout>
   );

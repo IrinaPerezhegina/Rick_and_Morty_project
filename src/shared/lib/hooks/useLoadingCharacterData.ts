@@ -12,7 +12,7 @@ export function useLoadingCharacterData(filter: FilterProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isNext, setIsNext] = useState(true);
   const [data, setData] = useState<Character[]>([]);
-
+  const [isLoadingInitial, setIsLoadingInitial] = useState(true);
   const isBigLoaderVisible = isLoading && filter.page === 1;
   const isTargetElementVisible = !isLoading && isNext && data.length > 0;
   const isSmallLoaderVisible = isLoading && filter.page > 1;
@@ -44,7 +44,13 @@ export function useLoadingCharacterData(filter: FilterProps) {
           toast.error('Data upload error');
         }
       })
-      .finally(() => setIsLoading(false));
+      .finally(() => {
+        if (isLoadingInitial) {
+          setIsLoadingInitial(false);
+        }
+
+        setIsLoading(false);
+      });
 
     isFetching = true;
   }, [filter]);
@@ -69,6 +75,7 @@ export function useLoadingCharacterData(filter: FilterProps) {
     onEditCharacterCard,
     isLoading: isBigLoaderVisible,
     isTargetElementVisible,
-    isSmallLoaderVisible
+    isSmallLoaderVisible,
+    isLoadingInitial
   };
 }
