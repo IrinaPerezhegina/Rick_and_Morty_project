@@ -10,7 +10,6 @@
     }
   ],
   "compilerOptions": {
-    "types": ["node", "minimatch"],
     "paths": {
       "@/*": ["./src/*"]
     }

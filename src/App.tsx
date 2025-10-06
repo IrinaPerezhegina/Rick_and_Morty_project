@@ -16,7 +16,7 @@ function App() {
               fallback={
                 <Loader
                   variant='bigLoader'
-                  text='Loading character card...'
+                  text='Loading characters...'
                 />
               }
             >
@@ -31,7 +31,7 @@ function App() {
               fallback={
                 <Loader
                   variant='bigLoader'
-                  text='Loading characters...'
+                  text='Loading character card...'
                 />
               }
             >
