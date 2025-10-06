@@ -115,9 +115,9 @@ export const Select = memo((props: SelectProps) => {
         </div>
 
         {isOpen ? (
-          <ArrowDown className='select__header-arrow' />
-        ) : (
           <ArrowUp className='select__header-arrow' />
+        ) : (
+          <ArrowDown className='select__header-arrow' />
         )}
       </div>
 

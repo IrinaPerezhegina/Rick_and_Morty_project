@@ -1,7 +1,6 @@
 .filter-panel-widget {
-  width: 100%;
+  width: 1050px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
 }

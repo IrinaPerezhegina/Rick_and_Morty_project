@@ -16,6 +16,26 @@ export default defineConfig({
       include: '**/*.svg'
     })
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+          if (id.includes('src/assets/logo.svg')) {
+            return 'logo';
+          }
+          if (id.includes('src/assets/loader.svg')) {
+            return 'loader';
+          }
+          if (id.includes('src/assets/logo-black.svg')) {
+            return 'logo-black';
+          }
+        }
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': '/src'

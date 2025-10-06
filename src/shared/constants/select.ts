@@ -3,7 +3,7 @@ import { SelectOption } from '@/shared';
 export const optionsStatus: SelectOption[] = [
   { id: 'status-1', content: 'Alive' },
   { id: 'status-2', content: 'Dead' },
-  { id: 'status-3', content: 'unknown' }
+  { id: 'status-3', content: 'Unknown' }
 ];
 
 export const optionsView: SelectOption[] = [

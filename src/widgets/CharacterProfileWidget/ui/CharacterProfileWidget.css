@@ -1,7 +1,7 @@
 .character-profile {
   font-family: 'Roboto', sans-serif;
   height: 100%;
-  width: 100%;
+  width: 1050px;
   display: grid;
   grid-template-columns: 1fr 360px 1fr;
   padding-bottom: 40px;
@@ -21,6 +21,7 @@
 }
 
 .character-profile__content-image > img {
+  margin-top: 10px;
   border-radius: 150px;
   border: 5px solid #f2f2f7;
 }
