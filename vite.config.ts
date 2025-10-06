@@ -4,7 +4,7 @@ import viteImagemin from 'vite-plugin-imagemin';
 import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
-  base: '/Rick_and_Morty/',
+  base: '/Rick_and_Morty_project/',
   plugins: [
     react(),
     svgr({
