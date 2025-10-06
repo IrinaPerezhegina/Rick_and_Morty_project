@@ -34,7 +34,7 @@
 
 ```bash
 git clone https://github.com/IrinaPerezhegina/Rick_and_Morty_project.git
-cd Rick_and_Morty
+cd Rick_and_Morty_project
 npm install
 npm run dev
 
