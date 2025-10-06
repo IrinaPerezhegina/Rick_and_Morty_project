@@ -19,16 +19,25 @@ export const ButtonsGroup = memo((props: ButtonsGroupProps) => {
   return (
     <div className='button-group'>
       <button onClick={onCancel}>
-        <CloseIcon className='button-group__close' />
+        <CloseIcon
+          aria-label='Отменить редактирование'
+          className='button-group__close'
+        />
       </button>
 
       {readonly ? (
         <button onClick={onEdit}>
-          <PensilIcon className='button-group__pensil' />
+          <PensilIcon
+            aria-label='Редактировать'
+            className='button-group__pensil'
+          />
         </button>
       ) : (
         <button onClick={onChange}>
-          <CheckIcon className='button-group__check' />
+          <CheckIcon
+            aria-label='Сохранить редактирование'
+            className='button-group__check'
+          />
         </button>
       )}
     </div>

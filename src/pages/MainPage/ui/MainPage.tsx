@@ -4,7 +4,6 @@ import {
   CharactersWrapper,
   Loader,
   Logo,
-  PageLayout,
   useFilters,
   useLoadingCharacterData
 } from '@/shared';
@@ -14,7 +13,7 @@ import {
   InfiniteScrollWidget
 } from '@/widgets';
 
-export const MainPage = memo(() => {
+const MainPage = memo(() => {
   const {
     filter,
     onChangeGender,
@@ -29,13 +28,15 @@ export const MainPage = memo(() => {
     isLoading,
     isTargetElementVisible,
     isSmallLoaderVisible,
+    isLoadingInitial,
     onEditCharacterCard
   } = useLoadingCharacterData(filter);
 
   return (
-    <PageLayout>
+    <>
       <Logo />
-      {isLoading ? (
+
+      {isLoadingInitial ? (
         <Loader
           variant='bigLoader'
           text='Loading characters...'
@@ -43,16 +44,16 @@ export const MainPage = memo(() => {
       ) : (
         <>
           <FilterPanelWidget
-            onChangeGender={onChangeGender}
-            onChangeSpecies={onChangeSpecies}
-            onChangeStatus={onChangeStatus}
-            onChangeSearch={debounceFetchData}
             genderValue={filter.genderValue}
             searchValue={filter.searchValue}
             statusValue={filter.filterStatus}
             speciesValue={filter.speciesValue}
+            onChangeGender={onChangeGender}
+            onChangeSpecies={onChangeSpecies}
+            onChangeStatus={onChangeStatus}
+            onChangeSearch={debounceFetchData}
           />
-          <CharactersWrapper>
+          <CharactersWrapper isLoading={isLoading}>
             {data.length > 0 ? (
               data.map((data) => (
                 <CharacterWidget
@@ -64,7 +65,6 @@ export const MainPage = memo(() => {
             ) : (
               <span>No data...</span>
             )}
-
             <Loader
               isLoading={isSmallLoaderVisible}
               variant='smallLoader'
@@ -75,6 +75,7 @@ export const MainPage = memo(() => {
           </CharactersWrapper>
         </>
       )}
-    </PageLayout>
+    </>
   );
 });
+export default MainPage;

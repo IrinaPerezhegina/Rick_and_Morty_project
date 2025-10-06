@@ -1,12 +1,7 @@
-import { $api, FilterProps, getValidParams } from '@/shared';
-
-// Задержка для получения данных с сервера
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+import { $api, Character, FilterProps, getValidParams } from '@/shared';
 
 export const getCharacters = async (filter: FilterProps) => {
   try {
-    await delay(1000);
-
     const response = await $api.get('character/', {
       params: {
         ...getValidParams(filter)
@@ -15,7 +10,14 @@ export const getCharacters = async (filter: FilterProps) => {
     const { info, results } = response.data;
     const { next } = info;
 
-    return { next: Boolean(next), results };
+    const modifiedResult = results.map((character: Character) => {
+      if (character.status === 'unknown') {
+        return { ...character, status: 'Unknown' };
+      }
+      return character;
+    });
+
+    return { next: Boolean(next), results: modifiedResult };
   } catch (error) {
     console.error('Ошибка при запросе:', error);
     throw error;

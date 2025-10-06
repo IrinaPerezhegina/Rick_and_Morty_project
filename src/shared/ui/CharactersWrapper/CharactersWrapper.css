@@ -1,12 +1,18 @@
 .characters-wrapper {
-  width: 100%;
+  width: 1050px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  padding: 22px 0;
+  gap: 28px;
   box-sizing: border-box;
-  gap: 30px;
-  padding: 20px 0 20px 0;
   height: 100%;
+}
+
+.characters-wrapper:has(> :nth-child(2n)) {
+  justify-content: space-between;
+}
+
+.characters-wrapper:has(> :nth-child(1):last-child) {
+  justify-content: center;
 }

@@ -1,3 +1,4 @@
+import { HttpStatusCode } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -12,6 +13,7 @@ export function useLoadingCharacterData(filter: FilterProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isNext, setIsNext] = useState(true);
   const [data, setData] = useState<Character[]>([]);
+  const [isLoadingInitial, setIsLoadingInitial] = useState(true);
 
   const isBigLoaderVisible = isLoading && filter.page === 1;
   const isTargetElementVisible = !isLoading && isNext && data.length > 0;
@@ -37,14 +39,20 @@ export function useLoadingCharacterData(filter: FilterProps) {
       })
 
       .catch((error) => {
-        if (error.status === 404) {
+        if (error.status === HttpStatusCode.NotFound) {
           setData([]);
         } else {
           setData([]);
           toast.error('Data upload error');
         }
       })
-      .finally(() => setIsLoading(false));
+      .finally(() => {
+        if (isLoadingInitial) {
+          setIsLoadingInitial(false);
+        }
+
+        setIsLoading(false);
+      });
 
     isFetching = true;
   }, [filter]);
@@ -66,9 +74,10 @@ export function useLoadingCharacterData(filter: FilterProps) {
 
   return {
     data,
-    onEditCharacterCard,
     isLoading: isBigLoaderVisible,
     isTargetElementVisible,
-    isSmallLoaderVisible
+    isSmallLoaderVisible,
+    isLoadingInitial,
+    onEditCharacterCard
   };
 }
