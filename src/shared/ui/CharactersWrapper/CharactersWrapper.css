@@ -6,7 +6,7 @@
   padding: 22px 0;
   gap: 28px;
   box-sizing: border-box;
-  height: 100%;
+  min-height: 465px;
 }
 
 .characters-wrapper:has(> :nth-child(2n)) {
