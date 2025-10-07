@@ -9,7 +9,7 @@
   .select__header {
     font-size: 17px;
     padding: 19px 20px 19px 13px;
-    border: 1px solid rgba(57, 57, 57, 1);
+    border: 1px solid rgba(0, 0, 0, 0.5);
   }
 
   .select__header-wrapper {

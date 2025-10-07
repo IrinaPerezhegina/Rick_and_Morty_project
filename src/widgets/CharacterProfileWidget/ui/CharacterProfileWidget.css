@@ -3,8 +3,8 @@
   height: 100%;
   width: 1050px;
   display: grid;
-  grid-template-columns: 1fr 360px 1fr;
-  padding-bottom: 40px;
+  grid-template-columns: 1fr 10fr 2fr;
+  padding-bottom: 30px;
 }
 
 .character-profile__content {
@@ -15,33 +15,34 @@
 }
 
 .character-profile__btn {
-  padding-top: 20px;
+  padding-top: 30px;
   display: flex;
   justify-content: left;
 }
 
 .character-profile__content-image > img {
-  margin-top: 10px;
+  height: 300px;
+  width: 300px;
   border-radius: 150px;
   border: 5px solid #f2f2f7;
 }
 
 .character-profile__content-info {
-  width: 100%;
+  width: 46%;
   margin-top: 3px;
   display: flex;
   flex-direction: column;
 }
 
 .character-profile__content-info > h1 {
-  padding-left: 25px;
+  padding-left: 15px;
   text-align: center;
   font-size: 48px;
   font-weight: 400;
 }
 
 .character-profile__content-info > span {
-  padding-right: 23px;
+  padding-right: 35px;
   text-align: center;
   margin-top: 40px;
   font-size: 20px;
