@@ -1,5 +1,5 @@
 import { HttpStatusCode } from 'axios';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useTransition } from 'react';
 import toast from 'react-hot-toast';
 
 import {
@@ -14,7 +14,7 @@ export function useLoadingCharacterData(filter: FilterProps) {
   const [isNext, setIsNext] = useState(true);
   const [data, setData] = useState<Character[]>([]);
   const [isLoadingInitial, setIsLoadingInitial] = useState(true);
-
+  const [, startTransition] = useTransition();
   const isBigLoaderVisible = isLoading && filter.page === 1;
   const isTargetElementVisible = !isLoading && isNext && data.length > 0;
   const isSmallLoaderVisible = isLoading && filter.page > 1;
@@ -30,11 +30,11 @@ export function useLoadingCharacterData(filter: FilterProps) {
         setIsNext(next);
 
         if (filter.page === 1) {
-          setData(results);
+          startTransition(() => setData(results));
         }
 
         if (filter.page > 1) {
-          setData((prev) => [...prev, ...results]);
+          startTransition(() => setData((prev) => [...prev, ...results]));
         }
       })
 

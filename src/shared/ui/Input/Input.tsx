@@ -1,4 +1,4 @@
-import { type ReactNode, memo, useState } from 'react';
+import { type ReactNode, memo } from 'react';
 
 import { classNames } from '@/shared';
 
@@ -28,13 +28,12 @@ export const Input = memo((props: InputProps) => {
     onChange,
     className,
     placeholder = '',
-    size = 'big',
-    isControlled = true
+    size = 'big'
+    // isControlled = true
   } = props;
-  const [currentValue, setCurrentValue] = useState(value);
-
+  // const [currentValue, setCurrentValue] = useState(value);
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentValue(e.target.value);
+    // setCurrentValue(e.target.value);
     onChange?.(e.target.value);
   };
 
@@ -55,7 +54,8 @@ export const Input = memo((props: InputProps) => {
       {view === 'filter' && Svg}
       <input
         name={name}
-        value={isControlled ? value : currentValue}
+        // value={isControlled ? value : currentValue}
+        value={value}
         placeholder={placeholder}
         onChange={onChangeHandler}
       />
