@@ -1,4 +1,4 @@
-.input_form {
+.input_underlined {
   > input {
     max-width: 176px;
     border: none;
@@ -27,7 +27,7 @@
   font-weight: 500;
 }
 
-.input_filter {
+.input_bordered {
   position: relative;
   padding: 15px 5px 15px 15px;
   display: flex;

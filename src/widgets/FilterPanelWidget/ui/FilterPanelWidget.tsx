@@ -42,11 +42,10 @@ export const FilterPanelWidget = memo((props: FilterPanelWidgetProps) => {
     <div className={classNames('filter-panel-widget', className)}>
       <Input
         name='search'
-        isControlled={false}
         onChange={onChangeSearch}
         Svg={<Loupe />}
         size='big'
-        view='filter'
+        view='bordered'
         value={searchValue}
         placeholder='Filter by name...'
       />

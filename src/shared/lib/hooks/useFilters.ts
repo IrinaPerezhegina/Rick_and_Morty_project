@@ -1,5 +1,7 @@
 import { useCallback, useState } from 'react';
 
+import { useDebounce } from '@/shared/lib/hooks/useDebounce';
+
 export interface FilterProps {
   searchValue: string;
   filterStatus: string;
@@ -9,15 +11,17 @@ export interface FilterProps {
 }
 
 interface UseFiltersResult {
+  filter: FilterProps;
+  inputValue: string;
   onChangeStatus: (value: string) => void;
   onChangeSpecies: (value: string) => void;
   onChangeGender: (value: string) => void;
-  debounceFetchData: (value: string) => void;
+  onChangeSearch: (value: string) => void;
   onTurnNextPage: () => void;
-  filter: FilterProps;
 }
 
 export function useFilters(): UseFiltersResult {
+  const [inputValue, setInputValue] = useState('');
   const [filter, setFilter] = useState({
     searchValue: '',
     filterStatus: '',
@@ -26,16 +30,24 @@ export function useFilters(): UseFiltersResult {
     page: 1
   });
 
-  const onChangeSearch = useCallback((value: string) => {
-    setFilter((prev) => ({
-      ...prev,
-      searchValue: value,
-      page: 1
-    }));
-  }, []);
+  const debounceFetchData = useDebounce(
+    (value: string) =>
+      setFilter((prev) => ({
+        ...prev,
+        searchValue: value,
+        page: 1
+      })),
+    1000
+  );
 
-  // const debounceFetchData = useDebounce(onChangeSearch, 1000);
-  // const debounceFetchData = onChangeSearch;
+  const onChangeSearch = useCallback(
+    (value: string) => {
+      setInputValue(value);
+      debounceFetchData(value);
+    },
+    [debounceFetchData]
+  );
+
   const onChangeStatus = useCallback((value: string) => {
     setFilter((prev) => ({
       ...prev,
@@ -69,8 +81,9 @@ export function useFilters(): UseFiltersResult {
 
   return {
     filter,
+    inputValue,
     onTurnNextPage,
-    debounceFetchData: onChangeSearch,
+    onChangeSearch,
     onChangeStatus,
     onChangeSpecies,
     onChangeGender

@@ -16,8 +16,9 @@ import {
 const MainPage = memo(() => {
   const {
     filter,
+    inputValue,
     onChangeGender,
-    debounceFetchData,
+    onChangeSearch,
     onChangeSpecies,
     onChangeStatus,
     onTurnNextPage
@@ -45,13 +46,13 @@ const MainPage = memo(() => {
         <>
           <FilterPanelWidget
             genderValue={filter.genderValue}
-            searchValue={filter.searchValue}
+            searchValue={inputValue}
             statusValue={filter.filterStatus}
             speciesValue={filter.speciesValue}
             onChangeGender={onChangeGender}
             onChangeSpecies={onChangeSpecies}
             onChangeStatus={onChangeStatus}
-            onChangeSearch={debounceFetchData}
+            onChangeSearch={onChangeSearch}
           />
           <CharactersWrapper isLoading={isLoading}>
             {data.length > 0 ? (
