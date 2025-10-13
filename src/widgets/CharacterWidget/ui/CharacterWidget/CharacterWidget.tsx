@@ -64,7 +64,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
                 onChange={updateNameCharacterCard}
                 name='name'
                 readonly={readOnly}
-                view='form'
+                view='underlined'
                 value={name}
                 size='big'
               />
@@ -90,7 +90,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
             onChange={updateLocationCharacterCard}
             name='location'
             readonly={readOnly}
-            view='form'
+            view='underlined'
             value={location}
             size='small'
           />
