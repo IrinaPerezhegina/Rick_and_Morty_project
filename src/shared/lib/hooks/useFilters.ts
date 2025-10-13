@@ -1,7 +1,5 @@
 import { useCallback, useState } from 'react';
 
-import { useDebounce } from '@/shared';
-
 export interface FilterProps {
   searchValue: string;
   filterStatus: string;
@@ -36,8 +34,8 @@ export function useFilters(): UseFiltersResult {
     }));
   }, []);
 
-  const debounceFetchData = useDebounce(onChangeSearch, 1000);
-
+  // const debounceFetchData = useDebounce(onChangeSearch, 1000);
+  // const debounceFetchData = onChangeSearch;
   const onChangeStatus = useCallback((value: string) => {
     setFilter((prev) => ({
       ...prev,
@@ -72,7 +70,7 @@ export function useFilters(): UseFiltersResult {
   return {
     filter,
     onTurnNextPage,
-    debounceFetchData,
+    debounceFetchData: onChangeSearch,
     onChangeStatus,
     onChangeSpecies,
     onChangeGender
