@@ -1,4 +1,4 @@
-import { FilterProps } from '@/shared';
+import { FilterProps } from '@/entities/Filter';
 
 interface ValidParamsProps {
   name?: string;

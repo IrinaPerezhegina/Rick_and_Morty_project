@@ -48,7 +48,7 @@ export default tseslint.config([
               position: 'before'
             },
             {
-              pattern: '^@/(shared|widgets|pages|App)$',
+              pattern: '^@/(shared|widgets|pages|App|app|entities)$',
               group: 'internal',
               position: 'before'
             },
@@ -63,6 +63,7 @@ export default tseslint.config([
               group: 'parent',
               position: 'before'
             },
+
             {
               pattern: '^\\.\\/.*\\.css$',
               group: 'sibling',

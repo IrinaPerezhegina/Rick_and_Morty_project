@@ -1,28 +1,36 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useParams } from 'react-router';
 
-import { Character, Loader, getCharacterById } from '@/shared';
+import {
+  fetchCharacterById,
+  getCharacterDetails,
+  getCharacterDetailsError,
+  getCharacterDetailsIsLoading
+} from '@/entities/Character';
+import { Loader, useAppDispatch, useAppSelector } from '@/shared';
 import { CharacterProfileWidget } from '@/widgets';
 
 const CharacterPage = memo(() => {
+  const dispatch = useAppDispatch();
   const { id } = useParams();
-  const [character, setCharacter] = useState<Character>();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const error = useAppSelector(getCharacterDetailsError);
+  const character = useAppSelector(getCharacterDetails);
+  const isLoading = useAppSelector(getCharacterDetailsIsLoading);
 
+  // useEffect для отображении ошибки
   useEffect(() => {
-    setIsLoading(true);
-    if (id) {
-      getCharacterById(id)
-        .then((data) => {
-          setCharacter(data);
-        })
-        .catch(() => {
-          toast.error("Couldn't load the character");
-        })
-        .finally(() => setIsLoading(false));
+    if (error) {
+      toast.error(error);
     }
-  }, [id]);
+  }, [error]);
+
+  // useEffect для запроса персонажа
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchCharacterById(id));
+    }
+  }, [id, dispatch]);
 
   return (
     <>

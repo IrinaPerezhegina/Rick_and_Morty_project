@@ -1,11 +1,25 @@
-import { memo } from 'react';
+import { memo, useCallback, useEffect } from 'react';
+import toast from 'react-hot-toast';
 
+import {
+  fetchCharacters,
+  getCharactersList,
+  getCharactersListError,
+  getCharactersListIsLoadingInitial,
+  getIsTargetElementVisible
+} from '@/entities/Character';
+import {
+  filterActions,
+  getFilters,
+  getIsBigLoaderVisible,
+  getIsSmallLoaderVisible
+} from '@/entities/Filter';
 import {
   CharactersWrapper,
   Loader,
   Logo,
-  useFilters,
-  useLoadingCharacterData
+  useAppDispatch,
+  useAppSelector
 } from '@/shared';
 import {
   CharacterWidget,
@@ -14,29 +28,35 @@ import {
 } from '@/widgets';
 
 const MainPage = memo(() => {
-  const {
-    filter,
-    inputValue,
-    onChangeGender,
-    onChangeSearch,
-    onChangeSpecies,
-    onChangeStatus,
-    onTurnNextPage
-  } = useFilters();
+  const dispatch = useAppDispatch();
+  const filter = useAppSelector(getFilters);
+  const data = useAppSelector(getCharactersList);
+  const error = useAppSelector(getCharactersListError);
+  const isBigLoaderVisible = useAppSelector(getIsBigLoaderVisible);
+  const isTargetElementVisible = useAppSelector(getIsTargetElementVisible);
+  const isSmallLoaderVisible = useAppSelector(getIsSmallLoaderVisible);
+  const isLoadingInitial = useAppSelector(getCharactersListIsLoadingInitial);
 
-  const {
-    data,
-    isLoading,
-    isTargetElementVisible,
-    isSmallLoaderVisible,
-    isLoadingInitial,
-    onEditCharacterCard
-  } = useLoadingCharacterData(filter);
+  // отображение ошибки
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  });
+
+  // загрузка персонажей
+  useEffect(() => {
+    dispatch(fetchCharacters(filter));
+  }, [filter, dispatch]);
+
+  // переход на новую страницу
+  const onTurnNextPage = useCallback(() => {
+    dispatch(filterActions.onChangePage());
+  }, [dispatch]);
 
   return (
     <>
       <Logo />
-
       {isLoadingInitial ? (
         <Loader
           variant='bigLoader'
@@ -44,21 +64,11 @@ const MainPage = memo(() => {
         />
       ) : (
         <>
-          <FilterPanelWidget
-            genderValue={filter.genderValue}
-            searchValue={inputValue}
-            statusValue={filter.filterStatus}
-            speciesValue={filter.speciesValue}
-            onChangeGender={onChangeGender}
-            onChangeSpecies={onChangeSpecies}
-            onChangeStatus={onChangeStatus}
-            onChangeSearch={onChangeSearch}
-          />
-          <CharactersWrapper isLoading={isLoading}>
+          <FilterPanelWidget />
+          <CharactersWrapper isLoading={isBigLoaderVisible}>
             {data.length > 0 ? (
               data.map((data) => (
                 <CharacterWidget
-                  onEditCharacter={onEditCharacterCard}
                   key={data.id}
                   character={data}
                 />

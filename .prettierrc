@@ -11,13 +11,13 @@
   "endOfLine": "lf",
   "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "importOrder": [
-    "^react$',^react-router$, '^(memo|useMemo)$",
-    "^@/(shared|widgets|pages|App)(/.*)?$",
+    "^react$',^react-router$, ^react-redux$ '^(memo|useMemo)$",
+    "^@/(shared|widgets|pages|App|app|entities)(/.*)?$",
     "^@/(assets(?:/.*)?|components)$",
-    "^../../[^/]+$",
-    "^../[^/]+$",
-    "^\\.\\/.*\\.css$",
-    "^[./]"
+    "^../../[^/]",
+    "^../[^/]",
+    "^[./]",
+    "^\\.\\/.*\\.css$"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true

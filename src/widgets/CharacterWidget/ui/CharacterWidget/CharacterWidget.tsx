@@ -1,17 +1,17 @@
 import { memo } from 'react';
 import { Link } from 'react-router';
 
+import { Character } from '@/entities/Character';
 import {
-  Character,
   CircleStatus,
-  EditCharacterProps,
   Input,
   Select,
   checkingStatus,
   classNames,
-  optionsStatus,
-  useEditingCharacter
+  optionsStatus
 } from '@/shared';
+
+import { useEditingCharacter } from '../../lib/hooks/useEditingCharacter';
 
 import { ButtonsGroup } from '../components';
 
@@ -19,26 +19,25 @@ import './CharacterWidget.css';
 
 export interface CharacterWidgetProps {
   character: Character;
-  onEditCharacter: (value: EditCharacterProps) => void;
   className?: string;
 }
 
 export const CharacterWidget = memo((props: CharacterWidgetProps) => {
-  const { className, character, onEditCharacter } = props;
+  const { className, character } = props;
   const {
     statusCharacter,
     readOnly,
     name,
     location,
     status,
-    nameError,
+    error,
     onEditCharacterCard,
     updateStatusCharacterCard,
     updateLocationCharacterCard,
     updateNameCharacterCard,
     enableEditingMode,
     onCancelEditMode
-  } = useEditingCharacter({ character, onEditCharacter });
+  } = useEditingCharacter(character);
 
   return (
     <div className={classNames('character-card', className)}>
@@ -68,9 +67,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
                 value={name}
                 size='big'
               />
-              <span className='character-card__description-error'>
-                {nameError}
-              </span>
+              <span className='character-card__description-error'>{error}</span>
             </>
           )}
         </div>
