@@ -1,7 +1,7 @@
-export interface filterSchema {
-  searchValue: string;
-  filterStatus: string;
-  speciesValue: string;
-  genderValue: string;
+export interface FilterSchema {
+  search: string;
+  status: string;
+  species: string;
+  gender: string;
   page: number;
 }

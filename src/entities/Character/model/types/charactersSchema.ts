@@ -1,9 +1,9 @@
 import { Character } from './Character';
 
-export interface charactersSchema {
-  isLoading: boolean;
-  error?: string;
-  data: Character[] | [];
+export interface CharactersSchema {
+  data: Character[];
   isNext: boolean;
+  isLoading: boolean;
   isLoadingInitial: boolean;
+  error?: string;
 }

@@ -1,11 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { Character } from '../../model/types/Character';
+
 import { fetchCharacters } from '../services/fetchCharacters/fetchCharacters';
-import { charactersSchema } from '../types/charactersSchema';
+import { CharactersSchema } from '../types/CharactersSchema';
 import { FetchCharactersReturnProps } from '../types/fetchCharactersReturnProps';
 
-const initialState: charactersSchema = {
+const initialState: CharactersSchema = {
   isLoading: false,
   error: undefined,
   data: [],

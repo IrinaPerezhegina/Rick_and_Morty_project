@@ -1,7 +1,7 @@
 export interface FilterProps {
-  searchValue: string;
-  filterStatus: string;
-  speciesValue: string;
-  genderValue: string;
+  search: string;
+  status: string;
+  species: string;
+  gender: string;
   page: number;
 }

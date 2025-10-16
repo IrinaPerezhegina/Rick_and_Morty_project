@@ -2,9 +2,9 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { fetchCharacterById } from '../services/fetchCharacterById/fetchCharacterById';
 import { Character } from '../types/Character';
-import { characterSchema } from '../types/characterSchema';
+import { CharacterSchema } from '../types/CharacterSchema';
 
-const initialState: characterSchema = {
+const initialState: CharacterSchema = {
   isLoading: false,
   error: undefined,
   character: undefined

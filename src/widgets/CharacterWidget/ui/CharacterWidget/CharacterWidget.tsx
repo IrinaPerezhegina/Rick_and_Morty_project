@@ -8,10 +8,9 @@ import {
   Select,
   checkingStatus,
   classNames,
-  optionsStatus
+  optionsStatus,
+  useEditingCharacter
 } from '@/shared';
-
-import { useEditingCharacter } from '../../lib/hooks/useEditingCharacter';
 
 import { ButtonsGroup } from '../components';
 
@@ -30,7 +29,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
     name,
     location,
     status,
-    error,
+    nameError,
     onEditCharacterCard,
     updateStatusCharacterCard,
     updateLocationCharacterCard,
@@ -67,7 +66,9 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
                 value={name}
                 size='big'
               />
-              <span className='character-card__description-error'>{error}</span>
+              <span className='character-card__description-error'>
+                {nameError}
+              </span>
             </>
           )}
         </div>

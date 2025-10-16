@@ -22,7 +22,7 @@ export const fetchCharacters = createAsyncThunk<
   FetchCharactersReturnProps,
   FilterProps,
   ThunkConfig<string>
->('caracters/fetchCharacters', async (filter, { rejectWithValue }) => {
+>('characters/fetchCharacters', async (filter, { rejectWithValue }) => {
   try {
     const response = await $api.get<ResponseProps>('character/', {
       params: {

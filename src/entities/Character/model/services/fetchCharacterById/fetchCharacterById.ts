@@ -9,7 +9,7 @@ export const fetchCharacterById = createAsyncThunk<
   Character,
   string,
   ThunkConfig<string>
->('caracter/fetchCharacterById', async (id, { rejectWithValue }) => {
+>('character/fetchCharacterById', async (id, { rejectWithValue }) => {
   try {
     const response = await $api.get<Character>(`character/${id}`);
 

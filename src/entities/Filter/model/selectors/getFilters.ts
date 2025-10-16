@@ -1,18 +1,15 @@
 import { StateSchema } from '@/app/config';
 
-export const getFilterStatus = (state: StateSchema) =>
-  state.filter.filterStatus;
+export const getFilterStatus = (state: StateSchema) => state.filter.status;
 
-export const getFilterGenderValue = (state: StateSchema) =>
-  state.filter.genderValue;
+export const getFilterGenderValue = (state: StateSchema) => state.filter.gender;
 
 export const getFilterPage = (state: StateSchema) => state.filter.page;
 
-export const getFilterSearchValue = (state: StateSchema) =>
-  state.filter.searchValue;
+export const getFilterSearchValue = (state: StateSchema) => state.filter.search;
 
 export const getFilterSpeciesValue = (state: StateSchema) =>
-  state.filter.speciesValue;
+  state.filter.species;
 
 export const getFilters = (state: StateSchema) => state.filter;
 

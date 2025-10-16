@@ -1,15 +1,10 @@
-import {
-  characterSchema,
-  charactersSchema,
-  editingCharacterSchema
-} from '@/entities/Character';
-import { filterSchema } from '@/entities/Filter';
+import { CharacterSchema, CharactersSchema } from '@/entities/Character';
+import { FilterSchema } from '@/entities/Filter';
 
 export interface StateSchema {
-  character: characterSchema;
-  characters: charactersSchema;
-  filter: filterSchema;
-  editingCharacter: editingCharacterSchema;
+  character: CharacterSchema;
+  characters: CharactersSchema;
+  filter: FilterSchema;
 }
 
 export interface ThunkConfig<T = unknown> {

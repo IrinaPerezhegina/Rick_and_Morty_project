@@ -1,14 +1,14 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { filterSchema } from '../../model/types/filterSchema';
+import { FilterSchema } from '../types/FilterSchema';
 
 const FIRST_PAGE = 1;
 
-const initialState: filterSchema = {
-  searchValue: '',
-  filterStatus: '',
-  speciesValue: '',
-  genderValue: '',
+const initialState: FilterSchema = {
+  search: '',
+  status: '',
+  species: '',
+  gender: '',
   page: FIRST_PAGE
 };
 
@@ -17,24 +17,22 @@ const filterSlice = createSlice({
   initialState,
   reducers: {
     onChangeStatus(state, action: PayloadAction<string>) {
-      state.filterStatus = action.payload;
+      state.status = action.payload;
       state.page = FIRST_PAGE;
     },
     onChangeSpecies(state, action: PayloadAction<string>) {
-      state.speciesValue = action.payload;
+      state.species = action.payload;
       state.page = FIRST_PAGE;
     },
     onChangeGender(state, action: PayloadAction<string>) {
-      state.genderValue = action.payload;
+      state.gender = action.payload;
       state.page = FIRST_PAGE;
     },
     onChangePage(state) {
-      console.log(state);
-
       state.page = state.page + 1;
     },
     onChangeSearchValue(state, action: PayloadAction<string>) {
-      state.searchValue = action.payload;
+      state.search = action.payload;
       state.page = FIRST_PAGE;
     }
   }
