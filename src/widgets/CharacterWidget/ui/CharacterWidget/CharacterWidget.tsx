@@ -1,10 +1,9 @@
 import { memo } from 'react';
 import { Link } from 'react-router';
 
+import { Character } from '@/entities/Character';
 import {
-  Character,
   CircleStatus,
-  EditCharacterProps,
   Input,
   Select,
   checkingStatus,
@@ -19,12 +18,11 @@ import './CharacterWidget.css';
 
 export interface CharacterWidgetProps {
   character: Character;
-  onEditCharacter: (value: EditCharacterProps) => void;
   className?: string;
 }
 
 export const CharacterWidget = memo((props: CharacterWidgetProps) => {
-  const { className, character, onEditCharacter } = props;
+  const { className, character } = props;
   const {
     statusCharacter,
     readOnly,
@@ -38,7 +36,7 @@ export const CharacterWidget = memo((props: CharacterWidgetProps) => {
     updateNameCharacterCard,
     enableEditingMode,
     onCancelEditMode
-  } = useEditingCharacter({ character, onEditCharacter });
+  } = useEditingCharacter(character);
 
   return (
     <div className={classNames('character-card', className)}>

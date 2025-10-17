@@ -1,16 +1,12 @@
 import { useCallback, useMemo, useState } from 'react';
 
+import { Character, charactersActions } from '@/entities/Character';
 import {
-  Character,
-  EditCharacterProps,
   SelectOption,
-  optionsStatus
+  optionsStatus,
+  useAppDispatch,
+  validateName
 } from '@/shared';
-
-export interface UseEditingCharacterProps {
-  character: Character;
-  onEditCharacter: (value: EditCharacterProps) => void;
-}
 
 interface UseEditingCharacterResult {
   readOnly: boolean;
@@ -27,30 +23,17 @@ interface UseEditingCharacterResult {
   statusCharacter?: SelectOption;
 }
 
-export function useEditingCharacter({
-  character,
-  onEditCharacter
-}: UseEditingCharacterProps): UseEditingCharacterResult {
+export function useEditingCharacter(
+  character: Character
+): UseEditingCharacterResult {
   const [readOnly, setReadOnly] = useState(true);
   const [name, setName] = useState(character.name);
   const [location, setLocation] = useState(character.location.name);
   const [status, setStatus] = useState(character.status);
+  const dispatch = useAppDispatch();
 
   // Состояния для валидации
   const [nameError, setNameError] = useState<string | null>(null);
-
-  const validateName = (value: string): string | null => {
-    if (!value.trim()) {
-      return 'Name cannot be empty';
-    }
-    if (value.length < 2) {
-      return 'Name must contain at least 2 characters.';
-    }
-    if (value.length > 20) {
-      return 'Name must contain a max of 30 characters';
-    }
-    return null;
-  };
 
   const enableEditingMode = useCallback(() => {
     setReadOnly(false);
@@ -60,7 +43,7 @@ export function useEditingCharacter({
     setName(character.name);
     setLocation(character.location.name);
     setStatus(character.status);
-    setNameError(null); // сброс ошибки
+    setNameError(null);
     setReadOnly(true);
   }, [character.name, character.location, character.status]);
 
@@ -86,9 +69,17 @@ export function useEditingCharacter({
       return;
     }
 
-    onEditCharacter({ id: character.id, name, location, status });
+    dispatch(
+      charactersActions.onEditCharacterCard({
+        id: character.id,
+        name,
+        location,
+        status
+      })
+    );
+
     setReadOnly(true);
-  }, [character.id, location, name, onEditCharacter, status]);
+  }, [character.id, dispatch, location, name, status]);
 
   const statusCharacter = useMemo(() => {
     return optionsStatus.find((el) => el.content === character.status);

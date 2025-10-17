@@ -1,4 +1,4 @@
-import { FilterProps } from '@/shared';
+import { FilterProps } from '@/entities/Filter';
 
 interface ValidParamsProps {
   name?: string;
@@ -11,17 +11,17 @@ interface ValidParamsProps {
 export function getValidParams(params: FilterProps): ValidParamsProps {
   const validParams: ValidParamsProps = {};
 
-  if (params.filterStatus) {
-    validParams.status = params.filterStatus;
+  if (params.status) {
+    validParams.status = params.status;
   }
-  if (params.genderValue) {
-    validParams.gender = params.genderValue;
+  if (params.gender) {
+    validParams.gender = params.gender;
   }
-  if (params.searchValue) {
-    validParams.name = params.searchValue;
+  if (params.search) {
+    validParams.name = params.search;
   }
-  if (params.speciesValue) {
-    validParams.species = params.speciesValue;
+  if (params.species) {
+    validParams.species = params.species;
   }
   if (params.page) {
     validParams.page = params.page;
