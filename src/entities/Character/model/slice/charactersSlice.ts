@@ -1,5 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { HttpStatusCode } from 'axios';
 
+import { charactersApi } from '../../api/fetchCharactersApi';
 import { Character } from '../../model/types/Character';
 
 import { fetchCharacters } from '../services/fetchCharacters/fetchCharacters';
@@ -67,7 +69,6 @@ const charactersSlice = createSlice({
       )
       .addCase(fetchCharacters.rejected, (state, action) => {
         if (action.payload === '404') {
-          state.data = [];
           state.isLoading = false;
           state.error = undefined;
         } else {
@@ -76,7 +77,42 @@ const charactersSlice = createSlice({
           state.isLoadingInitial = false;
           state.error = action.payload;
         }
-      });
+      })
+      .addMatcher(
+        charactersApi.endpoints.getCharactersListData.matchPending,
+        (state) => {
+          state.error = undefined;
+          state.isLoading = true;
+        }
+      )
+      .addMatcher(
+        charactersApi.endpoints.getCharactersListData.matchFulfilled,
+        (state, action: PayloadAction<FetchCharactersReturnProps>) => {
+          if (action.payload.page === 1) {
+            state.data = action.payload.results;
+          }
+          if (action.payload.page > 1) {
+            state.data = [...state.data, ...action.payload.results];
+          }
+          state.isNext = action.payload.next;
+          state.error = undefined;
+          state.isLoading = false;
+          state.isLoadingInitial = false;
+        }
+      )
+      .addMatcher(
+        charactersApi.endpoints.getCharactersListData.matchRejected,
+        (state, action) => {
+          if (action?.payload?.status === HttpStatusCode.NotFound) {
+            state.error = undefined;
+          } else {
+            state.isLoadingInitial = false;
+            state.error = 'error';
+          }
+          state.isLoading = false;
+          state.data = [];
+        }
+      );
   }
 });
 

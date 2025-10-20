@@ -1,15 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { StateSchema } from '@/app/config';
 import { characterReducer, charactersReducer } from '@/entities/Character';
 import { filterReducer } from '@/entities/Filter';
+import { rtkApi } from '@/shared';
 
-export const store = configureStore<StateSchema>({
+export const store = configureStore({
   reducer: {
     filter: filterReducer,
     character: characterReducer,
-    characters: charactersReducer
-  }
+    characters: charactersReducer,
+    [rtkApi.reducerPath]: rtkApi.reducer
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(rtkApi.middleware)
 });
 
 export type RootState = ReturnType<typeof store.getState>;

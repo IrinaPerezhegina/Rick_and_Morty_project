@@ -2,35 +2,20 @@ import { memo, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useParams } from 'react-router';
 
-import {
-  fetchCharacterById,
-  getCharacterDetails,
-  getCharacterDetailsError,
-  getCharacterDetailsIsLoading
-} from '@/entities/Character';
-import { Loader, useAppDispatch, useAppSelector } from '@/shared';
+import { useCharactersById } from '@/entities/Character';
+import { Loader } from '@/shared';
 import { CharacterProfileWidget } from '@/widgets';
 
 const CharacterPage = memo(() => {
-  const dispatch = useAppDispatch();
   const { id } = useParams();
-  const error = useAppSelector(getCharacterDetailsError);
-  const character = useAppSelector(getCharacterDetails);
-  const isLoading = useAppSelector(getCharacterDetailsIsLoading);
+  const { data: character, isError, isLoading } = useCharactersById(id);
 
   // useEffect для отображении ошибки
   useEffect(() => {
-    if (error) {
-      toast.error(error);
+    if (isError) {
+      toast.error('Data upload error');
     }
-  }, [error]);
-
-  // useEffect для запроса персонажа
-  useEffect(() => {
-    if (id) {
-      dispatch(fetchCharacterById(id));
-    }
-  }, [id, dispatch]);
+  }, [isError]);
 
   return (
     <>
