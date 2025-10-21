@@ -2,11 +2,11 @@ import { memo, useCallback, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 import {
-  fetchCharacters,
   getCharactersList,
   getCharactersListError,
   getCharactersListIsLoadingInitial,
-  getIsTargetElementVisible
+  getIsTargetElementVisible,
+  useCharactersList
 } from '@/entities/Character';
 import {
   filterActions,
@@ -37,17 +37,15 @@ const MainPage = memo(() => {
   const isSmallLoaderVisible = useAppSelector(getIsSmallLoaderVisible);
   const isLoadingInitial = useAppSelector(getCharactersListIsLoadingInitial);
 
+  // запрос на бэк
+  useCharactersList(filter);
+
   // отображение ошибки
   useEffect(() => {
     if (error) {
       toast.error(error);
     }
   });
-
-  // загрузка персонажей
-  useEffect(() => {
-    dispatch(fetchCharacters(filter));
-  }, [filter, dispatch]);
 
   // переход на новую страницу
   const onTurnNextPage = useCallback(() => {

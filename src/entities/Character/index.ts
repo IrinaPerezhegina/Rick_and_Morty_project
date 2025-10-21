@@ -1,3 +1,5 @@
+export { useCharactersById } from './api/fetchCharacterByIdApi';
+export { useCharactersList } from './api/fetchCharactersApi';
 export {
   getCharacterDetails,
   getCharacterDetailsError,
