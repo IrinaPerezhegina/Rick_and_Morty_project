@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "isolatedModules": true
+  },
+  "type": "module",
+  "include": [
+    "src",
+    "scripts",
+    "./src/vite-env.d.ts",
+    "./config/jest.config.ts",
+    "./config/setupTests.ts",
+    "./config/jestEmptyComponent.tsx"
+  ]
+}

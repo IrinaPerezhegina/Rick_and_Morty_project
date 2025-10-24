@@ -1,6 +1,7 @@
 import { memo } from 'react';
 
-import { Character, GoBackButton, classNames } from '@/shared';
+import { Character } from '@/entities/Character';
+import { GoBackButton, classNames } from '@/shared';
 
 import './CharacterProfileWidget.css';
 

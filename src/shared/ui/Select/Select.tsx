@@ -100,6 +100,7 @@ export const Select = memo((props: SelectProps) => {
 
   return (
     <div
+      role='select'
       ref={containerRef}
       className={classNames('select', {
         select_big: view === 'big',
