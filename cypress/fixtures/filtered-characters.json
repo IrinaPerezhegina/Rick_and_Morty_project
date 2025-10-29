@@ -1,0 +1,73 @@
+{
+  "info": {
+    "count": 68,
+    "pages": 4,
+    "next": "https://rickandmortyapi.com/api/character?page=2&name=Morty",
+    "prev": null
+  },
+  "results": [
+    {
+      "id": 2,
+      "name": "Morty Smith",
+      "status": "Alive",
+      "species": "Human",
+      "type": "",
+      "gender": "Male",
+      "origin": {
+        "name": "unknown",
+        "url": ""
+      },
+      "location": {
+        "name": "Citadel of Ricks",
+        "url": "https://rickandmortyapi.com/api/location/3"
+      },
+      "image": "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
+      "episode": ["https://rickandmortyapi.com/api/episode/1"],
+      "url": "https://rickandmortyapi.com/api/character/2",
+      "created": "2017-11-04T18:50:21.651Z"
+    },
+    {
+      "id": 14,
+      "name": "Alien Morty",
+      "status": "unknown",
+      "species": "Alien",
+      "type": "",
+      "gender": "Male",
+      "origin": {
+        "name": "unknown",
+        "url": ""
+      },
+      "location": {
+        "name": "Citadel of Ricks",
+        "url": "https://rickandmortyapi.com/api/location/3"
+      },
+      "image": "https://rickandmortyapi.com/api/character/avatar/14.jpeg",
+      "episode": ["https://rickandmortyapi.com/api/episode/10"],
+      "url": "https://rickandmortyapi.com/api/character/14",
+      "created": "2017-11-04T20:51:31.373Z"
+    },
+    {
+      "id": 18,
+      "name": "Antenna Morty",
+      "status": "Alive",
+      "species": "Human",
+      "type": "Human with antennae",
+      "gender": "Male",
+      "origin": {
+        "name": "unknown",
+        "url": ""
+      },
+      "location": {
+        "name": "Citadel of Ricks",
+        "url": "https://rickandmortyapi.com/api/location/3"
+      },
+      "image": "https://rickandmortyapi.com/api/character/avatar/18.jpeg",
+      "episode": [
+        "https://rickandmortyapi.com/api/episode/10",
+        "https://rickandmortyapi.com/api/episode/28"
+      ],
+      "url": "https://rickandmortyapi.com/api/character/18",
+      "created": "2017-11-04T22:25:29.008Z"
+    }
+  ]
+}

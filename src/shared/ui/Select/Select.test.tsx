@@ -39,5 +39,4 @@ describe('Select', () => {
     const headerWrapper = document.querySelector('.select__header-wrapper');
     expect(headerWrapper?.textContent).toBe('Unknown');
   });
-  // screen.debug();
 });
