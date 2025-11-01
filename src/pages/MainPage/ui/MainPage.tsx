@@ -87,4 +87,5 @@ const MainPage = memo(() => {
     </>
   );
 });
+
 export default MainPage;

@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import { classNames } from '@/shared';
 
-import { ReactComponent as LoaderIcon } from '@/assets/loader.svg';
+import { LoaderIcon } from '@/assets';
 
 import './Loader.css';
 

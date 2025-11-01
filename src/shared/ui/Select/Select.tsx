@@ -2,8 +2,7 @@ import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { classNames } from '@/shared';
 
-import { ReactComponent as ArrowDown } from '@/assets/arrowDown.svg';
-import { ReactComponent as ArrowUp } from '@/assets/arrowUp.svg';
+import { ArrowDown, ArrowUp } from '@/assets';
 
 import './Select.css';
 

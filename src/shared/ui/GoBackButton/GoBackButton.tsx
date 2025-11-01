@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 
 import { classNames } from '@/shared';
 
-import { ReactComponent as GoBackArrow } from '@/assets/arrow_back.svg';
+import { GoBackArrow } from '@/assets';
 
 import './GoBackButton.css';
 
@@ -18,6 +18,7 @@ export const GoBackButton = memo((props: GoBackButtonProps) => {
   const goBack = () => {
     navigate(-1); // возвращаем назад
   };
+
   return (
     <div className={classNames('go-back-button', className)}>
       <button onClick={goBack}>

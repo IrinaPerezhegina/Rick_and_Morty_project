@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { ReactComponent as LogoIcon } from '@/assets/logo.svg';
+import { LogoIcon } from '@/assets';
 
 import './Logo.css';
 

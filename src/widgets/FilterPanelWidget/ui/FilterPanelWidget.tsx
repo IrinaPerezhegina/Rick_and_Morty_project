@@ -19,7 +19,7 @@ import {
   useDebounce
 } from '@/shared';
 
-import { ReactComponent as Loupe } from '@/assets/loupe.svg';
+import { Loupe } from '@/assets';
 
 import './FilterPanelWidget.css';
 

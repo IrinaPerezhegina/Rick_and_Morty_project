@@ -31,7 +31,6 @@ describe('CharactersPage', () => {
     });
   });
 
-  // Проверка, что фильтрация по имени персонажа отработала
   it('Проверка, что фильтрация по имени персонажа отработала', () => {
     const name = 'Morty';
     cy.url().should('eq', 'http://localhost:5173/Rick_and_Morty_project/');

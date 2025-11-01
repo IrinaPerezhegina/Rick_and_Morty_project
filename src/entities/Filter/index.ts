@@ -12,5 +12,5 @@ export { filterReducer } from './model/slice/filterSlice';
 
 export { filterActions } from './model/slice/filterSlice';
 
-export { type FilterProps } from './model/types/filter';
+export { type FilterProps } from './model/types/Filter';
 export { type FilterSchema } from './model/types/FilterSchema';

@@ -11,15 +11,12 @@
   position: relative;
 }
 
-.character-card__btns {
-  display: none;
-}
-
 .character-card:hover .character-card__btns {
   display: flex;
 }
 
 .character-card__btns {
+  display: none;
   position: absolute;
   top: 5%;
   right: 2%;

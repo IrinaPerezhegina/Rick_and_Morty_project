@@ -5,8 +5,8 @@ import { Loader, classNames } from '@/shared';
 import './CharactersWrapper.css';
 
 interface CharactersWrapperProps {
-  className?: string;
   isLoading: boolean;
+  className?: string;
 }
 
 export const CharactersWrapper = memo(

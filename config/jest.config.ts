@@ -11,8 +11,8 @@ const config: Config = {
   testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
   coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
   moduleNameMapper: {
-    '^@/assets/.*\\.svg$': '<rootDir>config/jestEmptyComponent.tsx',
     '^@/(.*)$': '<rootDir>src/$1',
+    '\\.svg': '<rootDir>config/jestEmptyComponent.tsx',
     '\\.css$': 'identity-obj-proxy'
   },
   transform: {
