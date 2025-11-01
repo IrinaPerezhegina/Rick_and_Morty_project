@@ -1,13 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { characterReducer, charactersReducer } from '@/entities/Character';
+import { charactersReducer } from '@/entities/Character';
 import { filterReducer } from '@/entities/Filter';
 import { rtkApi } from '@/shared';
 
 export const store = configureStore({
   reducer: {
     filter: filterReducer,
-    character: characterReducer,
     characters: charactersReducer,
     [rtkApi.reducerPath]: rtkApi.reducer
   },

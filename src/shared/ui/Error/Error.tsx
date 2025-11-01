@@ -11,6 +11,7 @@ interface ErrorProps {
 
 export const Error = memo((props: ErrorProps) => {
   const { className, error } = props;
+
   if (!error) {
     return;
   }

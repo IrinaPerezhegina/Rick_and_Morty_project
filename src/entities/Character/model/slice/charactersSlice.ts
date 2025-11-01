@@ -4,9 +4,8 @@ import { HttpStatusCode } from 'axios';
 import { charactersApi } from '../../api/fetchCharactersApi';
 import { Character } from '../../model/types/Character';
 
-import { fetchCharacters } from '../services/fetchCharacters/fetchCharacters';
 import { CharactersSchema } from '../types/CharactersSchema';
-import { FetchCharactersReturnProps } from '../types/fetchCharactersReturnProps';
+import { FetchCharactersReturnProps } from '../types/FetchCharactersReturnProps';
 
 const initialState: CharactersSchema = {
   isLoading: false,
@@ -45,39 +44,8 @@ const charactersSlice = createSlice({
       });
     }
   },
-
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCharacters.pending, (state) => {
-        state.error = undefined;
-        state.isLoading = true;
-      })
-      .addCase(
-        fetchCharacters.fulfilled,
-        (state, action: PayloadAction<FetchCharactersReturnProps>) => {
-          if (action.payload.page === 1) {
-            state.data = action.payload.results;
-          }
-          if (action.payload.page > 1) {
-            state.data = [...state.data, ...action.payload.results];
-          }
-          state.isNext = action.payload.next;
-          state.error = undefined;
-          state.isLoading = false;
-          state.isLoadingInitial = false;
-        }
-      )
-      .addCase(fetchCharacters.rejected, (state, action) => {
-        if (action.payload === '404') {
-          state.isLoading = false;
-          state.error = undefined;
-        } else {
-          state.data = [];
-          state.isLoading = false;
-          state.isLoadingInitial = false;
-          state.error = action.payload;
-        }
-      })
       .addMatcher(
         charactersApi.endpoints.getCharactersListData.matchPending,
         (state) => {
@@ -107,7 +75,7 @@ const charactersSlice = createSlice({
             state.error = undefined;
           } else {
             state.isLoadingInitial = false;
-            state.error = 'error';
+            state.error = 'Data upload error';
           }
           state.isLoading = false;
           state.data = [];

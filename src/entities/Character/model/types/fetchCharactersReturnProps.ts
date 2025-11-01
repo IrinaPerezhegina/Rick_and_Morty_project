@@ -1,4 +1,4 @@
-import { Character } from '../types/Character';
+import { Character } from './Character';
 
 export interface FetchCharactersReturnProps {
   results: Character[];

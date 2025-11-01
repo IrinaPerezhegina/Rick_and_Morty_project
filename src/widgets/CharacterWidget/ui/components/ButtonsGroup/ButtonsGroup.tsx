@@ -1,8 +1,6 @@
 import { memo } from 'react';
 
-import { ReactComponent as CheckIcon } from '@/assets/checkMark.svg';
-import { ReactComponent as CloseIcon } from '@/assets/close.svg';
-import { ReactComponent as PensilIcon } from '@/assets/pensil.svg';
+import { CheckIcon, CloseIcon, PensilIcon } from '@/assets';
 
 import './ButtonsGroup.css';
 
@@ -20,7 +18,7 @@ export const ButtonsGroup = memo((props: ButtonsGroupProps) => {
     <div className='button-group'>
       <button onClick={onCancel}>
         <CloseIcon
-          aria-label='Отменить редактирование'
+          aria-label='Cancel editing'
           className='button-group__close'
         />
       </button>
@@ -28,14 +26,14 @@ export const ButtonsGroup = memo((props: ButtonsGroupProps) => {
       {readonly ? (
         <button onClick={onEdit}>
           <PensilIcon
-            aria-label='Редактировать'
+            aria-label='Edit'
             className='button-group__pensil'
           />
         </button>
       ) : (
         <button onClick={onChange}>
           <CheckIcon
-            aria-label='Сохранить редактирование'
+            aria-label='Save Editing'
             className='button-group__check'
           />
         </button>
