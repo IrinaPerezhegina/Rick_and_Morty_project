@@ -38,7 +38,9 @@ const MainPage = memo(() => {
   const isLoadingInitial = useAppSelector(getCharactersListIsLoadingInitial);
 
   // запрос на бэк
-  useCharactersList(filter);
+  useCharactersList(filter, {
+    refetchOnMountOrArgChange: true
+  });
 
   // отображение ошибки
   useEffect(() => {
